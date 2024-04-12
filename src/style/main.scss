@@ -14,11 +14,16 @@ html {
 body {
     overflow-x: hidden;
     font-weight: normal;
-
+    background-image: url(../../static/assets/images/lockimg.png);
+    background-repeat: no-repeat;
+    background-position:top;
+    background-size: 800px;
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     -webkit-tap-highlight-color: transparent;
+    
 }
 
 .app {
@@ -26,3 +31,4 @@ body {
     display: grid;
     justify-items: center;
 }
+
