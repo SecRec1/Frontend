@@ -12,6 +12,7 @@ export default class App extends Component {
       <div className="app">
         <div className="title">
           <h1>Maintanence Tracker</h1>
+          <div>Time and Date component</div>
         </div>
         <div className="Button_container">
           <div className="Equipment_container">
