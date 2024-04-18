@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-
+import moment from "moment";
 import "../style/app.scss";
 import SpecsContainer from "../containers/specscontainer";
 import UpcomingContainer from "../containers/upcomingcontainer";
 import OverdueContainer from "../containers/overduecontainer";
 import DueContainer from "../containers/duecontainer";
+
+
+
+
+
 
 export default class App extends Component {
   render() {
@@ -12,7 +17,7 @@ export default class App extends Component {
       <div className="app">
         <div className="title">
           <h1>Maintanence Tracker</h1>
-          <div>Time and Date component</div>
+          <div>{moment().format('MMM DD , yyyy hh:mm')}</div>
         </div>
         <div className="Button_container">
           <div className="Equipment_container">
