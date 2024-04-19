@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import moment from "moment";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "../style/app.scss";
-import SpecsContainer from "../containers/specscontainer";
-import UpcomingContainer from "../containers/upcomingcontainer";
-import OverdueContainer from "../containers/overduecontainer";
-import DueContainer from "../containers/duecontainer";
 
-
+import NavigationComponent from "./navigation-container";
+import AddRecord from "./pages/addnew";
+import Home from "../components/pages/home";
+import Scan from "../components/pages/Scan";
+import Search from "../components/pages/Search";
 
 
 
@@ -19,16 +20,19 @@ export default class App extends Component {
           <h1>Maintanence Tracker</h1>
           <div>{moment().format('MMM DD , yyyy hh:mm')}</div>
         </div>
-        <div className="Button_container">
-          <div className="Equipment_container">
-            <div className="Code">QRCode</div>
-            <div className="Name">Equipment Name</div>
+        
+        <Router>
+          <div>
+            <NavigationComponent/>
+
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              {/* <Route path="Scan" component={Scan}/> */}
+              {/* <Route path="Search" component={Search}/> */}
+              <Route path="Add" component={AddRecord}/>
+            </Switch>
           </div>
-          <SpecsContainer />
-          <OverdueContainer />
-          <DueContainer />
-          <UpcomingContainer />
-        </div>
+        </Router>
       </div>
     );
   }

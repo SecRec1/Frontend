@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import SpecsForm from "../components/specsform";
-import Styles from "../style/app.scss";
+import axios from "axios";
 
-
-export default class SpecsContainer extends Component {
+export class Search extends Component {
   constructor(props) {
     super(props);
 
@@ -50,23 +48,4 @@ export default class SpecsContainer extends Component {
 
     return formData;
   }
-
-
-  render() {
-    return (
-      <div className="Specs_container">
-        <button onClick={showHideequip} className="Equipment button">
-          Equipment Specs
-        </button>
-        <div id="Specs" className="Equipment-content">
-          <SpecsForm/>
-        </div>
-      </div>
-    );
-  }
 }
-
-  function showHideequip() {
-    var specs = document.getElementById("Specs");
-    specs.classList.toggle("show");
-  }
