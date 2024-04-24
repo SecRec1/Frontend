@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 
-import SpecsForm from "./specsform";
+import AddForm from "../forms/add-form";
 
-ReactModal.setAppElement(".app-wrapper");
 
-export default class BlogModal extends Component {
+
+export default class Addmodal extends Component {
   constructor(props) {
     super(props);
+
+    ReactModal.setAppElement(".app-wrapper");
 
     this.customStyles = {
       content: {
@@ -16,16 +18,15 @@ export default class BlogModal extends Component {
         right: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%",
-        width: "800px"
+        width: "800px",
       },
       overlay: {
-        backgroundColor: "rgba(1, 1, 1, 0.75)"
-      }
+        backgroundColor: "rgba(1, 1, 1, 0.75)",
+      },
     };
 
-    this.handleSuccessfullFormSubmission = this.handleSuccessfullFormSubmission.bind(
-      this
-    );
+    this.handleSuccessfullFormSubmission =
+      this.handleSuccessfullFormSubmission.bind(this);
   }
 
   handleSuccessfullFormSubmission(blog) {
@@ -41,7 +42,7 @@ export default class BlogModal extends Component {
         }}
         isOpen={this.props.modalIsOpen}
       >
-        <BlogForm
+        <AddForm
           handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission}
         />
       </ReactModal>
