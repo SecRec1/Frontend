@@ -8,7 +8,7 @@ import NavigationComponent from "./navigation-container";
 
 import Home from "../components/pages/home";
 import Scan from "../components/pages/Scan";
-import Search from "../components/pages/Search";
+import Search from "../components/pages/specs-manager";
 import Header from "../components/header";
 import SpecsDetail from "./detail-page/specs-details";
 import Specs from "../components/pages/specs";
@@ -27,7 +27,7 @@ export default class App extends Component {
   
   render() {
     return (
-      <div className="app">
+      <div classname="app">
         
         <Header/>
         <Router>
@@ -38,7 +38,7 @@ export default class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/Scan" component={Scan} />
               <Route path="/Search" component={Search} />
-              <Route path="/S/:slug" component={Specs} />
+              <Route path="/Specs/:slug" component={Specs} />
             </Switch>
           </div>
         </Router>

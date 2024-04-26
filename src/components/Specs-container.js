@@ -6,7 +6,7 @@ export default class SpecsContainer extends Component {
     super();
 
     this.state = {
-      SN: "",
+      sn: "",
       Name: "",
       QRCode: "",
       Designator: "",

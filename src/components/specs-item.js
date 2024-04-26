@@ -1,40 +1,50 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import striptags from "striptags";
-import Truncate from "react-truncate";
 
-const SpecsItem = (props) => {
-  const {
-    SN,
-    Name,
-    QRCode,
-    Designator,
-    Subdesignator,
-    Oil,
-    Coolant,
-    Department,
-    Motor,
-  } = props.SpecsItem;
+export default class SpecsItem extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div>
-      <Link to={`/S/${SN}`}>
-        <h1>{Name}{SN}{QRCode}</h1>
-      </Link>
-      <div>
-        <Truncate
-          lines={1}
-          ellipsis={
-            <span>
-              ...<Link to={`/S/${SN}`}>Read more</Link>
-            </span>
-          }
+    this.state = {
+      specsItemClass: ""
+    };
+  }
+
+  handleMouseEnter() {
+    this.setState({ specsItemClass: "image-blur" });
+  }
+
+  handleMouseLeave() {
+    this.setState({ specsItemClass: "" });
+  }
+
+  render() {
+    const { id, description, thumb_image_url, logo_url } = this.props.item;
+    return (
+      <Link to={`/specs/${id}`}>
+        <div
+          className="specs-item-wrapper"
+          onMouseEnter={() => this.handleMouseEnter()}
+          onMouseLeave={() => this.handleMouseLeave()}
         >
-          {striptags(content)}
-        </Truncate>
-      </div>
-    </div>
-  );
-};
+          <div
+            className={
+              "specs-img-background " + this.state.specsItemClass
+            }
+            style={{
+              backgroundImage: "url(" + thumb_image_url + ")"
+            }}
+          />
 
-export default SpecsItem;
+          <div className="img-text-wrapper">
+            <div className="logo-wrapper">
+              <img src={logo_url} />
+            </div>
+
+            <div className="subtitle">{description}</div>
+          </div>
+        </div>
+      </Link>
+    );
+  }
+}

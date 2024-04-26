@@ -3,15 +3,15 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 
 import AddForm from "../forms/add-form";
-import SpecsMotorImage from "../forms/specs-motor-image";
-import SpecsQRCodeImage from "../forms/specs-qrcode-image";
+import SpecsMotorImage from "./forms/specs-motor-image";
+import SpecsQRCodeImage from "./forms/specs-qrcode-image";
 
 export default class SpecsDetail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentSN: this.props.match.params.slug,
+      currentsn: this.props.match.params.slug,
       SpecsItem: {},
       editMode: false,
     };
@@ -50,7 +50,7 @@ export default class SpecsDetail extends Component {
 
   getSpecsItem() {
     axios
-      .get(`http://127.0.0.1:5000/Specs/${this.state.currentSN}`)
+      .get(`http://127.0.0.1:5000/Specs/${this.state.currentsn}`)
       .then((response) => {
         this.setState({
           SpecsItem: response.data.Specs,

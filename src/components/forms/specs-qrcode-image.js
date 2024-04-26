@@ -1,13 +1,13 @@
 import React from "react";
 
 const SpecsQRCodeImage = props => {
-  if (!props.QRCode) {
+  if (!props.qrcode) {
     return null;
   }
 
   return (
     <div className="featured-image-wrapper">
-      <img src={props.QRCode} />
+      <img src={props.qrcode} />
     </div>
   );
 };

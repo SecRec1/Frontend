@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ReactModal from "react-modal";
 import AddForm from "../forms/add-form";
 
+ReactModal.setAppElement(".app-wrapper");
+
 export default class SpecsModal extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +16,15 @@ export default class SpecsModal extends Component {
         transform: "translate(-50%, -50%",
         width: "800px",
       },
-      overlay:{
-        backgroundColor:"rgba(1,1,1,0.75)"
-      }
+      overlay: {
+        backgroundColor: "rgba(1,1,1,0.75)",
+      },
     };
+    this.handleSuccessfullFormSubmission =
+      this.handleSuccessfullFormSubmission.bind(this);
+  }
+  handleSuccessfullFormSubmission(Specs) {
+    this.props.handleSuccessfulNewSpecsSubmission(Specs);
   }
   render() {
     return (

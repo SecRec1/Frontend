@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import SpecsItem from "../specs-item";
 import AddModal from "../modals/add-modal";
-import SpecsModal from "../Modals/specs-modal";
+import SpecsModal from "../modals/specs-modal";
 import AddForm from "../forms/add-form";
 
 class Specs extends Component {
@@ -31,11 +31,11 @@ class Specs extends Component {
 
   handleDeleteClick(Specs) {
     axios
-      .delete(`http://127.0.0.1:5000/Specs/${Specs.SN}`)
+      .delete(`http://127.0.0.1:5000/Specs/${Specs.sn}`)
       .then((response) => {
         this.setState({
           SpecsItems: this.state.SpecsItems.filter((SpecsItem) => {
-            return Specs.SN !== SpecsItem.SN;
+            return Specs.sn !== SpecsItem.sn;
           }),
         });
 
@@ -90,7 +90,7 @@ class Specs extends Component {
       .get(`http://127.0.0.1:5000/Specs?page=${this.state.currentPage}`)
       .then((response) => {
         this.setState({
-          SpecsItems: this.state.SpecsItems.concat(response.data.Specs),
+          SpecsItems: [this.state.SpecsItems.concat(response.data.Specs)],
           totalCount: response.data.meta.total_records,
           isLoading: false,
         });
@@ -111,8 +111,8 @@ class Specs extends Component {
   render() {
     const SpecsRecords = this.state.SpecsItems.map((SpecsItem) => {
       return (
-        <div key={SpecsItem.SN} className="admin-blog-wrapper">
-          <SpecsItem SpecsItem={SpecsItem} />
+        <div className="admin-blog-wrapper">
+          <SpecsItem key={SpecsItem.sn} SpecsItem={SpecsItem} />
           <a onClick={() => this.handleDeleteClick(SpecsItem)}>
             <FontAwesomeIcon icon="trash" />
           </a>
