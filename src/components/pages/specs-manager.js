@@ -1,98 +1,69 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import SpecsForm from "../forms/add-form";
+import AddForm from "../forms/add-form";
+import Search from "../forms/search-form";
+import RecordList from "../list-component";
+import SpecsContainer from "../Specs-container";
 
 export default class SpecsManager extends Component {
   constructor() {
     super();
-
     this.state = {
       specsItems: [],
-      specsToEdit: {},
+      SpecsPageToEdit: {}
     };
 
     this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this);
-    this.handleEditFormSubmission = this.handleEditFormSubmission.bind(this);
+    this.handleSuccessfulFormSubmission =
+      this.handleSuccessfulFormSubmission.bind(this);
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.clearSpecsToEdit = this.clearSpecsToEdit.bind(this);
-  }
-
-  clearSpecsToEdit() {
-    this.setState({
-      specsToEdit: {},
-    });
-  }
-
-  handleEditClick(specsItem) {
-    this.setState({
-      specsToEdit: specsItem,
-    });
-  }
-
-  handleDeleteClick(specsItem) {
-    axios
-      .delete(`https://api.devcamp.space/specs/specs_items/${specsItem.sn}`)
-      .then((response) => {
-        this.setState({
-          specsItems: this.state.specsItems.filter((item) => {
-            return item.id !== specsItem.id;
-          }),
-        });
-
-        return response.data;
-      })
-      .catch((error) => {
-        console.log("handleDeleteClick error", error);
-      });
-  }
-
-  handleEditFormSubmission() {
-    this.getSpecsItems();
-  }
-
-  handleNewFormSubmission(specsItem) {
-    this.setState({
-      specsItems: [specsItem].concat(this.state.specsItems),
-    });
-  }
-
-  handleFormSubmissionError(error) {
-    console.log("handleFormSubmissionError error", error);
+    this.getSpecsItems = this.getSpecsItems.bind(this);
   }
 
   getSpecsItems() {
     axios
-      .get("http://127.0.0.1:5000/Specs/Specs_items")
+      .get(`http://127.0.0.1:5000/Specs`)
       .then((response) => {
-        // console.log("response.data.specs_items", response.data.specs_items);
         this.setState({
-          specsItems: [...response.data.specs_items],
+          data: response.data,
         });
       })
       .catch((error) => {
-        console.log("error in getSpecsItems", error);
+        console.log("error", error);
       });
   }
 
-  componentDidMount() {
-    this.getSpecsItems();
+  handleFormSubmissionError(error) {
+    console.log("Submission error", error);
+  }
+  handleNewFormSubmission(specsItem) {
+    this.setState({
+      specsItems: [specsItem].concat(this.state.specsItems)
+    });
+  }
+  handleSuccessfulFormSubmission(specsItem) {
+    console.log("specsItem", specsItem);
+  }
+  handleDeleteClick(specsItem) {
+    console.log("delete", specsItem);
   }
 
   render() {
     return (
       <div className="specs-manager-wrapper">
-        <div className="left-column">
-          <SpecsForm
-            handleNewFormSubmission={this.handleNewFormSubmission}
-            handleEditFormSubmission={this.handleEditFormSubmission}
-            handleFormSubmissionError={this.handleFormSubmissionError}
-            clearSpecsToEdit={this.clearSpecsToEdit}
-            specsToEdit={this.state.specsToEdit}
-          />
-        </div>
+        <AddForm
+          handleFormSubmissionError={this.handleFormSubmissionError}
+          handleNewFormSubmission={this.handleNewFormSubmission}
+          handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
+        />
+        <Search />
+        <RecordList
+          data={this.state.specsItems}
+          handleDeleteClick={this.handleDeleteClick}
+        />
+        <SpecsContainer />
       </div>
     );
   }

@@ -18,7 +18,7 @@ const NavigationComponent = (props) => {
         </NavLink>
 
         <NavLink to="/Specsmanager" activeClassName="nav-link-active">
-          Specsmanager
+          Specs Manager
         </NavLink>
       </div>
     </div>

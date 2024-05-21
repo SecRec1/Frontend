@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
 
-export default class SpecsForm extends Component {
+import RichTextEditor from "../../forms/rich-text-editor";
+
+import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
+import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
+
+export default class AddForm extends Component {
   constructor(props) {
     super(props);
 
@@ -16,6 +21,7 @@ export default class SpecsForm extends Component {
       coolant: "",
       department: "",
       motor: "",
+      editMode: "False",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,60 +29,11 @@ export default class SpecsForm extends Component {
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
 
-    this.deleteImage = this.deleteImage.bind(this);
     this.handleMotorDrop = this.handleMotorDrop.bind(this);
     this.handleQRCodeDrop = this.handleQRCodeDrop.bind(this);
 
-    this.MotorRef = React.createRef();
-    this.QRCodeRef = React.createRef();
-  }
-
-  deleteImage(imageType) {
-    axios
-      .delete(
-        `http://127.0.0.1/Specs/delete-specs-image/${this.state.sn}?image_type=${imageType}`
-      )
-      .then((response) => {
-        this.setState({
-          [`${imageType}_url`]: "",
-        });
-      })
-      .catch((error) => {
-        console.log("deleteImage error", error);
-      });
-  }
-
-  componentDidUpdate() {
-    if (Object.keys(this.props.specsToEdit).length > 0) {
-      const {
-        sn,
-        name,
-        designator,
-        subdesignator,
-        oil,
-        coolant,
-        motor,
-        qrcode,
-        department,
-      } = this.props.specsToEdit;
-
-      this.props.clearSpecsToEdit();
-
-      this.setState({
-        sn: sn,
-        name: name || "",
-        designator: designator || "",
-        subdesignator: subdesignator || "eCommerce",
-        oil: oil || "",
-        coolant: coolant || "",
-        department: department || "",
-        motor: motor || "",
-        qrcode: qrcode || "",
-        editMode: true,
-        apiUrl: `http://127.0.0.1/Specs/specs_items/${sn}`,
-        apiAction: "patch",
-      });
-    }
+    this.motorRef = React.createRef();
+    this.qrcodeRef = React.createRef();
   }
 
   handleMotorDrop() {
@@ -106,73 +63,50 @@ export default class SpecsForm extends Component {
     };
   }
 
-  buildForm() {
-    let formData = new FormData();
-
-    formData.append(`Specs[sn]`, this.state.sn);
-    formData.append(`Specs[name]`, this.state.name);
-    formData.append(`Specs[designator]`, this.state.designator);
-    formData.append(`Specs[subdesignator]`, this.state.subdesignator);
-    formData.append(`Specs[oil]`, this.state.oil);
-    formData.append(`Specs[coolant]`, this.state.coolant);
-    formData.append(`Specs[department]`, this.state.department);
-
-    if (this.state.motor_image) {
-      formData.append(`Specs[motor]`, this.state.motor);
-    }
-
-    if (this.state.qrcode_image) {
-      formData.append(`Specs[qrcode]`, this.state.qrcode);
-    }
-
-    return formData;
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
   handleSubmit(event) {
-    axios({
-      method: "post",
-      url: "http://127.0.0.1:5000/Specs",
-      data: this.buildForm(),
-      headers: {
-        "Content-Type": "multipart/form-data, application/json",
-      },
-    })
-      .then((response) => {
-        console.log("specs form handleSubmit response", response.data);
-        if (this.state.editMode) {
-          this.props.handleEditFormSubmission();
-        } else {
-          this.props.handleNewFormSubmission(response.data.specs_item);
-        }
+    event.preventDefault();
+    debugger;
 
+    const formData = new FormData(event.currentTarget);
+    if (this.state.qrcode) {
+      formData.append("qrcode", this.state.qrcode.dataURL);
+    }
+
+    if (this.state.motor) {
+      formData.append("motor", this.state.motor.dataURL);
+    }
+    const data = Object.fromEntries(formData);
+    console.log(event.currentTarget);
+    console.log(data);
+    axios
+      .post(`http://127.0.0.1:5000/Specs`, data)
+      .then((response) => {
+        console.log(response);
         this.setState({
           sn: "",
           name: "",
+          qrcode: "",
           designator: "",
           subdesignator: "",
           oil: "",
           coolant: "",
           department: "",
-          editMode: false,
+          motor: "",
+          editMode: "False",
         });
-
-        [this.motorRef, this.qrcodeRef].forEach((ref) => {
+        [this.motorRef, this.qrcodeRef].forEach(ref => {
           ref.current.dropzone.removeAllFiles();
         });
       })
       .catch((error) => {
-        console.log("specs form handleSubmit error", error);
+        console.log("error", error);
       });
-
-    event.preventDefault();
   }
-
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -208,7 +142,8 @@ export default class SpecsForm extends Component {
             className="select-element"
           >
             <option value="none">None</option>
-            <option value="Shredder">Shredder</option>
+            <option value="Untha ZR2400">Untha ZR2400</option>
+            <option value="Untha XR">Untha XR</option>
             <option value="Ring Mill">Ring Mill</option>
             <option value="Optical Sorter">Optical Sorter</option>
             <option value="Eddy Current">Eddy Current</option>
@@ -260,9 +195,7 @@ export default class SpecsForm extends Component {
           </DropzoneComponent>
         </div>
 
-        <button type="submit" onClick={this.handleSubmit}>
-          Save
-        </button>
+        <button type="submit">Save</button>
       </form>
     );
   }

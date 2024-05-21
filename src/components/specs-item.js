@@ -1,50 +1,46 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import styles from "../style/specs-item.scss";
 
-export default class SpecsItem extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      specsItemClass: ""
-    };
-  }
-
-  handleMouseEnter() {
-    this.setState({ specsItemClass: "image-blur" });
-  }
-
-  handleMouseLeave() {
-    this.setState({ specsItemClass: "" });
-  }
-
-  render() {
-    const { id, description, thumb_image_url, logo_url } = this.props.item;
-    return (
-      <Link to={`/specs/${id}`}>
-        <div
-          className="specs-item-wrapper"
-          onMouseEnter={() => this.handleMouseEnter()}
-          onMouseLeave={() => this.handleMouseLeave()}
-        >
-          <div
-            className={
-              "specs-img-background " + this.state.specsItemClass
-            }
-            style={{
-              backgroundImage: "url(" + thumb_image_url + ")"
-            }}
-          />
-
-          <div className="img-text-wrapper">
-            <div className="logo-wrapper">
-              <img src={logo_url} />
-            </div>
-
-            <div className="subtitle">{description}</div>
+export default function (props) {
+  const {
+    qrcode,
+    sn,
+    name,
+    designator,
+    subdesignator,
+    oil,
+    coolant,
+    department,
+    motor,
+  } = props.item;
+  return (
+    <div className="item-card">
+      <div className="leftside">
+        <img className="qrcode" src={qrcode} />
+      </div>
+      <div className="rightside">
+        <div className="top">
+          <div className="left">
+            <h4 className="serialnumber ">{sn}</h4>
+            <h4 className="name">{name}</h4>
+            <h4 className="designator">{designator}</h4>
+            <h4 className="subdesignator">{subdesignator}</h4>
+          </div>
+          <div className="right">
+            <h4 className="department">{department}</h4>
+            <h4 className="oil">{oil}</h4>
+            <h4 className="coolant">{coolant}</h4>
+            
           </div>
         </div>
-      </Link>
-    );
-  }
+        <div className="bottom">
+          <img className="motor plate" src={motor} />
+        </div>
+      </div>
+      <a onClick={() => (props.handleDeleteClick(specsItem))}>delete</a>
+
+      <Link to={`/Specs/${sn}`}>Link</Link>
+    </div>
+  );
 }

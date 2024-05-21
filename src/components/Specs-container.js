@@ -1,33 +1,54 @@
 import React, { Component } from "react";
+import axios from "axios";
 
+
+import SpecsItem from "../components/specs-item";
 
 export default class SpecsContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       sn: "",
-      Name: "",
-      QRCode: "",
-      Designator: "",
-      Subdesignator: "",
-      Oil: "",
-      Coolant: "",
-      Department: "",
-      Motor: "",
-      apiUrl: "http://127.0.0.1:5000/Specs",
-      apiAction: "get",
+      name: "",
+      qrcode: "",
+      designator: "",
+      subdesignator: "",
+      oil: "",
+      coolant: "",
+      department: "",
+      motor: "",
+      data: [],
     };
+    this.getSpecsItems = this.getSpecsItems.bind(this);
   }
-  // getMachineSpecs(){
-  //   axios.get("http://127.0.0.1:5000/Specs");
-  // }
-  // componentDidMount(){
-  //   this.getMachineSpecs();
-  // }
+
+  getSpecsItems() {
+    axios
+      .get(`http://127.0.0.1:5000/Specs`)
+      .then((response) => {
+        this.setState({
+          data: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }
+  specsItems() {
+    return this.state.data.map((item) => {
+      return <SpecsItem key={item.sn} item={item} />;
+    });
+  }
+  componentDidMount() {
+    this.getSpecsItems();
+  }
   render() {
-    return <div> specs here
+    return (
+      <div>
+        <div>{this.specsItems()}</div>
         
-    </div>;
+      </div>
+    );
   }
 }

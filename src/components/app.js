@@ -8,10 +8,12 @@ import NavigationComponent from "./navigation-container";
 
 import Home from "../components/pages/home";
 import Scan from "../components/pages/Scan";
-import Search from "../components/pages/specs-manager";
+import SpecsManager from "../components/pages/specs-manager";
 import Header from "../components/header";
-import SpecsDetail from "./detail-page/specs-details";
-import Specs from "../components/pages/specs";
+import Search from "../components/pages/search";
+import SpecsDetail from "../components/detail-page/specs-details";
+
+
 
 
 
@@ -27,7 +29,7 @@ export default class App extends Component {
   
   render() {
     return (
-      <div classname="app">
+      <div className="app">
         
         <Header/>
         <Router>
@@ -38,10 +40,12 @@ export default class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/Scan" component={Scan} />
               <Route path="/Search" component={Search} />
-              <Route path="/Specs/:slug" component={Specs} />
+              <Route path="/SpecsManager" component={SpecsManager} />
+              <Route path="/Specs/:sn" component={SpecsDetail} />
             </Switch>
           </div>
         </Router>
+        
       </div>
     );
   }
