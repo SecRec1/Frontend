@@ -65,7 +65,6 @@ export default class AddForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    debugger;
 
     const formData = new FormData(event.currentTarget);
     if (this.state.qrcode) {
@@ -76,12 +75,11 @@ export default class AddForm extends Component {
       formData.append("motor", this.state.motor.dataURL);
     }
     const data = Object.fromEntries(formData);
-    console.log(event.currentTarget);
-    console.log(data);
+
     axios
       .post(`http://127.0.0.1:5000/Specs`, data)
       .then((response) => {
-        console.log(response);
+        this.props.handleNewFormSubmission(response);
         this.setState({
           sn: "",
           name: "",
@@ -94,7 +92,7 @@ export default class AddForm extends Component {
           motor: "",
           editMode: "False",
         });
-        [this.motorRef, this.qrcodeRef].forEach(ref => {
+        [this.motorRef, this.qrcodeRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();
         });
       })

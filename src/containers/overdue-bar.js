@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import styles from "../style/app.scss";
 
-export default class OverdueContainer extends Component {
+export default class OverdueBar extends Component {
   render() {
     return (
       <div className="Overdue_container">

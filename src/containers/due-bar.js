@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Styles from "../style/app.scss";
 
-export default class DueContainer extends Component {
+export default class DueBar extends Component {
   render() {
     return (
       <div className="Due_container">

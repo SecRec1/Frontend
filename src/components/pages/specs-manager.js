@@ -4,34 +4,36 @@ import axios from "axios";
 import AddForm from "../forms/add-form";
 import Search from "../forms/search-form";
 import RecordList from "../list-component";
-import SpecsContainer from "../Specs-container";
+import SpecsDetail from "../detail-page/specs-details";
 
 export default class SpecsManager extends Component {
   constructor() {
     super();
     this.state = {
       specsItems: [],
-      SpecsPageToEdit: {}
+
+      SpecsPageToEdit: {},
     };
 
     this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this);
-    this.handleSuccessfulFormSubmission =
-      this.handleSuccessfulFormSubmission.bind(this);
+    
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.getSpecsItems = this.getSpecsItems.bind(this);
+    
   }
+  
 
   getSpecsItems() {
     axios
       .get(`http://127.0.0.1:5000/Specs`)
       .then((response) => {
         this.setState({
-          data: response.data,
+          specsItems: [...response.data],
         });
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log("Specs Manager get specs error", error);
       });
   }
 
@@ -40,14 +42,17 @@ export default class SpecsManager extends Component {
   }
   handleNewFormSubmission(specsItem) {
     this.setState({
-      specsItems: [specsItem].concat(this.state.specsItems)
+      specsItems: [specsItem].concat(this.state.specsItems),
     });
+    console.log("New form submission", this.state.specsItems);
   }
-  handleSuccessfulFormSubmission(specsItem) {
-    console.log("specsItem", specsItem);
-  }
+  
   handleDeleteClick(specsItem) {
     console.log("delete", specsItem);
+    axios.delete(`http://127.0.0.1:5000/Specs/${specsItem.sn}`);
+  }
+  componentDidMount() {
+    this.getSpecsItems();
   }
 
   render() {
@@ -58,12 +63,12 @@ export default class SpecsManager extends Component {
           handleNewFormSubmission={this.handleNewFormSubmission}
           handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
         />
-        <Search />
+        
         <RecordList
           data={this.state.specsItems}
           handleDeleteClick={this.handleDeleteClick}
+          
         />
-        <SpecsContainer />
       </div>
     );
   }

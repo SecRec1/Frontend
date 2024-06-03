@@ -38,9 +38,9 @@ export default function (props) {
           <img className="motor plate" src={motor} />
         </div>
       </div>
-      <a onClick={() => (props.handleDeleteClick(specsItem))}>delete</a>
+      
 
-      <Link to={`/Specs/${sn}`}>Link</Link>
+      
     </div>
   );
 }

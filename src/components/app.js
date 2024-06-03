@@ -11,7 +11,7 @@ import Scan from "../components/pages/Scan";
 import SpecsManager from "../components/pages/specs-manager";
 import Header from "../components/header";
 import Search from "../components/pages/search";
-import SpecsDetail from "../components/detail-page/specs-details";
+import SpecsPage from "../components/pages/specs-page";
 
 
 
@@ -41,7 +41,7 @@ export default class App extends Component {
               <Route path="/Scan" component={Scan} />
               <Route path="/Search" component={Search} />
               <Route path="/SpecsManager" component={SpecsManager} />
-              <Route path="/Specs/:sn" component={SpecsDetail} />
+              <Route path="/Specs/:sn" component={SpecsPage} />
             </Switch>
           </div>
         </Router>

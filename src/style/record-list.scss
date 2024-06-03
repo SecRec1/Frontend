@@ -1,0 +1,16 @@
+.Specs-item-container {
+  display: flex;
+  flex: 1fr 1fr;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+}
+.action-icon {
+  font-size: 1000%;
+  padding:50px;
+}
+
+.record-link{
+    font-size: 800%;
+}

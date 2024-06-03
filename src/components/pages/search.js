@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 import SearchModal from "../modals/search-modal";
-import SpecsDetail from "../detail-page/specs-details";
-import SpecsContainer from "../Specs-container";
+
 
 export default class Search extends Component {
   constructor(props) {
@@ -29,10 +28,7 @@ export default class Search extends Component {
           showModal={this.state.showModal}
         />
         <button onClick={this.openModal}>Search by specs</button>
-        <div>
-          <SpecsDetail />
-          <SpecsContainer />
-        </div>
+        
       </div>
     );
   }

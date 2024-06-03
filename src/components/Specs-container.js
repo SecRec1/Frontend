@@ -28,11 +28,11 @@ export default class SpecsContainer extends Component {
       .get(`http://127.0.0.1:5000/Specs`)
       .then((response) => {
         this.setState({
-          data: response.data,
+          data: [...response.data],
         });
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log("SpecsContainer get specs error", error);
       });
   }
   specsItems() {
@@ -46,7 +46,7 @@ export default class SpecsContainer extends Component {
   render() {
     return (
       <div>
-        <div>{this.specsItems()}</div>
+        
         
       </div>
     );
