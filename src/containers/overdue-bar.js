@@ -1,5 +1,7 @@
 import React,{Component} from "react";
+
 import styles from "../style/app.scss";
+import TaskList from "../components/task-list";
 
 export default class OverdueBar extends Component {
   render() {
@@ -9,9 +11,8 @@ export default class OverdueBar extends Component {
           Overdue Maint
         </button>
         <div id="Over" className="Overdue-content">
-          <div>content</div>
-          <div>content</div>
-          <div>content</div>
+        <TaskList odtasks={this.props.odtasks} tasks={this.props.data2}
+           />
         </div>
       </div>
     );

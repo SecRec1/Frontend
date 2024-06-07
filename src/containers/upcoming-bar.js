@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Styles from "../style/app.scss";
 
 import TaskList from "../components/task-list";
-import TaskCalculator from "../components/upcoming-tasks";
+
 
 
 
@@ -25,9 +25,9 @@ export default class UpcomingBar extends Component {
         </button>
         <div id="Up" className="Upcoming-content">
          
-           <TaskList tasks={this.props.data2}
+           <TaskList uptasks={this.props.uptasks} tasks={this.props.data2}
            />
-           <TaskCalculator specsn={this.props.specsn}/>
+           
             
           {/* <Link to="/TaskInfo">instructions</Link> */}
         </div>

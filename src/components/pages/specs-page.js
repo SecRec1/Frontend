@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+
 
 import TaskManager from "../task-container";
 import SpecsDetail from "../detail-page/specs-details";
+import TaskCalculator from "../upcoming-tasks";
 
 import styles from "../../style/specs-page.scss";
 
@@ -17,7 +18,8 @@ export default class SpecsPage extends Component {
           <SpecsDetail className="details" specsn={this.props.match.params.sn} />
         </div>
         <div className="task-wrapper">
-          <TaskManager specsn={this.props.match.params.sn}/>
+          {/* <TaskManager specsn={this.props.match.params.sn}/> */}
+          <TaskCalculator specsn={this.props.match.params.sn} />
         </div>
       </div>
     );
