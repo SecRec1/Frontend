@@ -145,8 +145,11 @@ export default class TaskCalculator extends Component {
         <div>
           <TaskManager
             upcoming={this.state.upcoming}
+            finalupcoming={this.state.finalupcoming}
             due={this.state.due}
+            finaldue={this.state.finaldue}
             overdue={this.state.overdue}
+            finaloverdue={this.state.finaloverdue}
           />
         </div>
       </div>
