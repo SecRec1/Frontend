@@ -7,16 +7,22 @@ import Styles from "../style/app.scss";
 
 import TaskList from "../components/task-list";
 
-
-
-
 export default class UpcomingBar extends Component {
   constructor(props) {
     super(props);
-   
+    
+
     
   }
+  taskItems() {
+    return this.props.uptasks.map((item) => {
+      return <TaskItem key={item.sn} item={item} />;
+    });
+  }
+  
+
  
+
   render() {
     return (
       <div className="Upcoming_container">
@@ -24,11 +30,9 @@ export default class UpcomingBar extends Component {
           Upcoming Maint within 30 days
         </button>
         <div id="Up" className="Upcoming-content">
-         
-           <TaskList uptasks={this.props.uptasks} tasks={this.props.data2}
-           />
-           
-            
+          {this.taskItems()}
+          
+
           {/* <Link to="/TaskInfo">instructions</Link> */}
         </div>
       </div>

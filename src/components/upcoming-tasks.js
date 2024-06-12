@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { DateTime } from "luxon";
+import lodash from "lodash";
 
 import TaskManager from "./task-container";
 
@@ -10,7 +11,7 @@ export default class TaskCalculator extends Component {
     this.state = {
       taskrecords: [],
       taskids: [],
-      taskinfo: {},
+      taskinfo: [],
       tasksnfiltered: [],
       specssn: {},
       upcoming: [],
@@ -19,17 +20,21 @@ export default class TaskCalculator extends Component {
       finalupcoming: [],
       finaldue: [],
       finaloverdue: [],
+      uptaskentries: [],
+      duetaskentries: [],
+      overduetaskentries: [],
     };
-    this.gettasks = this.gettasks.bind(this);
+
     this.getIBSTs = this.getIBSTs.bind(this);
     this.getSpecsSN = this.getSpecsSN.bind(this);
     this.filterByDate = this.filterByDate.bind(this);
     this.getUpTaskInfo = this.getUpTaskInfo.bind(this);
     this.getDueTaskInfo = this.getDueTaskInfo.bind(this);
     this.getOverTaskInfo = this.getOverTaskInfo.bind(this);
+    this.combineUpTaskInfo = this.combineUpTaskInfo.bind(this);
+    this.combineDueTaskInfo = this.combineDueTaskInfo.bind(this);
+    this.combineOverTaskInfo = this.combineOverTaskInfo.bind(this);
   }
-
-  gettasks() {}
 
   getIBSTs() {
     axios.get(`http://127.0.0.1:5000/IBST`).then((response) => {
@@ -95,9 +100,14 @@ export default class TaskCalculator extends Component {
     });
     const uptaskrec = uptaskid.forEach((record) => {
       axios.get(`http://127.0.0.1:5000/Task/${record}`).then((response) => {
-        this.setState({
-          finalupcoming: [response.data].concat(this.state.finalupcoming),
-        });
+        this.setState(
+          {
+            finalupcoming: [response.data].concat(this.state.finalupcoming),
+          },
+          () => {
+            this.combineUpTaskInfo();
+          }
+        );
       });
     });
   }
@@ -107,9 +117,14 @@ export default class TaskCalculator extends Component {
     });
     const duetaskrec = duetaskid.forEach((record) => {
       axios.get(`http://127.0.0.1:5000/Task/${record}`).then((response) => {
-        this.setState({
-          finaldue: [response.data].concat(this.state.finaldue),
-        });
+        this.setState(
+          {
+            finaldue: [response.data].concat(this.state.finaldue),
+          },
+          () => {
+            this.combineDueTaskInfo();
+          }
+        );
       });
     });
   }
@@ -119,19 +134,44 @@ export default class TaskCalculator extends Component {
     });
     const odtaskrec = odtaskid.forEach((record) => {
       axios.get(`http://127.0.0.1:5000/Task/${record}`).then((response) => {
-        
-        this.setState({
-          finaloverdue: [response.data].concat(this.state.finaloverdue),
-        })
+        this.setState(
+          {
+            finaloverdue: [response.data].concat(this.state.finaloverdue),
+          },
+          () => {
+            this.combineOverTaskInfo();
+          }
+        );
       });
     });
-    
-
-    
   }
 
   getSpecsSN() {
     this.setState({ specssn: Number(this.props.specsn) });
+  }
+  combineUpTaskInfo() {
+    const settaskid = _.keyBy(this.state.upcoming, "task_id");
+    const setIBSTid = _.keyBy(this.state.finalupcoming, "id");
+    const combineentries = _.merge(settaskid, setIBSTid);
+    this.setState({
+      uptaskentries: combineentries,
+    });
+  }
+  combineDueTaskInfo() {
+    const settaskid = _.keyBy(this.state.due, "task_id");
+    const setIBSTid = _.keyBy(this.state.finaldue, "id");
+    const combineentries = _.merge(settaskid, setIBSTid);
+    this.setState({
+      duetaskentries: combineentries,
+    });
+  }
+  combineOverTaskInfo() {
+    const settaskid = _.keyBy(this.state.overdue, "task_id");
+    const setIBSTid = _.keyBy(this.state.finaloverdue, "id");
+    const combineentries = _.merge(settaskid, setIBSTid);
+    this.setState({
+      overduetaskentries: combineentries,
+    });
   }
 
   componentDidMount() {
@@ -144,12 +184,9 @@ export default class TaskCalculator extends Component {
       <div>
         <div>
           <TaskManager
-            upcoming={this.state.upcoming}
-            finalupcoming={this.state.finalupcoming}
-            due={this.state.due}
-            finaldue={this.state.finaldue}
-            overdue={this.state.overdue}
-            finaloverdue={this.state.finaloverdue}
+            upcoming={this.state.uptaskentries}
+            due={this.state.duetaskentries}
+            overdue={this.state.overduetaskentries}
           />
         </div>
       </div>
