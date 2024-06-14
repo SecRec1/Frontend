@@ -1,6 +1,17 @@
+.task-item-container{
+    width: 100%;
+}
+
+
+
 .task-card{
     display:flex;
-    flex: 1fr 1fr;
+    flex: 1fr 1fr 1fr 1fr;
+    justify-content: space-between;
+    
+}
+.task{
+    width:1000px;
 }
 
 
