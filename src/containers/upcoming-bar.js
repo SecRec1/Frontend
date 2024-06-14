@@ -14,11 +14,11 @@ export default class UpcomingBar extends Component {
 
     
   }
-  taskItems() {
-    return this.props.uptasks.map((item) => {
-      return <TaskItem key={item.sn} item={item} />;
-    });
-  }
+  // taskItems() {
+  //   return this.props.uptasks.map((item) => {
+  //     return <TaskItem key={item.sn} item={item} />;
+  //   });
+  // }
   
 
  
@@ -30,7 +30,7 @@ export default class UpcomingBar extends Component {
           Upcoming Maint within 30 days
         </button>
         <div id="Up" className="Upcoming-content">
-          {this.taskItems()}
+          {/* {this.taskItems()} */}
           
 
           {/* <Link to="/TaskInfo">instructions</Link> */}

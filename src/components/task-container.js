@@ -8,13 +8,22 @@ import OverdueBar from "../containers/overdue-bar";
 export default class TaskManager extends Component {
   constructor(props) {
     super(props);
-    
-    
-    
-  }
-  
+    this.state = {
+      odtasks: [],
+      duetasks: [],
+      uptasks: [],
+    };
 
-  
+    const setTasks = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          this.setState({ odtasks: this.props.overdue }),
+          this.setState({ uptasks: this.props.upcoming }),
+          this.setState({ duetasks: this.props.due })
+        );
+      }, 100);
+    });
+  }
 
   // taskItems() {
   //   return this.state.taskItems.map((item) => {
@@ -25,9 +34,9 @@ export default class TaskManager extends Component {
   render() {
     return (
       <div>
-        <OverdueBar odtasks={this.props.overdue} />
-        <DueBar duetasks={this.props.due} />
-        <UpcomingBar uptasks={this.props.upcoming} />
+        <OverdueBar odtasks={this.state.odtasks} />
+        <DueBar duetasks={this.state.duetasks} />
+        <UpcomingBar uptasks={this.state.uptasks} />
       </div>
     );
   }

@@ -23,6 +23,7 @@ export default class TaskCalculator extends Component {
       uptaskentries: [],
       duetaskentries: [],
       overduetaskentries: [],
+      odentries: [],
     };
 
     this.getIBSTs = this.getIBSTs.bind(this);
@@ -34,8 +35,11 @@ export default class TaskCalculator extends Component {
     this.combineUpTaskInfo = this.combineUpTaskInfo.bind(this);
     this.combineDueTaskInfo = this.combineDueTaskInfo.bind(this);
     this.combineOverTaskInfo = this.combineOverTaskInfo.bind(this);
+   
   }
-
+  getSpecsSN() {
+    this.setState({ specssn: Number(this.props.specsn) });
+  }
   getIBSTs() {
     axios.get(`http://127.0.0.1:5000/IBST`).then((response) => {
       this.setState({
@@ -146,9 +150,6 @@ export default class TaskCalculator extends Component {
     });
   }
 
-  getSpecsSN() {
-    this.setState({ specssn: Number(this.props.specsn) });
-  }
   combineUpTaskInfo() {
     const settaskid = _.keyBy(this.state.upcoming, "task_id");
     const setIBSTid = _.keyBy(this.state.finalupcoming, "id");
@@ -169,14 +170,18 @@ export default class TaskCalculator extends Component {
     const settaskid = _.keyBy(this.state.overdue, "task_id");
     const setIBSTid = _.keyBy(this.state.finaloverdue, "id");
     const combineentries = _.merge(settaskid, setIBSTid);
+
     this.setState({
       overduetaskentries: combineentries,
     });
   }
+  
+  
 
   componentDidMount() {
     this.getSpecsSN();
     this.getIBSTs();
+    
   }
 
   render() {
