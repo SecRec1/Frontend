@@ -13,7 +13,7 @@ const TaskList = (props) => {
       <div key={taskItem.id} className="task-item-container">
         <div className="text-content">
           <div key={taskItem.id} className="task-card">
-            <h1 className="task">{taskItem.task}</h1>
+            <h1 className="task">{taskItem.job}</h1>
             <h1 className="date">{taskItem.lastcompleted}</h1>
             <button className="complete">Complete</button>
 

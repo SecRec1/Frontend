@@ -29,7 +29,7 @@ export default class TaskDetails extends Component {
     return (
       <div>
         <div>
-          <h1>{this.props.task}task</h1>
+          <h1>{this.props.job}task</h1>
         </div>
         <div>
           <h2>{this.props.lastcompleted}last</h2>

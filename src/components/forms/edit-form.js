@@ -23,11 +23,12 @@ export default class AddForm extends Component {
       department: "",
       motor: "",
       hours: "",
-
+      editMode: false,
       specsid: "",
-      apiUrl: "http://127.0.0.1:5000/Specs",
-      apiAction: "post",
+      apiUrl: `127.0.0.1:5000/Specs/${sn}`,
+        apiAction: "patch",
     };
+    
 
     this.handleSpecsId = this.handleSpecsId.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -40,8 +41,45 @@ export default class AddForm extends Component {
 
     this.motorRef = React.createRef();
     this.qrcodeRef = React.createRef();
-  }
 
+    
+  }
+  
+  componentDidUpdate() {
+    if (Object.keys(this.props.specsToEdit).length > 0) {
+      const {
+        id,
+        qrcode,
+        sn,
+        name,
+        designator,
+        subdesignator,
+        oil,
+        coolant,
+        department,
+        motor,
+        hours,
+      } = this.props.specsToEdit;
+
+      this.props.clearSpecsToEdit();
+      this.setState({
+        id: id,
+        sn: sn || "",
+        name: name || "",
+        qrcode: qrcode || "",
+        designator: designator || "",
+        subdesignator: subdesignator || "",
+        oil: oil || "",
+        coolant: coolant || "",
+        department: department || "",
+        motor: motor || "",
+        hours: hours || "",
+        editMode: true,
+        apiUrl: `127.0.0.1:5000/Specs/${sn}`,
+        apiAction: "patch",
+      });
+    }
+  }
   handleSpecsId() {
     axios.get(`http://127.0.0.1:5000/Specs`).then((response) => {
       this.setState({ specsid: response.data.length + 1 });
@@ -93,6 +131,9 @@ export default class AddForm extends Component {
       method: this.state.apiAction,
       url: this.state.apiUrl,
       data: data,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     })
       .then((response) => {
         this.props.handleNewFormSubmission(response);
@@ -108,6 +149,7 @@ export default class AddForm extends Component {
           department: "",
           motor: "",
           hours: "",
+          editMode: "False",
         });
         [this.motorRef, this.qrcodeRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();

@@ -16,10 +16,11 @@ const NavigationComponent = (props) => {
         <NavLink to="/search" activeClassName="nav-link-active">
           Search
         </NavLink>
-
-        <NavLink to="/Specsmanager" activeClassName="nav-link-active">
-          Specs Manager
+        <NavLink to="/Manager" activeClassName="nav-link-active">
+          Manager
         </NavLink>
+
+        
       </div>
     </div>
   );

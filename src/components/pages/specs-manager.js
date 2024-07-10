@@ -6,6 +6,9 @@ import Search from "../forms/search-form";
 import RecordList from "../list-component";
 import SpecsDetail from "../detail-page/specs-details";
 
+import Styles from "../../style/manager.scss";
+
+
 export default class SpecsManager extends Component {
   constructor() {
     super();

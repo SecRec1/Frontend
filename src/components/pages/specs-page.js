@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-import TaskManager from "../task-container";
+
 import SpecsDetail from "../detail-page/specs-details";
 import TaskCalculator from "../upcoming-tasks";
 
@@ -18,7 +18,7 @@ export default class SpecsPage extends Component {
           <SpecsDetail className="details" specsn={this.props.match.params.sn} />
         </div>
         <div className="task-wrapper">
-          {/* <TaskManager specsn={this.props.match.params.sn}/> */}
+          
           <TaskCalculator specsn={this.props.match.params.sn} />
         </div>
       </div>
