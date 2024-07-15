@@ -11,7 +11,7 @@ export default class TaskDetails extends Component {
   }
   getTaskItem() {
     axios
-      .get(`http://127.0.0.1:5000/Task/${this.props.taskid}`)
+      .get(`http://127.0.0.1:5000/Task/${this.props.id}`)
 
       .then((response) => {
         console.log(response.data);
@@ -24,6 +24,10 @@ export default class TaskDetails extends Component {
     return this.state.data2.map((item) => {
       return <TaskItem key={item.sn} item={item} />;
     });
+  }
+
+  componentDidMount() {
+    this.getTaskItem();
   }
   render() {
     return (

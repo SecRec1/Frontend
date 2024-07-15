@@ -22,23 +22,46 @@ const RecordList = (props) => {
 
             <div className="rightside">
               <div className="left">
-                <h4 className="serialnumber item">{specsItem.sn}</h4>
-                <h4 className="name item">{specsItem.name}</h4>
-                <h4 className="designator item">{specsItem.designator}</h4>
-                <h4 className="subdesignator item">
+                <h6 className="serialnumber item">
+                  Serial Number<br></br>
+                  {specsItem.sn}
+                </h6>
+
+                <h6 className="designator item">
+                  Make/Model<br></br>
+                  {specsItem.designator}
+                </h6>
+                <h6 className="name item">
+                  Machine Type<br></br>
+                  {specsItem.name}
+                </h6>
+                <h6 className="subdesignator item">
+                  Machine Sub-Type<br></br>
                   {specsItem.subdesignator}
-                </h4>
+                </h6>
               </div>
               <div className="right">
-                <h4 className="department item">{specsItem.department}</h4>
-                <h4 className="oil item">{specsItem.oil}</h4>
-                <h4 className="coolant item">{specsItem.coolant}</h4>
-                <h4 className="hours item">Machine Hours:{specsItem.hours}</h4>
+                <h6 className="department item">
+                  Department<br></br>
+                  {specsItem.department}
+                </h6>
+                <h6 className="oil item">
+                  Oil Type<br></br>
+                  {specsItem.oil}
+                </h6>
+                <h6 className="coolant item">
+                  Coolant Type<br></br>
+                  {specsItem.coolant}
+                </h6>
+                <h6 className="hours item">
+                  Machine Hours:<br></br>
+                  {specsItem.hours}
+                </h6>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div className="actions">
           <a
             className="action-icon"

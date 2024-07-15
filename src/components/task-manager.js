@@ -3,6 +3,7 @@ import axios from "axios";
 import SetTaskForm from "./forms/set-task-form";
 import AddTask from "./forms/add-task";
 import GenTaskList from "../components/gen-task-list";
+import Styles from "../style/set-task.scss";
 
 export default class TaskManager extends Component {
   constructor(props) {
@@ -16,17 +17,16 @@ export default class TaskManager extends Component {
     this.handleTaskSubmissionError = this.handleTaskSubmissionError.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.getTaskItems = this.getTaskItems.bind(this);
-    this.handleCloseInstructionsModal =
-      this.handleCloseInstructionsModal.bind(this);
-    this.handleOpenInstructionsModal =
-      this.handleOpenInstructionsModal.bind(this);
+    this.handleCloseInstructionsModal = this.handleCloseInstructionsModal.bind(this);
+    this.handleOpenInstructionsModal = this.handleOpenInstructionsModal.bind(this);
   }
   handleOpenInstructionsModal() {
     this.setState({ taskModalIsOpen: true });
-  }
+  };
   handleCloseInstructionsModal() {
     this.setState({ taskModalIsOpen: false });
-  }
+    console.log("testing modal close");
+  };
   getTaskItems() {
     axios
       .get(`http://127.0.0.1:5000/Task`)
@@ -45,20 +45,22 @@ export default class TaskManager extends Component {
   handleNewTaskSubmission(taskItem) {
     this.setState({
       taskItems: [taskItem].concat(this.state.taskItems),
+    }).catch((error) => {
+      this.handleTaskSubmissionError(error);
     });
     console.log("New Task submission", this.state.taskItems);
   }
 
   handleDeleteClick(taskItem) {
     axios.delete(`http://127.0.0.1:5000/Task/${taskItem.id}`);
-    console.log("deleted", taskItem);
+    window.location.reload();
   }
   componentDidMount() {
     this.getTaskItems();
   }
   render() {
     return (
-      <div>
+      <div className="task-container">
         <div className="set-task-form">
           <h1>Set machine tasks by SN</h1>
           <SetTaskForm />

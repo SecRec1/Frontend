@@ -39,19 +39,15 @@ export default class UpcomingBar extends Component {
   render() {
     return (
       <div className="Upcoming_container">
-        <button onClick={showHideUpcoming} className="Upcoming button">
+        <button onClick={this.props.showHideUP} className="Upcoming button">
           Upcoming Maint within 30 Days
         </button>
         <div id="Upcoming" className="Upcoming-content">
-          <label className="task-label">Task</label>
-          <label className="lastdone-label">Last Completed</label>
+          {/* <label className="task-label">Task</label>
+          <label className="lastdone-label">Last Completed</label> */}
           <TaskList tasks={this.state.uptasks} />
         </div>
       </div>
     );
   }
-}
-function showHideUpcoming() {
-  var overdue = document.getElementById("Upcoming");
-  overdue.classList.toggle("show");
 }

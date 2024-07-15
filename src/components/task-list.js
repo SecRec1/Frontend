@@ -13,8 +13,8 @@ const TaskList = (props) => {
       <div key={taskItem.id} className="task-item-container">
         <div className="text-content">
           <div key={taskItem.id} className="task-card">
-            <h1 className="task">{taskItem.job}</h1>
-            <h1 className="date">{taskItem.lastcompleted}</h1>
+            <h1 className="task">Task<br></br>{taskItem.job}</h1>
+            <h1 className="date">Next Due<br></br>{taskItem.nextdue}</h1>
             <button className="complete">Complete</button>
 
             <button onClick={showHideHelp} className="help-button">

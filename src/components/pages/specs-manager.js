@@ -64,7 +64,7 @@ export default class SpecsManager extends Component {
         <AddForm
           handleFormSubmissionError={this.handleFormSubmissionError}
           handleNewFormSubmission={this.handleNewFormSubmission}
-          handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
+          // handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
         />
         
         <RecordList

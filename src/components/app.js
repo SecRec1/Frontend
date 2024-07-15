@@ -15,6 +15,7 @@ import Search from "../components/pages/search";
 import SpecsPage from "../components/pages/specs-page";
 import Manager from "./pages/manager";
 import TaskManager from "./task-manager";
+import TaskPage from "../components/pages/task-page";
 
 export default class App extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class App extends Component {
               <Route path="/Search" component={Search} />
               <Route path="/Manager" component={Manager} />
               <Route path="/Specs/:sn" component={SpecsPage} />
+              <Route path="/Task/:id" component={TaskPage} />
               <Route path="/Manager/Specsmanager" component={SpecsManager} />
               <Route path="/Manager/Taskmanager" component={TaskManager} />
             </Switch>

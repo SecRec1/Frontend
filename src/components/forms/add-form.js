@@ -12,7 +12,7 @@ export default class AddForm extends Component {
     super(props);
 
     this.state = {
-      id: "",
+      id: null,
       sn: "",
       name: "",
       qrcode: "",
@@ -97,7 +97,7 @@ export default class AddForm extends Component {
       .then((response) => {
         this.props.handleNewFormSubmission(response);
         this.setState({
-          id: "",
+          id: null,
           sn: "",
           name: "",
           qrcode: "",
@@ -167,7 +167,7 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
             className="select-element"
           >
-            <option value="none">None</option>
+            <option value="placeholder">Pick a Designator</option>
             <option value="Untha ZR2400">Untha ZR2400</option>
             <option value="Untha XR">Untha XR</option>
             <option value="Ring Mill">Ring Mill</option>
@@ -181,6 +181,7 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
             className="select-element"
           >
+            <option value="placeholder">Pick a Subdesignator</option>
             <option value="none">None</option>
             <option value="Infeed">Infeed</option>
             <option value="Discharge">Discharge</option>

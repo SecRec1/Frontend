@@ -35,7 +35,7 @@ export default class DueBar extends Component {
   render() {
     return (
       <div className="Due_container">
-        <button onClick={showHidedue} className="Due button">
+        <button onClick={this.props.showHideDue} className="Due button">
         Maint Due within 7 Days
         </button>
         <div id="Due" className="Due-content">
@@ -46,8 +46,4 @@ export default class DueBar extends Component {
       </div>
     );
   }
-}
-function showHidedue() {
-  var overdue = document.getElementById("Due");
-  overdue.classList.toggle("show");
 }

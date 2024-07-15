@@ -35,7 +35,6 @@ export default class TaskCalculator extends Component {
     this.combineUpTaskInfo = this.combineUpTaskInfo.bind(this);
     this.combineDueTaskInfo = this.combineDueTaskInfo.bind(this);
     this.combineOverTaskInfo = this.combineOverTaskInfo.bind(this);
-   
   }
   getSpecsSN() {
     this.setState({ specssn: Number(this.props.specsn) });
@@ -175,26 +174,19 @@ export default class TaskCalculator extends Component {
       overduetaskentries: combineentries,
     });
   }
-  
-  
 
   componentDidMount() {
     this.getSpecsSN();
     this.getIBSTs();
-    
   }
 
   render() {
     return (
-      <div>
-        <div>
-          <TaskManager
-            upcoming={this.state.uptaskentries}
-            due={this.state.duetaskentries}
-            overdue={this.state.overduetaskentries}
-          />
-        </div>
-      </div>
+      <TaskManager
+        upcoming={this.state.uptaskentries}
+        due={this.state.duetaskentries}
+        overdue={this.state.overduetaskentries}
+      />
     );
   }
 }

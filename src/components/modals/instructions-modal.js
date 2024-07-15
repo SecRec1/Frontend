@@ -3,11 +3,10 @@ import ReactModal from "react-modal";
 
 import AddTaskForm from "../forms/set-task-form";
 
-
-
 export default class InstructionsModal extends Component {
   constructor(props) {
     super(props);
+    
 
     ReactModal.setAppElement(".app-wrapper");
 
@@ -17,29 +16,27 @@ export default class InstructionsModal extends Component {
         left: "50%",
         right: "auto",
         marginRight: "-50%",
-        transform: "translate(-50%, -50%",
-        width: "800px",
+        transform: "translate(-50%, -50%)",
+        width: "1200px",
+        height: "1200px",
       },
       overlay: {
         backgroundColor: "rgba(1, 1, 1, 0.75)",
       },
     };
-
-    
   }
-
-  
 
   render() {
     return (
-        <ReactModal
-              
-        onRequestClose={() => {
-          this.props.handleCloseInstructionsModal();
-        }}
+      <ReactModal
+        style={this.customStyles} 
         isOpen={this.props.taskModalIsOpen}
+        onRequestClose={() => {this.props.handleCloseInstructionsModal()}}
+        
       >
-        <img src={this.props.image} />
+       <img src={this.props.image} />
+       
+       
       </ReactModal>
     );
   }

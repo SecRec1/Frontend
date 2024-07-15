@@ -13,6 +13,9 @@ export default class TaskManager extends Component {
       duetasks: [],
       uptasks: [],
     };
+    this.showHideDue = this.showHideDue.bind(this);
+    this.showHideOD = this.showHideOD.bind(this);
+    this.showHideUP = this.showHideUP.bind(this);
 
     const setTasks = new Promise((resolve) => {
       setTimeout(() => {
@@ -24,7 +27,44 @@ export default class TaskManager extends Component {
       }, 100);
     });
   }
+  showHideDue() {
+    var due = document.getElementById("Due");
+    var overdue = document.getElementById("Over");
+    var upcoming = document.getElementById("Upcoming");
+    if (upcoming.classList.contains("show")) {
+      upcoming.classList.remove("show");
+    }
+    if (overdue.classList.contains("show")) {
+      overdue.classList.remove("show");
+    }
+    due.classList.toggle("show");
+  }
 
+  showHideUP() {
+    var upcoming = document.getElementById("Upcoming");
+    var overdue = document.getElementById("Over");
+    var due = document.getElementById("Due");
+    if (due.classList.contains("show")) {
+      due.classList.remove("show");
+    }
+    if (overdue.classList.contains("show")) {
+      overdue.classList.remove("show");
+    }
+    upcoming.classList.toggle("show");
+  }
+
+  showHideOD() {
+    var overdue = document.getElementById("Over");
+    var upcoming = document.getElementById("Upcoming");
+    var due = document.getElementById("Due");
+    if (due.classList.contains("show")) {
+      due.classList.remove("show");
+    }
+    if (upcoming.classList.contains("show")) {
+      upcoming.classList.remove("show");
+    }
+    overdue.classList.toggle("show");
+  }
   // taskItems() {
   //   return this.state.taskItems.map((item) => {
   //     return <TaskItem key={item.specs_sn} item={item} />;
@@ -33,10 +73,13 @@ export default class TaskManager extends Component {
 
   render() {
     return (
-      <div>
-        <OverdueBar odtasks={this.state.odtasks} />
-        <DueBar duetasks={this.state.duetasks} />
-        <UpcomingBar uptasks={this.state.uptasks} />
+      <div className="task-bar-container">
+        <OverdueBar odtasks={this.state.odtasks} showHideOD={this.showHideOD} />
+        <DueBar duetasks={this.state.duetasks} showHideDue={this.showHideDue} />
+        <UpcomingBar
+          uptasks={this.state.uptasks}
+          showHideUP={this.showHideUP}
+        />
       </div>
     );
   }

@@ -14,7 +14,7 @@ export default class AddTask extends Component {
 
     this.state = {
       job: "",
-      instructions: "",
+      instructions: "Ask Maint for more info",
       taskid: "",
       taskItems: [],
     };
@@ -66,7 +66,7 @@ export default class AddTask extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-
+debugger
     const formData = new FormData(event.currentTarget);
       formData.append("id", this.state.taskid)
     if (this.state.instructions) {
@@ -78,13 +78,14 @@ export default class AddTask extends Component {
       this.props.handleNewTaskSubmission(response.data);
       this.setState({
         job: "",
-        instructions: "",
+        instructions: "Ask Maint for more info",
         taskid: "",
       });
       [this.instructionsRef].forEach((ref) => {
         ref.current.dropzone.removeAllFiles();
       });
     });
+    window.location.reload();
   }
   componentDidMount() {
     this.handleTaskInfo();
@@ -94,6 +95,7 @@ export default class AddTask extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          
           <input
             type="text"
             name="job"

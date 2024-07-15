@@ -4,10 +4,8 @@ import axios from "axios";
 import TaskManager from "../task-container";
 import SpecsItem from "../specs-item";
 
-import Styles from "../../style/record-list.scss";
+import Styles from "../../style/specs-page.scss";
 import SpecsEditor from "../spec-editor";
-
-
 
 export default class SpecsDetail extends Component {
   constructor(props) {
@@ -56,30 +54,46 @@ export default class SpecsDetail extends Component {
 
             <div className="rightside">
               <div className="left">
-                <h4 className="serialnumber item">{this.state.specsItem.sn}</h4>
-                <h4 className="name item">{this.state.specsItem.name}</h4>
-                <h4 className="designator item">
+                <h6 className="serialnumber item">
+                  Serial Number<br></br>
+                  {this.state.specsItem.sn}
+                </h6>
+
+                <h6 className="designator item">
+                  Make/Model<br></br>
                   {this.state.specsItem.designator}
-                </h4>
-                <h4 className="subdesignator item">
+                </h6>
+                <h6 className="name item">
+                  Machine Type<br></br>
+                  {this.state.specsItem.name}
+                </h6>
+                <h6 className="subdesignator item">
+                  Machine Sub-Type<br></br>
                   {this.state.specsItem.subdesignator}
-                </h4>
+                </h6>
               </div>
               <div className="right">
-                <h4 className="department item">
+                <h6 className="department item">
+                  Department<br></br>
                   {this.state.specsItem.department}
-                </h4>
-                <h4 className="oil item">{this.state.specsItem.oil}</h4>
-                <h4 className="coolant item">{this.state.specsItem.coolant}</h4>
-                <h4 className="hours item">
-                  Machine Hours:{this.state.specsItem.hours}
-                </h4>
+                </h6>
+                <h6 className="oil item">
+                  Oil Type<br></br>
+                  {this.state.specsItem.oil}
+                </h6>
+                <h6 className="coolant item">
+                  Coolant Type<br></br>
+                  {this.state.specsItem.coolant}
+                </h6>
+                <h6 className="hours item">
+                  Machine Hours:<br></br>{this.state.specsItem.hours}
+                </h6>
               </div>
             </div>
           </div>
         </div>
         <div className="actions">
-          <a className="action-icon" >
+          <a className="action-icon">
             <SpecsEditor specsItem={this.state.specsItem} />
           </a>
         </div>
