@@ -4,8 +4,8 @@ import axios from "axios";
 import DueBar from "../containers/due-bar";
 import UpcomingBar from "../containers/upcoming-bar";
 import OverdueBar from "../containers/overdue-bar";
-
-export default class TaskManager extends Component {
+import Styles from "../style/app.scss"
+export default class TaskBarManager extends Component {
   constructor(props) {
     super(props);
     this.state = {

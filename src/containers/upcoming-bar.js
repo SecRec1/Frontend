@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import Styles from "../style/app.scss";
 
-
 import TaskList from "../components/task-list";
 
 import TaskItem from "../components/task-item";
@@ -38,13 +37,16 @@ export default class UpcomingBar extends Component {
 
   render() {
     return (
-      <div className="Upcoming_container">
+      <div className="Upcoming-container">
         <button onClick={this.props.showHideUP} className="Upcoming button">
-          Upcoming Maint within 30 Days
+          Upcoming Maint
         </button>
         <div id="Upcoming" className="Upcoming-content">
-          {/* <label className="task-label">Task</label>
-          <label className="lastdone-label">Last Completed</label> */}
+          <div className="label-wrapper">
+            <label className="task-label">Task</label>
+            <label className="lastdone-label">Next due</label>
+            <label className="click-to-complete">Click to Complete</label>
+          </div>
           <TaskList tasks={this.state.uptasks} />
         </div>
       </div>

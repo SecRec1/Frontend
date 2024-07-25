@@ -33,14 +33,15 @@ export default class OverdueBar extends Component {
 
   render() {
     return (
-      <div className="Overdue_container">
+      <div className="Overdue-container">
         <button onClick={this.props.showHideOD} className="Overdue button">
           Overdue Maint
         </button>
         <div id="Over" className="Overdue-content">
           <div className="label-wrapper">
             <label className="task-label">Task</label>
-            <label className="lastdone-label">Last Completed</label>
+            <label className="lastdone-label">Next due</label>
+            <label className="click-to-complete">Click to Complete</label>
           </div>
           <TaskList tasks={this.state.odtasks} />
         </div>
@@ -48,4 +49,3 @@ export default class OverdueBar extends Component {
     );
   }
 }
-

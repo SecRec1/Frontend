@@ -7,6 +7,8 @@ import RichTextEditor from "../../rich/rich-text-editor";
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
+import styles from "../../style/edit-task.scss";
+
 export default class EditTaskForm extends Component {
   constructor(props) {
     super(props);
@@ -16,8 +18,8 @@ export default class EditTaskForm extends Component {
       job: "",
       instructions: "",
       editMode: false,
-      apiUrl: `127.0.0.1:5000/Task/${id}`,
-      apiAction: "patch",
+  
+      apiAction: "put",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -66,7 +68,7 @@ export default class EditTaskForm extends Component {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    
+
     if (this.state.instructions) {
       formData.append("instructions", this.state.instructions.dataURL);
     }
@@ -85,19 +87,11 @@ export default class EditTaskForm extends Component {
         this.props.handleNewTaskSubmission(response);
         this.setState({
           id: "",
-          sn: "",
-          name: "",
+          job: "",
           instructions: "",
-          designator: "",
-          subdesignator: "",
-          oil: "",
-          coolant: "",
-          department: "",
-          motor: "",
-          hours: "",
           editMode: "False",
         });
-        [ this.instructionsRef].forEach((ref) => {
+        [this.instructionsRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();
         });
       })
@@ -111,35 +105,22 @@ export default class EditTaskForm extends Component {
     });
   }
 
-  
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="Searchbar">
+      <form className="task-editor" onSubmit={this.handleSubmit}>
+        <div className="task-edit-container">
+          
+
           <input
-            type="text"
-            name="name"
-            placeholder="Equipment Name"
-            value={this.state.name}
+            type="textarea"
+            name="job"
+            className="job"
+            placeholder="Job"
+            value={this.state.job}
             onChange={this.handleChange}
           />
 
-          <input
-            type="text"
-            name="sn"
-            placeholder="Equipment sn"
-            value={this.state.sn}
-            onChange={this.handleChange}
-          />
-
-          <DropzoneComponent
-            ref={this.InstructionsRef}
-            config={this.componentConfig()}
-            djsConfig={this.djsConfig()}
-            eventHandlers={this.handleInstructionsDrop()}
-          >
-            <div className="dz-message">Instructions</div>
-          </DropzoneComponent>
+          
         </div>
 
         <button type="submit">Save</button>

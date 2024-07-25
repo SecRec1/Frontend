@@ -116,6 +116,7 @@ export default class AddForm extends Component {
       .catch((error) => {
         console.log("error", error);
       });
+      window.location.reload();
   }
   handleChange(event) {
     this.setState({

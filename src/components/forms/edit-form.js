@@ -6,8 +6,9 @@ import RichTextEditor from "../../rich/rich-text-editor";
 
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
+import styles from "../../style/edit-form";
 
-export default class AddForm extends Component {
+export default class EditForm extends Component {
   constructor(props) {
     super(props);
 
@@ -25,24 +26,21 @@ export default class AddForm extends Component {
       hours: "",
       editMode: false,
       specsid: "",
-      apiUrl: `127.0.0.1:5000/Specs/${sn}`,
-        apiAction: "patch",
+      //apiUrl: `127.0.0.1:5000/Specs/${this.state.sn}`,
+      apiAction: "patch",
     };
-    
 
     this.handleSpecsId = this.handleSpecsId.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
-
+    
     this.handleMotorDrop = this.handleMotorDrop.bind(this);
     this.handleQRCodeDrop = this.handleQRCodeDrop.bind(this);
 
     this.motorRef = React.createRef();
     this.qrcodeRef = React.createRef();
-
-    
   }
   
   componentDidUpdate() {
@@ -60,23 +58,22 @@ export default class AddForm extends Component {
         motor,
         hours,
       } = this.props.specsToEdit;
-
       this.props.clearSpecsToEdit();
       this.setState({
         id: id,
         sn: sn || "",
         name: name || "",
-        qrcode: qrcode || "",
+        qrcode: qrcode.dataURL || "",
         designator: designator || "",
         subdesignator: subdesignator || "",
         oil: oil || "",
         coolant: coolant || "",
         department: department || "",
-        motor: motor || "",
+        motor: motor.dataURL || "",
         hours: hours || "",
         editMode: true,
         apiUrl: `127.0.0.1:5000/Specs/${sn}`,
-        apiAction: "patch",
+        apiAction: "PUT",
       });
     }
   }
@@ -113,7 +110,7 @@ export default class AddForm extends Component {
     };
   }
 
-  handleSubmit(event) {
+ async handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -128,15 +125,15 @@ export default class AddForm extends Component {
     const data = Object.fromEntries(formData);
 
     axios({
-      method: this.state.apiAction,
-      url: this.state.apiUrl,
+      method: "PUT",
+      url: `http://127.0.0.1:5000/Specs/${this.state.sn}`,
       data: data,
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     })
       .then((response) => {
-        this.props.handleNewFormSubmission(response);
+        this.props.handleFormSubmit(response);
         this.setState({
           id: "",
           sn: "",
@@ -158,6 +155,8 @@ export default class AddForm extends Component {
       .catch((error) => {
         console.log("error", error);
       });
+      this.props.handleCloseModal();
+      window.location.reload();
   }
   handleChange(event) {
     this.setState({
@@ -170,8 +169,9 @@ export default class AddForm extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="Searchbar">
+      <form onSubmit={this.handleSubmit} className="edit-form">
+        <div className="left-left">
+          <h1>Equipment Name</h1>
           <input
             type="text"
             name="name"
@@ -179,7 +179,7 @@ export default class AddForm extends Component {
             value={this.state.name}
             onChange={this.handleChange}
           />
-
+          <h1>Equipment SN</h1>
           <input
             type="text"
             name="sn"
@@ -187,6 +187,7 @@ export default class AddForm extends Component {
             value={this.state.sn}
             onChange={this.handleChange}
           />
+          <h1>Department</h1>
           <input
             type="text"
             name="department"
@@ -194,6 +195,7 @@ export default class AddForm extends Component {
             value={this.state.department}
             onChange={this.handleChange}
           />
+          <h1>Machine Hours</h1>
           <input
             type="text"
             name="hours"
@@ -202,7 +204,9 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <div className="">
+
+        <div className="left-right">
+          <h1>Designator</h1>
           <select
             name="designator"
             value={this.state.designator}
@@ -216,7 +220,7 @@ export default class AddForm extends Component {
             <option value="Optical Sorter">Optical Sorter</option>
             <option value="Eddy Current">Eddy Current</option>
           </select>
-
+          <h1>Sub-Designator</h1>
           <select
             name="subdesignator"
             value={this.state.subdesignator}
@@ -229,7 +233,7 @@ export default class AddForm extends Component {
             <option value="Crossbelt">Crossbelt</option>
             <option value="Vibratory Mover">Vibratory Mover</option>
           </select>
-
+          <h1>Oil Type</h1>
           <input
             type="text"
             name="oil"
@@ -237,7 +241,7 @@ export default class AddForm extends Component {
             value={this.state.oil}
             onChange={this.handleChange}
           />
-
+          <h1>Coolant Type</h1>
           <input
             type="text"
             name="coolant"
@@ -245,6 +249,8 @@ export default class AddForm extends Component {
             value={this.state.coolant}
             onChange={this.handleChange}
           />
+        </div>
+        <div className="right">
           <DropzoneComponent
             ref={this.motorRef}
             config={this.componentConfig()}

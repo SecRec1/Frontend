@@ -19,6 +19,7 @@ export default class SpecsDetail extends Component {
 
   componentDidMount() {
     this.getSpecsItem();
+    
   }
 
   getSpecsItem() {
@@ -27,8 +28,10 @@ export default class SpecsDetail extends Component {
 
       .then((response) => {
         this.setState({ specsItem: response.data });
+       
       })
       .catch((error) => console.log("detail page getSpec error", error));
+      
   }
 
   specsItem() {

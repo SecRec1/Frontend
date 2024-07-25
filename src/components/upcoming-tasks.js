@@ -24,21 +24,26 @@ export default class TaskCalculator extends Component {
       duetaskentries: [],
       overduetaskentries: [],
       odentries: [],
+      hourtasks: [],
+      datetasks: [],
     };
 
     this.getIBSTs = this.getIBSTs.bind(this);
     this.getSpecsSN = this.getSpecsSN.bind(this);
     this.filterByDate = this.filterByDate.bind(this);
     this.getUpTaskInfo = this.getUpTaskInfo.bind(this);
+    this.filterByHours = this.filterByHours.bind(this);
     this.getDueTaskInfo = this.getDueTaskInfo.bind(this);
     this.getOverTaskInfo = this.getOverTaskInfo.bind(this);
     this.combineUpTaskInfo = this.combineUpTaskInfo.bind(this);
     this.combineDueTaskInfo = this.combineDueTaskInfo.bind(this);
     this.combineOverTaskInfo = this.combineOverTaskInfo.bind(this);
+    this.checkLastCompleted = this.checkLastCompleted.bind(this);
   }
   getSpecsSN() {
-    this.setState({ specssn: Number(this.props.specsn) });
+    this.setState({ specssn: this.props.specsn });
   }
+
   getIBSTs() {
     axios.get(`http://127.0.0.1:5000/IBST`).then((response) => {
       this.setState({
@@ -52,19 +57,67 @@ export default class TaskCalculator extends Component {
       this.setState({
         tasksnfiltered: [...filteredrecords],
       });
-      this.filterByDate();
+      this.checkLastCompleted();
       this.getUpTaskInfo();
       this.getDueTaskInfo();
       this.getOverTaskInfo();
     });
   }
+  checkLastCompleted() {
+    const tasksnfiltered = this.state.tasksnfiltered;
+    const tasktimefiltered = tasksnfiltered.forEach((record) => {
+      if (
+        record.lastcompleted.includes("-") ||
+        record.lastcompleted.includes("/")
+      ) {
+        this.setState({ datetasks: [record].concat(this.state.datetasks) });
+      } else {
+        this.setState({ hourtasks: [record].concat(this.state.hourtasks) });
+      }
+    });
+    this.filterByDate();
+    this.filterByHours();
+  }
 
+  filterByHours() {
+    const { hourtasks } = this.state;
+    const currenthours = this.props.specsItem.hours;
+
+    // Filtering upcoming tasks
+    const upcoming = hourtasks.filter((record) => {
+      const remainingHours = parseInt(record.nextdue, 10) - currenthours;
+      return remainingHours < 80 && remainingHours > 40;
+    });
+
+    // Filtering due tasks
+    const due = hourtasks.filter((record) => {
+      const remainingHours = parseInt(record.nextdue, 10) - currenthours;
+      return remainingHours < 40 && remainingHours > 0;
+    });
+
+    // Filtering overdue tasks
+    const overdue = hourtasks.filter((record) => {
+      const remainingHours = parseInt(record.nextdue, 10) - currenthours;
+      return remainingHours < 1;
+    });
+
+    // Updating state with the filtered tasks
+    this.setState({
+      upcoming: [...upcoming].concat(this.state.upcoming),
+      due: [...due].concat(this.state.due),
+      overdue: [...overdue].concat(this.state.overdue),
+    });
+
+    
+  }
+  
+  
   filterByDate() {
     const Today = new DateTime.now();
     const thirtyday = Today + 2592000000;
     const sevenday = Today + 604800000;
     const oneday = Today + 86400000;
-    const machinerecords = this.state.tasksnfiltered;
+    const machinerecords = this.state.datetasks;
 
     //checking for records between 8 and 30 days
 

@@ -71,8 +71,11 @@ export default class SpecsEditor extends Component {
   }
   handleCloseModal() {
     this.setState({ showModal: false });
+    
   }
-  handleFormSubmit(event) {}
+  handleFormSubmit(event) {
+    console.log("Form Submitted");
+  }
 
   handleChange(event) {
     this.setState({
@@ -102,6 +105,8 @@ export default class SpecsEditor extends Component {
           <EditForm
             specsToEdit={this.state.specsToEdit}
             clearSpecsToEdit={this.clearSpecsToEdit}
+            handleCloseModal={this.handleCloseModal}
+            handleFormSubmit={this.handleFormSubmit}
           />
           
         </ReactModal>

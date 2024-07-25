@@ -66,7 +66,7 @@ export default class AddTask extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-debugger
+
     const formData = new FormData(event.currentTarget);
       formData.append("id", this.state.taskid)
     if (this.state.instructions) {

@@ -5,7 +5,7 @@ import axios from "axios";
 import styles from "../style/task-styles.scss";
 import Icons from "../components/helpers/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import EditTaskForm from "../components/forms/edit-task-form";
 
 const GenTaskList = (props) => {
   Icons();
@@ -23,27 +23,16 @@ const GenTaskList = (props) => {
           </h1>
         </div>
         <div className="actions">
-          <Link
-            
-            className="help-button button"
-            to={`/Task/${taskItem.id}`}
-          >
+          <Link className="help-button button" to={`/Task/${taskItem.id}`}>
             <FontAwesomeIcon className="action-icon" icon="file-lines" />
-            
           </Link>
           <button
-            className="button"
-            //onClick={this.handleEditClick}
-          >
-            <FontAwesomeIcon className="action-icon" icon="edit" />
-          </button>
-          <button
-            className="button"
-
+            className="delete button"
             onClick={() => props.handleDeleteClick(taskItem)}
           >
             <FontAwesomeIcon className="action-icon" icon="trash" />
           </button>
+          
         </div>
       </div>
     );

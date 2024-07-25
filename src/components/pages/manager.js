@@ -43,3 +43,13 @@ function showHideSpecs() {
   }
   specs.classList.toggle("show");
 }
+function showHideBoth() {
+  var specs = document.getElementById("specs");
+  var tasks = document.getElementById("tasks");
+  if (tasks.classList.contains("show")) {
+    tasks.classList.remove("show");
+  }
+  if (specs.classList.contains("show")) {
+    specs.classList.toggle("show");
+  }
+}

@@ -34,13 +34,16 @@ export default class DueBar extends Component {
 
   render() {
     return (
-      <div className="Due_container">
+      <div className="Due-container">
         <button onClick={this.props.showHideDue} className="Due button">
-        Maint Due within 7 Days
+          Maint Due
         </button>
         <div id="Due" className="Due-content">
-          <label className="task-label">Task</label>
-          <label className="lastdone-label">Last Completed</label>
+          <div className="label-wrapper">
+            <label className="task-label">Task</label>
+            <label className="lastdone-label">Next due</label>
+            <label className="click-to-complete">Click to Complete</label>
+          </div>
           <TaskList tasks={this.state.duetasks} />
         </div>
       </div>

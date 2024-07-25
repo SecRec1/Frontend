@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
-import { DateTime } from "luxon";
+import { DateTime, Duration } from "luxon";
 import RichTextEditor from "../../rich/rich-text-editor";
 import "regenerator-runtime/runtime";
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
@@ -37,13 +37,8 @@ export default class SetTaskForm extends Component {
     this.switchToDate = this.switchToDate.bind(this);
     this.switchToHours = this.switchToHours.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-    //this.setNewTaskId = this.setNewTaskId.bind(this);
   }
-  // setNewTaskId(){
-  //   const getid = this.state.tasks;
-  //   const nextid = getid.length + 1;
-  //   this.setState({newtaskid:nextid});
-  // }
+
   handleSelect(event) {
     this.setState({
       hdselector: event.target.value,
@@ -114,7 +109,7 @@ export default class SetTaskForm extends Component {
     console.log("setNextdue called with lastcompleted:", lastcompleted);
 
     if (hdselector === "hours") {
-      const nextdue = DateTime.now().plus({ hours: parsedDuration }).toISO();
+      const nextdue = parseInt(lastcompleted) + parseInt(duration);
       console.log("Setting nextdue to (hours):", nextdue);
       this.setState({ nextdue }, () => {
         console.log("nextdue set to:", this.state.nextdue);
@@ -138,35 +133,50 @@ export default class SetTaskForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    debugger;
+
     this.handleNewFormSubmission().then(() => {
-    const { sn, taskid, lastcompleted, nextdue, notes } = this.state;
-    const data = {
-      specs_sn: sn,
-      task_id: taskid,
-      lastcompleted: lastcompleted,
-      nextdue: nextdue,
-      notes: notes,
-    };
-    axios
-      .post(`http://127.0.0.1:5000/IBST`, data)
-      .then(
-        this.setState({
-          newtaskid: "",
-          sn: "",
-          taskid: "",
-          lastcompleted: "",
-          nextdue: "",
-          duration: "",
-          startedatdate: "",
-          startedathours: "",
-          hdselector: "",
-          notes: "",
-        })
-      )
-      .catch((error) => {
-        console.log("error", error);
-      });
+      const {
+        sn,
+        taskid,
+        lastcompleted,
+        nextdue,
+        notes,
+        duration,
+        hdselector,
+      } = this.state;
+      const data = {
+        specs_sn: sn,
+        task_id: taskid,
+        lastcompleted: lastcompleted,
+        nextdue: nextdue,
+        notes: notes,
+        duration: duration,
+        hdselector: hdselector,
+      };
+      console.log("Data to be sent:", data);
+      if (data.specs_sn === '') {
+        alert("Please enter a valid Equipment SN");
+      } else {
+        axios
+          .post(`http://127.0.0.1:5000/IBST`, data)
+          .then(
+            this.setState({
+              newtaskid: "",
+              sn: "",
+              taskid: "",
+              lastcompleted: "",
+              nextdue: "",
+              duration: "",
+              startedatdate: "",
+              startedathours: "",
+              hdselector: "",
+              notes: "",
+            })
+          )
+          .catch((error) => {
+            console.log("error", error);
+          });
+      }
     });
   }
   handleChange(event) {
