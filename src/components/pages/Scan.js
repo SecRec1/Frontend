@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import NavigationComponent from "../navigation-container";
 import SetTaskForm from "../forms/set-task-form";
-import AddTask from "../forms/add-task";
+
+import Scanner from "../scan-component";
 export default class Scan extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,7 @@ export default class Scan extends Component {
   render() {
     return (
       <div>
-        
+        <Scanner/>
       </div>
     );
   }

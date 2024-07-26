@@ -132,6 +132,8 @@ export default class AddForm extends Component {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
       justifyItems: "center",
+      width: "128",
+      height: "128",
     };
     return (
       <form onSubmit={this.handleSubmit}>
@@ -211,12 +213,7 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
           />
           <div className="File-holder" style={myStyle}>
-            <QRCode
-              ref={this.qrcodeRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              value={`http://127.0.0.1:5000/Specs/${this.state.sn}`}
-            />
+            <QRCode value={`http://127.0.0.1:5000/Specs/${this.state.sn}`} />
 
             <DropzoneComponent
               ref={this.motorRef}
