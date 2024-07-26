@@ -7,7 +7,11 @@ import NavigationComponent from "../navigation-container";
 export class Home extends Component{
     render(){
         return(
-            <div></div>
+            <div>
+                <button></button>
+                <button></button>
+                <button></button>
+            </div>
         )
 
     }

@@ -1,20 +1,26 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import SpecsDetail from "../detail-page/specs-details";
+import SearchList from "../forms/search-list";
 
 export default class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      records: [],
+      filteredrecords: [],
+      finalfilteredrecords: [],
       designator: "none",
       subdesignator: "none",
       showModal: false,
     };
+    this.getRecords = this.getRecords.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+
     this.handleFilter = this.handleFilter.bind(this);
+    this.filterRecordsStageOne = this.filterRecordsStageOne.bind(this);
+    this.filterRecordsStageTwo = this.filterRecordsStageTwo.bind(this);
   }
   handleFilter(filter) {
     if (filter === "none") {
@@ -23,25 +29,56 @@ export default class SearchForm extends Component {
       this.getPortfolioItems(filter);
     }
   }
+
   SpecsItems() {
-    return this.state.data.map(item => {
+    return this.state.data.map((item) => {
       return <SpecsItem key={item.id} item={item} />;
     });
   }
+  getRecords() {
+    axios
+      .get("http://localhost:5000/Specs")
+      .then((response) => {
+        this.setState({
+          records: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }
 
+  filterRecordsStageOne() {
+    const filteredRecordsSO = this.state.records.filter(
+      (rec) => rec.designator === this.state.designator
+    );
 
-  handleSearch() {
-    axios.get("http://localhost:5000/Specs").then((response) => {
-      console.log(response.data);
+    this.setState({ filteredrecords: filteredRecordsSO }, () => {
+      if (this.state.subdesignator !== "none") {
+        this.filterRecordsStageTwo();
+      } else {
+        this.setState({ finalfilteredrecords: this.state.filteredrecords });
+      }
     });
   }
+  filterRecordsStageTwo() {
+    const filteredRecordsST = this.state.filteredrecords.filter(
+      (rec) => rec.subdesignator === this.state.subdesignator
+    );
+
+    this.setState({ finalfilteredrecords: filteredRecordsST });
+  }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.handleSearch();
+    this.filterRecordsStageOne();
+  }
+  componentDidMount() {
+    this.getRecords();
   }
   render() {
     return (
@@ -78,7 +115,9 @@ export default class SearchForm extends Component {
 
           <button type="submit">Search</button>
         </form>
-        <div><SpecsDetail/></div>
+        <div>
+          <SearchList records={this.state.finalfilteredrecords} />
+        </div>
       </div>
     );
   }

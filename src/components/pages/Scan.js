@@ -9,14 +9,7 @@ export default class Scan extends Component {
   render() {
     return (
       <div>
-        <div className="set-task-form">
-          <h1>Set machine tasks by SN</h1>
-          <SetTaskForm />
-        </div>
-        <div>
-          <h1>Add New Task</h1>
-          <AddTask />
-        </div>
+        
       </div>
     );
   }

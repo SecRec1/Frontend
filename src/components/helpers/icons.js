@@ -9,6 +9,9 @@ import {
   faMapMarkedAlt,
   faLock,
   faFileLines,
+  faQrcode,
+  faBinoculars,
+  faListCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -23,7 +26,10 @@ const Icons = () => {
     faEnvelope,
     faMapMarkedAlt,
     faLock,
-    faFileLines
+    faFileLines,
+    faQrcode,
+    faBinoculars,
+    faListCheck
   );
 };
 

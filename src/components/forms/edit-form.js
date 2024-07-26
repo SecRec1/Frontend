@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
-
+import QRCode from "qrcode.react";
 import RichTextEditor from "../../rich/rich-text-editor";
 
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
@@ -35,14 +35,14 @@ export default class EditForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
-    
+
     this.handleMotorDrop = this.handleMotorDrop.bind(this);
     this.handleQRCodeDrop = this.handleQRCodeDrop.bind(this);
 
     this.motorRef = React.createRef();
     this.qrcodeRef = React.createRef();
   }
-  
+
   componentDidUpdate() {
     if (Object.keys(this.props.specsToEdit).length > 0) {
       const {
@@ -110,7 +110,7 @@ export default class EditForm extends Component {
     };
   }
 
- async handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -155,8 +155,8 @@ export default class EditForm extends Component {
       .catch((error) => {
         console.log("error", error);
       });
-      this.props.handleCloseModal();
-      window.location.reload();
+    this.props.handleCloseModal();
+    window.location.reload();
   }
   handleChange(event) {
     this.setState({
@@ -251,6 +251,12 @@ export default class EditForm extends Component {
           />
         </div>
         <div className="right">
+          <QRCode
+            ref={this.qrcodeRef}
+            config={this.componentConfig()}
+            djsConfig={this.djsConfig()}
+            value={`http://127.0.0.1:5000/Specs/${this.state.sn}`}
+          />
           <DropzoneComponent
             ref={this.motorRef}
             config={this.componentConfig()}
@@ -258,14 +264,6 @@ export default class EditForm extends Component {
             eventHandlers={this.handleMotorDrop()}
           >
             <div className="dz-message">Motor Plate</div>
-          </DropzoneComponent>
-          <DropzoneComponent
-            ref={this.qrcodeRef}
-            config={this.componentConfig()}
-            djsConfig={this.djsConfig()}
-            eventHandlers={this.handleQRCodeDrop()}
-          >
-            <div className="dz-message">QRCode</div>
           </DropzoneComponent>
         </div>
 

@@ -1,6 +1,9 @@
 .edit-form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-  .dropzone {
+
+  .right{
+    display: grid;
+    justify-items: center;
   }
 }

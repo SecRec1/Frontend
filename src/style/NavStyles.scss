@@ -1,8 +1,30 @@
-.nav-wrapper{
-    font-size:20px;
-}
-.nav-link-wrapper {
-    display: flex;
-    flex:1fr 1fr;
-    justify-content: space-between;
+.nav-wrapper {
+  display: grid;
+  font-size: 20px;
+  justify-content: center;
+  .nav-link-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    width: 1500px;
+    height: 200px;
+
+    .scan,
+    .search,
+    .manager {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      justify-items: center;
+      height: 80%;
+      width: 80%;
+      cursor: pointer;
+      .icon {
+        font-size: 125px;
+        display: grid;
+        justify-content: center;
+      }
+    }
+  }
 }

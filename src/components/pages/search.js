@@ -2,16 +2,29 @@ import React, { Component } from "react";
 
 import SearchModal from "../modals/search-modal";
 
-
 export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
       specsitems: [],
-      showModal: false,
+      showModal: true,
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+  }
+  componentDidMount() {
+    window.addEventListener("openSearchModal", this.handleOpenModal);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("openSearchModal", this.handleOpenModal);
+  }
+
+  handleOpenModal() {
+    if (this.props.location.pathname === "/Search") {
+      this.setState({ showModal: true });
+    }
   }
 
   openModal() {
@@ -27,8 +40,6 @@ export default class Search extends Component {
           closeModal={this.closeModal}
           showModal={this.state.showModal}
         />
-        <button onClick={this.openModal}>Search by specs</button>
-        
       </div>
     );
   }
