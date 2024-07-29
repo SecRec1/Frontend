@@ -7,15 +7,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import NavigationComponent from "./navigation-container";
 
-import Home from "../components/pages/home";
+import Home from "./pages/home";
 import Scan from "./pages/Scan";
-import SpecsManager from "../components/pages/specs-manager";
-import Header from "../components/header";
-import Search from "../components/pages/search";
-import SpecsPage from "../components/pages/specs-page";
+import SpecsManager from "./pages/specs-manager";
+import Header from "./header";
+import Search from "./pages/search";
+import SpecsPage from "./pages/specs-page";
 import Manager from "./pages/manager";
 import TaskManager from "./task-manager";
-import TaskPage from "../components/pages/task-page";
+import TaskPage from "./pages/task-page";
 
 export default class App extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ export default class App extends Component {
             <NavigationComponent />
 
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/Frontend" component={Home} />
               <Route path="/Scan" component={Scan} />
               <Route path="/Search" component={Search} />
               <Route path="/Manager" component={Manager} />
