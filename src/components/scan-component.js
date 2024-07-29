@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { QrReader } from 'react-qr-reader';
+import React, { useState } from "react";
+import { QrReader } from "react-qr-reader";
+import { useHistory} from "react-router-dom";
 
 const Scanner = () => {
-  const [data, setData] = useState('No result');
+  const [data, setData] = useState("No result");
   const [error, setError] = useState(null);
-
+const history = useHistory();
   const handleScan = (result) => {
     if (result) {
       setData(result.text);
+      history.push(result.text); // replace with actual route
       console.log(`Scanned data: ${result.text}`);
     }
   };
@@ -18,7 +20,7 @@ const Scanner = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: "center" }}>
       <h1>QR Code Scanner</h1>
       <QrReader
         onResult={(result, error) => {
@@ -29,8 +31,8 @@ const Scanner = () => {
             handleError(error);
           }
         }}
-        constraints={{ facingMode: 'environment' }}
-        style={{ width: '300px', margin: '0 auto' }}
+        constraints={{ facingMode: "environment" }}
+        style={{ width: "300px", margin: "0 auto" }}
       />
       <p>{data}</p>
       {error && <p>Error: {error.message}</p>}

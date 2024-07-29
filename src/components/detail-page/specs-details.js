@@ -15,11 +15,47 @@ export default class SpecsDetail extends Component {
       specsItem: {},
     };
     this.getSpecsItem = this.getSpecsItem.bind(this);
+    this.printCode = this.printCode.bind(this);
   }
+  printCode() {
+    // Create a new window for printing
+    const printWindow = window.open("", "", "height=600,width=800");
 
+    // Add HTML content to the new window
+    printWindow.document.open();
+    printWindow.document.write(`
+      <html>
+        <head>
+          
+          <style>
+            body {
+              text-align: center;
+              margin: 20px;
+            }
+            img {
+              max-width: 100%;
+              height: auto;
+            }
+          </style>
+        </head>
+        <body>
+          
+          <img src="${this.state.specsItem.qrcode}" alt="QR Code" />
+          <script>
+            window.onload = function() {
+              window.print();
+              window.onafterprint = function() {
+                window.close();
+              };
+            };
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }
   componentDidMount() {
     this.getSpecsItem();
-    
   }
 
   getSpecsItem() {
@@ -28,10 +64,8 @@ export default class SpecsDetail extends Component {
 
       .then((response) => {
         this.setState({ specsItem: response.data });
-       
       })
       .catch((error) => console.log("detail page getSpec error", error));
-      
   }
 
   specsItem() {
@@ -46,9 +80,13 @@ export default class SpecsDetail extends Component {
         <div className="text-content">
           <div className="item-card">
             <div className="leftside">
-              <div className="top">
+              <button
+                className="top"
+                style={{ background: "none", border: "none" }}
+                onClick={this.printCode}
+              >
                 <img className="qrcode" src={this.state.specsItem.qrcode} />
-              </div>
+              </button>
 
               <div className="bottom">
                 <img className="motor plate" src={this.state.specsItem.motor} />
@@ -89,7 +127,8 @@ export default class SpecsDetail extends Component {
                   {this.state.specsItem.coolant}
                 </h6>
                 <h6 className="hours item">
-                  Machine Hours:<br></br>{this.state.specsItem.hours}
+                  Machine Hours:<br></br>
+                  {this.state.specsItem.hours}
                 </h6>
               </div>
             </div>

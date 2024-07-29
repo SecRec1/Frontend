@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SpecsManager from "./specs-manager";
 import TaskManager from "../task-manager";
 
-import { NavLink } from "react-router-dom";
+
 
 import Styles from "../../style/manager.scss";
 export default class Manager extends Component {

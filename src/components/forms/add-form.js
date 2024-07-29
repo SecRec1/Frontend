@@ -12,7 +12,7 @@ export default class AddForm extends Component {
     super(props);
 
     this.state = {
-      id: null,
+      id: 1,
       sn: "",
       name: "",
       qrcode: "",
@@ -42,10 +42,20 @@ export default class AddForm extends Component {
     this.qrcodeRef = React.createRef();
   }
 
-  handleSpecsId() {
-    axios.get(`http://127.0.0.1:5000/Specs`).then((response) => {
-      this.setState({ specsid: response.data.length + 1 });
-    });
+  handleSpecsId = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/Specs');
+      const existingIds = response.data.map(item => item.id);
+  
+      let newId = this.state.id; // Assuming `this.state.id` is the starting ID or a base value
+      while (existingIds.includes(newId)) {
+        newId++;
+      }
+  
+      this.setState({ id: newId });
+    } catch (error) {
+      console.error('Error fetching specs or finding available ID:', error);
+    }
   }
 
   handleMotorDrop() {
@@ -80,7 +90,7 @@ export default class AddForm extends Component {
     const qrCodeCanvas = document.querySelector("canvas");
     const qrCodeDataURL = qrCodeCanvas.toDataURL();
     const formData = new FormData(event.currentTarget);
-    formData.append("id", this.state.specsid);
+    formData.append("id", this.state.id);
 
     formData.append("qrcode", qrCodeDataURL);
 
@@ -97,7 +107,7 @@ export default class AddForm extends Component {
       .then((response) => {
         this.props.handleNewFormSubmission(response);
         this.setState({
-          id: null,
+          id: 1,
           sn: "",
           name: "",
           qrcode: "",
@@ -213,7 +223,7 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
           />
           <div className="File-holder" style={myStyle}>
-            <QRCode value={`http://127.0.0.1:5000/Specs/${this.state.sn}`} />
+            <QRCode value={`/Specs/${this.state.sn}`} />
 
             <DropzoneComponent
               ref={this.motorRef}

@@ -33,7 +33,7 @@ export default class App extends Component {
             <NavigationComponent />
 
             <Switch>
-              <Route exact path="/Frontend" component={Home} />
+              <Route exact path="/" component={Home} />
               <Route path="/Scan" component={Scan} />
               <Route path="/Search" component={Search} />
               <Route path="/Manager" component={Manager} />

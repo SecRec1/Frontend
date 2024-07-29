@@ -255,7 +255,7 @@ export default class EditForm extends Component {
             ref={this.qrcodeRef}
             config={this.componentConfig()}
             djsConfig={this.djsConfig()}
-            value={`http://127.0.0.1:5000/Specs/${this.state.sn}`}
+            value={`/Specs/${this.state.sn}`}
           />
           <DropzoneComponent
             ref={this.motorRef}
