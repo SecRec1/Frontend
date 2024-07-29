@@ -8,9 +8,7 @@ export class Home extends Component{
     render(){
         return(
             <div>
-                <button></button>
-                <button></button>
-                <button></button>
+               
             </div>
         )
 
