@@ -8,24 +8,21 @@ import SpecsDetail from "../detail-page/specs-details";
 
 import Styles from "../../style/manager.scss";
 
-
 export default class SpecsManager extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       specsItems: [],
-
+      
       SpecsPageToEdit: {},
     };
 
     this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this);
-    
+
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.getSpecsItems = this.getSpecsItems.bind(this);
-    
   }
-  
 
   getSpecsItems() {
     axios
@@ -49,7 +46,7 @@ export default class SpecsManager extends Component {
     });
     console.log("New form submission", this.state.specsItems);
   }
-  
+
   handleDeleteClick(specsItem) {
     console.log("delete", specsItem);
     axios.delete(`http://127.0.0.1:5000/Specs/${specsItem.sn}`);
@@ -63,15 +60,15 @@ export default class SpecsManager extends Component {
     return (
       <div className="specs-manager-wrapper">
         <AddForm
+          loggedin={this.props.loggedin}
           handleFormSubmissionError={this.handleFormSubmissionError}
           handleNewFormSubmission={this.handleNewFormSubmission}
-          // handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission}
         />
-        
+
         <RecordList
+          loggedin={this.props.loggedin}
           data={this.state.specsItems}
           handleDeleteClick={this.handleDeleteClick}
-          
         />
       </div>
     );

@@ -75,6 +75,10 @@
     height: 620px;
     justify-items: center;
     align-items: baseline;
+    .disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
   }
   .action-icon {
     font-size: 1000%;

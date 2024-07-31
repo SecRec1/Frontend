@@ -11,8 +11,12 @@ export default class SpecsPage extends Component {
     super(props);
     this.state = {
       specsItem: {},
+      admins: [],
+      loggedin: false,
     };
     this.getSpecs = this.getSpecs.bind(this);
+    this.getLoggedinStatus = this.getLoggedinStatus.bind(this);
+    this.getAdmins = this.getAdmins.bind(this);
   }
 
   getSpecs() {
@@ -24,9 +28,29 @@ export default class SpecsPage extends Component {
         });
       });
   }
+  async getLoggedinStatus() {
+    const admins = this.state.admins;
+    const loggedInAdmin = admins.find((admin) => admin.loggedin === true);
 
-  componentDidMount() {
+    if (loggedInAdmin) {
+      this.setState({ loggedin: true });
+    } else {
+      this.setState({ loggedin: false });
+    }
+  }
+
+  async getAdmins() {
+    try {
+      const response = await axios.get(`http://127.0.0.1:5000/Admin`);
+      this.setState({ admins: response.data }, this.getLoggedinStatus);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async componentDidMount() {
     this.getSpecs();
+    await this.getAdmins();
   }
 
   render() {
@@ -34,6 +58,7 @@ export default class SpecsPage extends Component {
       <div className="wrapper">
         <div className="detail-wrapper">
           <SpecsDetail
+            loggedin={this.state.loggedin}
             className="details"
             specsn={this.props.match.params.sn}
           />

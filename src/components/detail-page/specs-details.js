@@ -10,7 +10,7 @@ import SpecsEditor from "../spec-editor";
 export default class SpecsDetail extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       specsItem: {},
     };
@@ -75,6 +75,7 @@ export default class SpecsDetail extends Component {
   }
 
   render() {
+    const isDisabled = !this.props.loggedin;
     return (
       <div key={this.state.specsItem.sn} className="Specs-item-container">
         <div className="text-content">
@@ -135,7 +136,8 @@ export default class SpecsDetail extends Component {
           </div>
         </div>
         <div className="actions">
-          <a className="action-icon">
+          <a className={`action-icon ${isDisabled ? "disabled" : ""}`}
+          >
             <SpecsEditor specsItem={this.state.specsItem} />
           </a>
         </div>

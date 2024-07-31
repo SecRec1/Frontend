@@ -44,19 +44,19 @@ export default class AddForm extends Component {
 
   handleSpecsId = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/Specs');
-      const existingIds = response.data.map(item => item.id);
-  
-      let newId = this.state.id; // Assuming `this.state.id` is the starting ID or a base value
+      const response = await axios.get("http://127.0.0.1:5000/Specs");
+      const existingIds = response.data.map((item) => item.id);
+
+      let newId = this.state.id; 
       while (existingIds.includes(newId)) {
         newId++;
       }
-  
+
       this.setState({ id: newId });
     } catch (error) {
-      console.error('Error fetching specs or finding available ID:', error);
+      console.error("Error fetching specs or finding available ID:", error);
     }
-  }
+  };
 
   handleMotorDrop() {
     return {
@@ -138,6 +138,9 @@ export default class AddForm extends Component {
     this.handleSpecsId();
   }
   render() {
+    if (!this.props.loggedin) {
+      return null;
+    }
     const myStyle = {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",

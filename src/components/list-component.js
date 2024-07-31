@@ -6,6 +6,7 @@ import Styles from "../style/record-list.scss";
 
 const RecordList = (props) => {
   const specsList = props.data.map((specsItem) => {
+    const isDisabled = !props.loggedin;
     return (
       <div key={specsItem.sn} className="Specs-item-container">
         <div className="text-content">
@@ -64,8 +65,8 @@ const RecordList = (props) => {
 
         <div className="actions">
           <a
-            className="action-icon"
-            onClick={() => props.handleDeleteClick(specsItem)}
+            className={`action-icon ${isDisabled ? 'disabled' : ''}`}
+            onClick={() => !isDisabled && props.handleDeleteClick(specsItem)}
           >
             <FontAwesomeIcon icon="trash" />
           </a>

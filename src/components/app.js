@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "../style/app.scss";
 import Icons from "../components/helpers/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import 'regenerator-runtime/runtime';
+
 
 import NavigationComponent from "./navigation-container";
-
+import Auth from "./pages/auth";
 import Home from "./pages/home";
 import Scan from "./pages/Scan";
 import SpecsManager from "./pages/specs-manager";
@@ -34,6 +36,7 @@ export default class App extends Component {
 
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route path="/Auth" component={Auth} />
               <Route path="/Scan" component={Scan} />
               <Route path="/Search" component={Search} />
               <Route path="/Manager" component={Manager} />
