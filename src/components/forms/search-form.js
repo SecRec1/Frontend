@@ -37,7 +37,7 @@ export default class SearchForm extends Component {
   }
   getRecords() {
     axios
-      .get("http://localhost:5000/Specs")
+      .get("http://127.0.0.1:5000/Specs")
       .then((response) => {
         this.setState({
           records: response.data,
