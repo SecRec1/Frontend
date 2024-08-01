@@ -51,7 +51,6 @@
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.5.2",
     "cors": "^2.8.5",
-    "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
@@ -104,6 +103,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
+    "cross-env": "^7.0.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "gh-pages": "^6.1.1",
     "uglifyjs-webpack-plugin": "^1.2.7"
