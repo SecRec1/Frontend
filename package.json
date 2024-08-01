@@ -30,7 +30,7 @@
   "author": "Chris Welfley",
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "Chris@securerecycling.com"
   },
   "dependencies": {
     "@babel/plugin-syntax-import-meta": "^7.10.4",
