@@ -18,7 +18,7 @@ export default class ItemCard extends Component {
 
   getSpecsItem() {
     axios
-      .get(`http://192.168.1.231:8000/Specs/${this.props.match.params.sn}`)
+      .get(`http://127.0.0.1:8000/Specs/${this.props.match.params.sn}`)
 
       .then((response) => {
         this.setState({ specsItem: response.data });
@@ -28,7 +28,7 @@ export default class ItemCard extends Component {
 
   getSpecsItems() {
     axios
-      .get(`http://192.168.1.231:8000/Specs`)
+      .get(`http://127.0.0.1:8000/Specs`)
       .then((response) => {
         this.setState({
           specsItems: [...response.data],

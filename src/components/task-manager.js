@@ -29,7 +29,7 @@ export default class TaskManager extends Component {
   };
   getTaskItems() {
     axios
-      .get(`http://192.168.1.231:8000/Task`)
+      .get(`http://127.0.0.1:8000/Task`)
       .then((response) => {
         this.setState({
           taskItems: [...response.data],
@@ -52,7 +52,7 @@ export default class TaskManager extends Component {
   }
 
   handleDeleteClick(taskItem) {
-    axios.delete(`http://192.168.1.231:8000/Task/${taskItem.id}`);
+    axios.delete(`http://127.0.0.1:8000/Task/${taskItem.id}`);
     window.location.reload();
   }
   componentDidMount() {

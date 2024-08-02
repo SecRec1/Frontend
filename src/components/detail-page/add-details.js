@@ -50,7 +50,7 @@
 
 //   getSpecsItem() {
 //     axios
-//       .get(`http://192.168.1.231:8000/Specs/${this.state.currentsn}`)
+//       .get(`http://127.0.0.1:8000/Specs/${this.state.currentsn}`)
 //       .then((response) => {
 //         this.setState({
 //           SpecsItem: response.data.Specs,

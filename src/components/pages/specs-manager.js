@@ -26,7 +26,7 @@ export default class SpecsManager extends Component {
 
   getSpecsItems() {
     axios
-      .get(`http://192.168.1.231:8000/Specs`)
+      .get(`http://127.0.0.1:8000/Specs`)
       .then((response) => {
         this.setState({
           specsItems: [...response.data],
@@ -49,7 +49,7 @@ export default class SpecsManager extends Component {
 
   handleDeleteClick(specsItem) {
     console.log("delete", specsItem);
-    axios.delete(`http://192.168.1.231:8000/Specs/${specsItem.sn}`);
+    axios.delete(`http://127.0.0.1:8000/Specs/${specsItem.sn}`);
     window.location.reload();
   }
   componentDidMount() {
