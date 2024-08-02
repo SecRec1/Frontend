@@ -3,6 +3,9 @@
   "name": "Maintanence Tracker",
   "version": "1.0.0",
   "description": "general maintanence tracking.",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "preinstall": "npm set audit false",
     "start": "webpack-dev-server --config webpack/dev.config.js --watch --openssl-legacy-provider",
