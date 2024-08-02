@@ -1,5 +1,4 @@
-// webpack plugins
-const SplitChunksPlugin = require('webpack/lib/optimize/SplitChunksPlugin');
+const path = require('path');
 
 module.exports = {
   entry: {
@@ -9,7 +8,6 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.scss'],
-
     modules: ['node_modules'],
   },
 
@@ -22,7 +20,6 @@ module.exports = {
       },
 
       {
-        type: 'javascript/auto',
         test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
         loader: 'file-loader',
         options: {
@@ -33,15 +30,34 @@ module.exports = {
 
       {
         test: /\.(mp4|webm)$/,
-        loader: 'url?limit=10000',
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        },
       },
     ],
   },
 
-  plugins: [
-    new SplitChunksPlugin({
-      name: ['app', 'vendor'],
-      minChunks: Infinity,
-    }),
-  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        app: {
+          name: 'app',
+          chunks: 'all',
+          minChunks: Infinity,
+        },
+        vendor: {
+          name: 'vendor',
+          chunks: 'all',
+          minChunks: Infinity,
+        },
+      },
+    },
+  },
+
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
+    publicPath: '/',
+  },
 };
