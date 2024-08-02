@@ -71,7 +71,7 @@ const RecordList = (props) => {
             <FontAwesomeIcon icon="trash" />
           </a>
           <Link className="record-link" to={`/Specs/${specsItem.sn}`}>
-            Detail Page
+            Tasks
           </Link>
         </div>
       </div>
