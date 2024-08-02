@@ -54,6 +54,7 @@
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.5.2",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "css-loader": "^1.0.1",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
