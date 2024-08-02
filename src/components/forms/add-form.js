@@ -226,7 +226,7 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
           />
           <div className="File-holder" style={myStyle}>
-            <QRCode value={`/Specs/${this.state.sn}`} />
+            <QRCode value={`http://127.0.0.1:8080/Specs/${this.state.sn}`} />
 
             <DropzoneComponent
               ref={this.motorRef}
