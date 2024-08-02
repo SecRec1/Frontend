@@ -9,15 +9,33 @@ const Scanner = () => {
 
   const handleScan = (result) => {
     if (result) {
+      // Store the result data
       setData(result.text);
-      history.push(result.text); // Replace with actual route
-      console.log(`Scanned data: ${result.text}`);
+
+      // Assuming the QR code contains a URL, navigate to it
+      // Make sure result.text is a valid URL or route
+      if (isValidURL(result.text)) {
+        history.push(result.text);
+        console.log(`Navigating to: ${result.text}`);
+      } else {
+        console.error("Scanned data is not a valid URL.");
+      }
     }
   };
 
   const handleError = (err) => {
     console.error(err);
     setError(err);
+  };
+
+  // Simple URL validation
+  const isValidURL = (string) => {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;
+    }
   };
 
   return (
