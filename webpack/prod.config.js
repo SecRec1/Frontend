@@ -33,10 +33,16 @@ module.exports = webpackMerge(webpackCommon, {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*'], // Ensure old files are removed
+      cleanStaleWebpackAssets: false,
+      dry: false,
+      verbose: true,
+    }),
     new HtmlWebpackPlugin({
       inject: 'body',
       filename: 'index.html',
-      template: path.resolve(__dirname, "../static/index.html"),
+      template: path.resolve(__dirname, "../static/index.html"), // Ensure this path is correct
       favicon: path.resolve(__dirname, "../static/favicon.ico"),
       minify: {
         removeComments: true,
@@ -52,13 +58,14 @@ module.exports = webpackMerge(webpackCommon, {
       }
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: path.resolve(__dirname, "../static"), globOptions: { ignore: ["index.html", "favicon.ico"] } }]
-    }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*'],
-      cleanStaleWebpackAssets: false,
-      dry: false,
-      verbose: true,
+      patterns: [
+        {
+          from: path.resolve(__dirname, "../static"),
+          globOptions: {
+            ignore: ["index.html", "favicon.ico"] // Ensure these files are not copied
+          }
+        }
+      ]
     }),
     new DefinePlugin({ "process.env": { NODE_ENV: '"production"' } }),
     new MiniCssExtractPlugin({ filename: "[name]-[contenthash].min.css" }),

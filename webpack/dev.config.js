@@ -34,11 +34,12 @@ module.exports = webpackMerge(webpackCommon, {
   },
   plugins: [
     new DefinePlugin({ 'process.env': { NODE_ENV: "'development'" } }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: path.resolve(__dirname, '../static/index.html'),
-      favicon: path.resolve(__dirname, '../static/favicon.ico')
-    }),
+    // new HtmlWebpackPlugin({
+    //   inject: 'body',
+    //   filename: 'index.html',
+    //   template: path.resolve(__dirname, '../static/index.html'),
+    //   favicon: path.resolve(__dirname, '../static/favicon.ico')
+    // }),
     new HotModuleReplacementPlugin()
   ],
   devServer: {
