@@ -57,16 +57,16 @@ module.exports = webpackMerge(webpackCommon, {
         minifyURLs: true
       }
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, "../static"),
-          globOptions: {
-            ignore: ["index.html", "favicon.ico"] // Ensure these files are not copied
-          }
-        }
-      ]
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, "../static"),
+    //       globOptions: {
+    //         ignore: ["index.html", "favicon.ico"] // Ensure these files are not copied
+    //       }
+    //     }
+    //   ]
+    // }),
     new DefinePlugin({ "process.env": { NODE_ENV: '"production"' } }),
     new MiniCssExtractPlugin({ filename: "[name]-[contenthash].min.css" }),
     new TerserPlugin({
