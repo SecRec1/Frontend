@@ -13,7 +13,7 @@ module.exports = webpackMerge(webpackCommon, {
   devtool: "source-map",
   mode: "production",
   output: {
-    path: path.resolve(__dirname, "../static/index.html"),
+    path: path.resolve(__dirname, "../dist"),
     filename: "[name]-[contenthash].min.js",
     sourceMapFilename: "[name]-[contenthash].map",
     chunkFilename: "[id]-[chunkhash].js",
@@ -34,7 +34,7 @@ module.exports = webpackMerge(webpackCommon, {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*'], // Ensure old files are removed
+      cleanOnceBeforeBuildPatterns: ['dist/**/*'], // Ensure old files are removed
       cleanStaleWebpackAssets: false,
       dry: false,
       verbose: true,

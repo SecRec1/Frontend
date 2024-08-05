@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "general maintanence tracking.",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "scripts": {
     "preinstall": "npm set audit false",
@@ -36,6 +36,7 @@
     "url": "Chris@securerecycling.com"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.25.1",
     "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@eslint-community/eslint-utils": "^4.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -58,8 +59,8 @@
     "css-loader": "^7.1.2",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
-    "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.1.0",
+    "eslint-webpack-plugin": "^4.2.0",
     "express": "4.17.1",
     "extract-loader": "^2.0.1",
     "flask-cors": "^0.0.1",
@@ -95,7 +96,7 @@
     "style-loader": "^0.21.0",
     "update": "^0.7.4",
     "uuid": "^10.0.0",
-    "webpack-dev-server": "3.10.3",
+    "webpack-dev-server": "^5.0.4",
     "webpack-hot-middleware": "2.25.0",
     "webpack-merge": "4.2.2"
   },
