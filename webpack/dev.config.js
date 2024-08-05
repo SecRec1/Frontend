@@ -1,20 +1,16 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
 const webpackCommon = require('./common.config');
-
-const env = require('../env');
-const proxyRules = require('../proxy/rules');
-
-// webpack plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
+const proxyRules = require('../proxy/rules');
 
 module.exports = webpackMerge(webpackCommon, {
   devtool: 'inline-source-map',
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, '../static/index.html'),
+    path: path.resolve(__dirname, '../static/dist'),
     filename: '[name].js',
     sourceMapFilename: '[name].map',
     chunkFilename: '[id]-chunk.js',
@@ -27,13 +23,14 @@ module.exports = webpackMerge(webpackCommon, {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader', options: { importLoaders: 2 } },
-          { loader: 'sass-loader', options: { outputStyle: 'expanded', sourceMap: true, sourceMapContents: true } }
+          { loader: 'sass-loader', options: {sassOptions:{outputStyle: 'expanded'} , sourceMap: true } }
         ]
       }
     ]
   },
   plugins: [
-    new DefinePlugin({ 'process.env': { NODE_ENV: "'development'" } }),
+    new DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+
     new HtmlWebpackPlugin({
       inject: 'body',
       filename: 'index.html',
@@ -43,15 +40,16 @@ module.exports = webpackMerge(webpackCommon, {
     new HotModuleReplacementPlugin()
   ],
   devServer: {
-    host: env.devServer.host || 'localhost',
-    port: env.devServer.port || 3000,
-    contentBase: path.resolve(__dirname, '../static'),
-    watchContentBase: true,
+    host: 'localhost',
+    port: 3000,
+    
+    static: {
+      directory: path.resolve(__dirname, '../static'),
+    },
     compress: true,
     hot: true,
     historyApiFallback: { disableDotRule: true },
-    watchOptions: { ignored: /node_modules/ },
-    overlay: { warnings: true, errors: true },
-    proxy: proxyRules
+    watchFiles: { paths: ['src/**/*'], options: { usePolling: true } }, // This replaces the 'overlay' option
+    proxy: Array.isArray(proxyRules) ? proxyRules : [], // Ensure proxyRules is an array or provide default
   }
 });

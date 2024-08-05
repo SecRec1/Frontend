@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Scanner = () => {
   const [data, setData] = useState("No result");
   const [error, setError] = useState(null);
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleScan = (result) => {
     if (result) {

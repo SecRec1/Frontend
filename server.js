@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const https = require('https');
-const fs = require('fs');
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -22,13 +20,6 @@ app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-// Read SSL certificate and key
-const sslOptions = {
-  key: fs.readFileSync('example-key.pem'),
-  cert: fs.readFileSync('example.pem')
-};
-
-// Create HTTPS server
-https.createServer(sslOptions, app).listen(port, '0.0.0.0', () => {
-  console.log(`HTTPS Server started on https://0.0.0.0:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server started on http://0.0.0.0:${port}`);
 });
