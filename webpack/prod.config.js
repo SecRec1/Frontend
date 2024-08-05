@@ -13,7 +13,7 @@ module.exports = webpackMerge(webpackCommon, {
   devtool: "source-map",
   mode: "production",
   output: {
-    path: path.resolve(__dirname, "../static"),
+    path: path.resolve(__dirname, "../static/index.html"),
     filename: "[name]-[contenthash].min.js",
     sourceMapFilename: "[name]-[contenthash].map",
     chunkFilename: "[id]-[chunkhash].js",
