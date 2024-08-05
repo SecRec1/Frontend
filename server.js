@@ -13,11 +13,11 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Serve static files from the "dist" directory
-app.use(express.static(path.join(__dirname, '../Frontend/dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Handle all requests and serve the index.html file
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../Frontend/dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(port, '0.0.0.0', () => {
