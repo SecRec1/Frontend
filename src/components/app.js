@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "../style/app.scss";
+import styles from "../style/app.scss";
 import Icons from "../components/helpers/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "regenerator-runtime/runtime";
@@ -28,24 +28,20 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router>
-          
-          <Header />
-          <div className="nav">
-            <NavigationComponent />
-            <Routes>
-              <Route exact path="/" component={Home} />
-              
-              <Route path="/Scan" component={Scan} />
-              <Route path="/Search" component={Search} />
-              <Route path="/Manager" component={Manager} />
-              <Route path="/Specs/:sn" component={SpecsPage} />
-              <Route path="/Task/:id" component={TaskPage} />
-              <Route path="/Manager/Specsmanager" component={SpecsManager} />
-              <Route path="/Manager/Taskmanager" component={TaskManager} />
-            </Routes>
-          </div>
-        </Router>
+        <Header />
+        <div className="nav">
+          <NavigationComponent />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Scan" element={<Scan />} />
+            <Route path="/Search" element={<Search />} />
+            <Route path="/Manager" element={<Manager />} />
+            <Route path="/Specs/:sn" element={<SpecsPage />} />
+            <Route path="/Task/:id" element={<TaskPage />} />
+            <Route path="/Manager/Specsmanager" element={<SpecsManager />} />
+            <Route path="/Manager/Taskmanager" element={<TaskManager />} />
+          </Routes>
+        </div>
       </div>
     );
   }

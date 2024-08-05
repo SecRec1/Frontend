@@ -1,6 +1,6 @@
 // import React, { Component } from "react";
 // import axios from "axios";
-// import ReactHtmlParser from "react-html-parser";
+// import ReactHtmlParser from "html-react-parser";
 
 // import AddForm from "../forms/add-form";
 // import SpecsMotorImage from "./forms/specs-motor-image";
