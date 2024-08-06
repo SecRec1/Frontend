@@ -33,13 +33,13 @@ export default class App extends Component {
           <NavigationComponent />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Scan" element={<Scan />} />
-            <Route path="/Search" element={<Search />} />
-            <Route path="/Manager" element={<Manager />} />
+            <Route path="/scan" element={<Scan />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/manager" element={<Manager />} />
             <Route path="/Specs/:sn" element={<SpecsPage />} />
             <Route path="/Task/:id" element={<TaskPage />} />
-            <Route path="/Manager/Specsmanager" element={<SpecsManager />} />
-            <Route path="/Manager/Taskmanager" element={<TaskManager />} />
+            <Route path="/manager/specsmanager" element={<SpecsManager />} />
+            <Route path="/manager/taskmanager" element={<TaskManager />} />
           </Routes>
         </div>
       </div>

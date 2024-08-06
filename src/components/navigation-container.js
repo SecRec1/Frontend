@@ -7,10 +7,7 @@ import "../style/NavStyles.scss";
 
 const NavigationComponent = (props) => {
   
-  const handleSearchClick = () => {
-    const event = new CustomEvent("openSearchModal");
-    window.dispatchEvent(event);
-  };
+  
 
   return (
     <div className="nav-wrapper">
@@ -22,15 +19,15 @@ const NavigationComponent = (props) => {
           <FontAwesomeIcon className="icon" icon="qrcode" /> SCAN
         </NavLink>
         <NavLink
-          to="/Search"
+          to="/search"
           className={({ isActive }) => (isActive ? "nav-link-active search" : "search")}
-          onClick={handleSearchClick}
+          
         >
           <FontAwesomeIcon className="icon" icon="binoculars" />
           Search
         </NavLink>
         <NavLink
-          to="/Manager"
+          to="/manager"
           className={({ isActive }) => (isActive ? "nav-link-active manager" : "manager")}
         >
           <FontAwesomeIcon className="icon" icon="list-check" />

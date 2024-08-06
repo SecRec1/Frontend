@@ -15,7 +15,7 @@ export default class SearchModal extends Component {
         left: "50%",
         right: "auto",
         marginRight: "-50%",
-        transform: "translate(-50%, -50%",
+        transform: "translate(-50%, -50%)",
         width: "800px",
       },
       overlay: {
@@ -38,7 +38,7 @@ export default class SearchModal extends Component {
         onRequestClose={() => {
           this.props.closeModal();
         }}
-        isOpen={this.props.showModal}
+        
       >
         <SearchForm
           handleSuccessfullSearch={this.handleSuccessfullSearch}

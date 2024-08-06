@@ -1,5 +1,5 @@
 const path = require("path");
-const webpackMerge = require("webpack-merge");
+const {merge} = require("webpack-merge");
 const webpackCommon = require("./common.config");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const DefinePlugin = require("webpack/lib/DefinePlugin");
@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = webpackMerge(webpackCommon, {
+module.exports = merge(webpackCommon, {
   bail: true,
   devtool: "source-map",
   mode: "production",
