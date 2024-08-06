@@ -9,11 +9,11 @@
   "scripts": {
     "preinstall": "npm set audit false",
     "start": "webpack-dev-server --config webpack/dev.config.js ",
-    "build": " NODE_ENV=production webpack --config webpack/prod.config.js --progress  --color --legacy-peer-deps",
+    "build": " cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress  --color ",
     "precommit": "eslint src",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "production": " NODE_ENV=production node server.js"
+    "production": "cross-env NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
