@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import styles from "../style/app.scss";
+import Styles from "../style/app.scss";
 import TaskList from "../components/task-list";
 
 import TaskItem from "../components/task-item";
@@ -9,18 +9,24 @@ export default class OverdueBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      odtasks: {},
+      odtasks: props.odtasks || {},
     };
-    const setTasks = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.setState({ odtasks: this.props.odtasks }));
-      }, 100);
-      setTimeout(() => {
-        resolve(this.odtaskItems());
-      }, 100);
-    });
+    // const setTasks = new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(this.setState({ odtasks: this.props.odtasks }));
+    //   }, 100);
+    //   setTimeout(() => {
+    //     resolve(this.odtaskItems());
+    //   }, 100);
+    // });
 
     this.odtaskItems = this.odtaskItems.bind(this);
+  }
+  componentDidUpdate(prevProps) {
+    // Update state if props change
+    if (prevProps.odtasks !== this.props.odtasks) {
+      this.setState({ odtasks: this.props.odtasks });
+    }
   }
 
   odtaskItems() {

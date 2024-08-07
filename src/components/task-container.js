@@ -24,7 +24,7 @@ export default class TaskBarManager extends Component {
           this.setState({ uptasks: this.props.upcoming }),
           this.setState({ duetasks: this.props.due })
         );
-      }, 100);
+      }, 200);
     });
   }
   showHideDue() {

@@ -22,11 +22,13 @@ export default class SearchForm extends Component {
     this.filterRecordsStageOne = this.filterRecordsStageOne.bind(this);
     this.filterRecordsStageTwo = this.filterRecordsStageTwo.bind(this);
   }
-  handleFilter(filter) {
-    if (filter === "none") {
-      this.getPortfolioItems();
-    } else {
-      this.getPortfolioItems(filter);
+  handleFilter() {
+    if (this.state.designator !== "none") {
+      this.filterRecordsStageOne();
+    } else if(this.state.designator === "none" && this.state.subdesignator !== "none") {
+      this.filterRecordsStageTwo();
+    }else if(this.state.designator === "none" && this.state.subdesignator === "none"){
+      this.setState({ finalfilteredrecords: [] });
     }
   }
 
@@ -75,7 +77,7 @@ export default class SearchForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.filterRecordsStageOne();
+    this.handleFilter();
   }
   componentDidMount() {
     this.getRecords();

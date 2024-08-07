@@ -13,20 +13,25 @@ export default class UpcomingBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uptasks: {},
+      uptasks: props.uptasks|| {},
     };
-    const setTasks = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.setState({ uptasks: this.props.uptasks }));
-      }, 100);
-      setTimeout(() => {
-        resolve(this.uptaskItems());
-      }, 100);
-    });
+    // const setTasks = new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(this.setState({ uptasks: this.props.uptasks }));
+    //   }, 100);
+    //   setTimeout(() => {
+    //     resolve(this.uptaskItems());
+    //   }, 100);
+    // });
 
     this.uptaskItems = this.uptaskItems.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.uptasks !== this.props.uptasks) {
+      this.setState({ uptasks: this.props.uptasks });
+    }
+  }
   uptaskItems() {
     const entries = this.state.uptasks;
     _.forEach(

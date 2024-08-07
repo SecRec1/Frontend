@@ -62,7 +62,7 @@ export default class TaskList extends Component {
     if (recordToEdit) {
       this.setState(
         {
-          id: recordToEdit.id,
+          id: IBSTtoupdate.id,
           lastcompleted: recordToEdit.lastcompleted,
           nextdue: recordToEdit.nextdue,
           notes: recordToEdit.notes,
