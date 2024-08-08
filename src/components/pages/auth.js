@@ -25,7 +25,7 @@ export default class Auth extends Component {
 
   getAdmins = () => {
     axios
-      .get("http://127.0.0.1:8000/Admin")
+      .get("https://backend-ci48.onrender.com/Admin")
       .then((response) => this.setState({ admins: response.data }))
       .catch((error) => console.log(error));
   };
@@ -69,7 +69,7 @@ export default class Auth extends Component {
   };
 
   updateAdminStatus = async (id, status) => {
-    await axios.put(`http://127.0.0.1:8000/Admin/${id}/status`, {
+    await axios.put(`https://backend-ci48.onrender.com/Admin/${id}/status`, {
       loggedin: status,
     });
   };

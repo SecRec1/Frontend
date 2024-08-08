@@ -50,7 +50,7 @@
 
 //   getSpecsItem() {
 //     axios
-//       .get(`http://127.0.0.1:8000/Specs/${this.state.currentsn}`)
+//       .get(`https://backend-ci48.onrender.com/Specs/${this.state.currentsn}`)
 //       .then((response) => {
 //         this.setState({
 //           SpecsItem: response.data.Specs,

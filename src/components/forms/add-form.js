@@ -25,7 +25,7 @@ export default class AddForm extends Component {
       hours: "",
 
       specsid: "",
-      apiUrl: "http://127.0.0.1:8000/Specs",
+      apiUrl: "https://backend-ci48.onrender.com/Specs",
       apiAction: "post",
     };
 
@@ -44,7 +44,7 @@ export default class AddForm extends Component {
 
   handleSpecsId = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/Specs");
+      const response = await axios.get("https://backend-ci48.onrender.com/Specs");
       const existingIds = response.data.map((item) => item.id);
 
       let newId = this.state.id; 
@@ -226,7 +226,7 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
           />
           <div className="File-holder" style={myStyle}>
-            <QRCode value={`http://127.0.0.1:8080/Specs/${this.state.sn}`} />
+            <QRCode value={`https://backend-ci48.onrender.com:8080/Specs/${this.state.sn}`} />
 
             <DropzoneComponent
               ref={this.motorRef}
