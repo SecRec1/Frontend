@@ -12,12 +12,12 @@ const NavigationComponent = (props) => {
   return (
     <div className="nav-wrapper">
       <div className="nav-link-wrapper">
-        <NavLink
+        {/* <NavLink
           to="/scan"
           className={({ isActive }) => (isActive ? "nav-link-active scan" : "scan")}
         >
           <FontAwesomeIcon className="icon" icon="qrcode" /> SCAN
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/search"
           className={({ isActive }) => (isActive ? "nav-link-active search" : "search")}

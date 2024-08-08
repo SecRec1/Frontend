@@ -17,7 +17,7 @@ module.exports = merge(webpackCommon, {
     filename: "[name]-[contenthash].min.js",
     sourceMapFilename: "[name]-[contenthash].map",
     chunkFilename: "[id]-[chunkhash].js",
-    publicPath: "/",
+    publicPath: "/", // Ensure this is correct for your asset paths
   },
   module: {
     rules: [
@@ -40,6 +40,13 @@ module.exports = merge(webpackCommon, {
           },
           { loader: "sass-loader", options: { sourceMap: true } },
         ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        type: 'asset/resource', // Use asset/resource to handle image files
+        generator: {
+          filename: 'static/images/[name][ext][query]', // Specify output directory
+        },
       },
     ],
   },
@@ -68,18 +75,18 @@ module.exports = merge(webpackCommon, {
         minifyURLs: true,
       },
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, "../static"),
-    //       globOptions: {
-    //         ignore: ["index.html", "favicon.ico"], // Ensure these files are not copied
-    //       },
-    //     },
-    //   ],
-    // }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "../static/assets/images"),
+          to: "static/assets/images",
+          globOptions: {
+            ignore: ["*.DS_Store"], // Ignore certain files
+          },
+        },
+      ],
+    }),
     new DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
-
     new MiniCssExtractPlugin({ filename: "[name]-[contenthash].min.css" }),
     new TerserPlugin({
       terserOptions: {

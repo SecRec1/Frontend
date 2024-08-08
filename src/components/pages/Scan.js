@@ -10,7 +10,7 @@ export default class Scan extends Component {
   render() {
     return (
       <div>
-        <Scanner />
+        {/* <Scanner /> */}
       </div>
     );
   }

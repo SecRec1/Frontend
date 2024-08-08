@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import styles from "../style/app.scss";
+import Styles from "../style/app.scss";
 import Icons from "../components/helpers/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "regenerator-runtime/runtime";

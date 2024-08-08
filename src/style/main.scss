@@ -14,7 +14,7 @@ html {
 body {
     overflow-x: hidden;
     font-weight: normal;
-    background-image: url(../../static/assets/images/lockimg.png);
+    background-image: url('/static/assets/images/lockimg.png') !important;
     background-repeat: no-repeat;
     background-position:top;
     background-size: 800px;
@@ -30,5 +30,6 @@ body {
     margin-top: 2rem;
     display: grid;
     justify-items: center;
+    
 }
 
