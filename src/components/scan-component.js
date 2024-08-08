@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { QrReader } from "react-qr-reader";
+import  QrScanner  from "react-qr-scanner";
 import { useNavigate } from "react-router-dom";
 
 const Scanner = () => {
@@ -41,7 +41,7 @@ const Scanner = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <h1>QR Code Scanner</h1>
-      <QrReader
+      <QrScanner
         onResult={(result, error) => {
           if (result) {
             handleScan(result);
