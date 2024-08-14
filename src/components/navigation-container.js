@@ -6,33 +6,36 @@ import Auth from "./pages/auth";
 import "../style/NavStyles.scss";
 
 const NavigationComponent = (props) => {
-  
-  
-
   return (
     <div className="nav-wrapper">
       <div className="nav-link-wrapper">
-        {/* <NavLink
+        <div className="link-wrapper">
+          
+          {/* <NavLink
           to="/scan"
           className={({ isActive }) => (isActive ? "nav-link-active scan" : "scan")}
         >
           <FontAwesomeIcon className="icon" icon="qrcode" /> SCAN
         </NavLink> */}
-        <NavLink
-          to="/search"
-          className={({ isActive }) => (isActive ? "nav-link-active search" : "search")}
-          
-        >
-          <FontAwesomeIcon className="icon" icon="binoculars" />
-          Search
-        </NavLink>
-        <NavLink
-          to="/manager"
-          className={({ isActive }) => (isActive ? "nav-link-active manager" : "manager")}
-        >
-          <FontAwesomeIcon className="icon" icon="list-check" />
-          Manager
-        </NavLink>
+          <NavLink
+            to="/search"
+            className={({ isActive }) =>
+              isActive ? "nav-link-active search" : "search"
+            }
+          >
+            <FontAwesomeIcon className="icon" icon="binoculars" />
+            Search
+          </NavLink>
+          <NavLink
+            to="/manager"
+            className={({ isActive }) =>
+              isActive ? "nav-link-active manager" : "manager"
+            }
+          >
+            <FontAwesomeIcon className="icon" icon="list-check" />
+            Manager
+          </NavLink>
+        </div>
         <div className="main-login-wrapper">
           <Auth id="login" className="login" />
         </div>
@@ -42,4 +45,3 @@ const NavigationComponent = (props) => {
 };
 
 export default NavigationComponent;
-

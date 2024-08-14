@@ -26,10 +26,11 @@ body {
     
 }
 
-.app {
+.app-wrapper {
+    background-image: url('/static/assets/images/SECURE\ BACKSPLASH.png');
     margin-top: 2rem;
     display: grid;
     justify-items: center;
-    
+    width: 90vw;
 }
 

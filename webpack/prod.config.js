@@ -2,22 +2,22 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const webpackCommon = require("./common.config");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const DefinePlugin = require("webpack/lib/DefinePlugin");
+const { DefinePlugin } = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(webpackCommon, {
+  mode: "production",
   bail: true,
   devtool: "source-map",
-  mode: "production",
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "[name]-[contenthash].min.js",
-    sourceMapFilename: "[name]-[contenthash].map",
+    sourceMapFilename: "[file].map",
     chunkFilename: "[id]-[chunkhash].js",
-    publicPath: "/", // Ensure this is correct for your asset paths
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -27,7 +27,10 @@ module.exports = merge(webpackCommon, {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: { sourceMap: true, importLoaders: 2 },
+            options: {
+              sourceMap: true,
+              importLoaders: 2,
+            },
           },
           {
             loader: "postcss-loader",
@@ -38,29 +41,30 @@ module.exports = merge(webpackCommon, {
               sourceMap: true,
             },
           },
-          { loader: "sass-loader", options: { sourceMap: true } },
+          {
+            loader: "sass-loader",
+            options: { sourceMap: true },
+          },
         ],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        type: 'asset/resource', // Use asset/resource to handle image files
+        type: "asset/resource",
         generator: {
-          filename: 'static/images/[name][ext][query]', // Specify output directory
+          filename: "static/images/[name][ext][query]",
         },
       },
     ],
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ["static/**/*"], // Ensure old files are removed
-      cleanStaleWebpackAssets: false,
-      dry: false,
+      cleanOnceBeforeBuildPatterns: ["**/*"],
       verbose: true,
     }),
     new HtmlWebpackPlugin({
       inject: "body",
       filename: "index.html",
-      template: path.resolve(__dirname, "../static/index.html"), // Ensure this path is correct
+      template: path.resolve(__dirname, "../static/index.html"),
       favicon: path.resolve(__dirname, "../static/favicon.ico"),
       minify: {
         removeComments: true,
@@ -81,19 +85,40 @@ module.exports = merge(webpackCommon, {
           from: path.resolve(__dirname, "../static/assets/images"),
           to: "static/assets/images",
           globOptions: {
-            ignore: ["*.DS_Store"], // Ignore certain files
+            ignore: ["**/*.DS_Store"],
           },
         },
       ],
     }),
-    new DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") }),
-    new MiniCssExtractPlugin({ filename: "[name]-[contenthash].min.css" }),
+    new DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("production"),
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name]-[contenthash].min.css",
+    }),
     new TerserPlugin({
       terserOptions: {
-        compress: { drop_console: true },
+        compress: {
+          drop_console: true,
+        },
         mangle: true,
       },
       extractComments: false,
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      }),
+    ],
+    splitChunks: {
+      chunks: "all",
+    },
+  },
 });

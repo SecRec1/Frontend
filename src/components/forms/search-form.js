@@ -39,7 +39,7 @@ export default class SearchForm extends Component {
   }
   getRecords() {
     axios
-      .get("https://backend-ci48.onrender.com/Specs")
+      .get("http://192.168.1.231:8000/Specs")
       .then((response) => {
         this.setState({
           records: response.data,

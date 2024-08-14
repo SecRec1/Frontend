@@ -34,7 +34,7 @@ export default class AddTask extends Component {
     console.log("New task submission", this.state.taskItems);
   }
   handleTaskInfo() {
-    axios.get(`https://backend-ci48.onrender.com/Task`).then((response) => {
+    axios.get(`http://192.168.1.231:8000/Task`).then((response) => {
       this.setState({ taskid: response.data.length + 1 });
       this.setState({ taskItems: response.data });
     });
@@ -74,7 +74,7 @@ export default class AddTask extends Component {
     }
     const data = Object.fromEntries(formData);
 
-    axios.post("https://backend-ci48.onrender.com/Task", data).then((response) => {
+    axios.post("http://192.168.1.231:8000/Task", data).then((response) => {
       this.props.handleNewTaskSubmission(response.data);
       this.setState({
         job: "",
