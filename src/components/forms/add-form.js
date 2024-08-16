@@ -47,7 +47,7 @@ export default class AddForm extends Component {
       const response = await axios.get("http://192.168.1.231:8000/Specs");
       const existingIds = response.data.map((item) => item.id);
 
-      let newId = this.state.id; 
+      let newId = this.state.id;
       while (existingIds.includes(newId)) {
         newId++;
       }
@@ -143,14 +143,14 @@ export default class AddForm extends Component {
     }
     const myStyle = {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
+      gridTemplateColumns: "1fr",
       justifyItems: "center",
       width: "128",
       height: "128",
     };
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="Searchbar">
+      <form className="add-form" onSubmit={this.handleSubmit}>
+        <div className="add-left">
           <input
             type="text"
             name="name"
@@ -181,7 +181,7 @@ export default class AddForm extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <div className="">
+        <div className="add-right">
           <select
             name="designator"
             value={this.state.designator}
@@ -225,21 +225,26 @@ export default class AddForm extends Component {
             value={this.state.coolant}
             onChange={this.handleChange}
           />
-          <div className="File-holder" style={myStyle}>
-            <QRCode value={`http://192.168.1.231:8000/Specs/${this.state.sn}`} />
-
-            <DropzoneComponent
-              ref={this.motorRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={this.handleMotorDrop()}
-            >
-              <div className="dz-message">Motor Plate</div>
-            </DropzoneComponent>
-          </div>
         </div>
+        <div className="file-holder" style={myStyle}>
+          <QRCode
+            className="qrcode"
+            value={`http://192.168.1.231:8000/Specs/${this.state.sn}`}
+          />
+        </div>
+        <DropzoneComponent
+          className="file"
+          ref={this.motorRef}
+          config={this.componentConfig()}
+          djsConfig={this.djsConfig()}
+          eventHandlers={this.handleMotorDrop()}
+        >
+          <div className="dz-message">Motor Plate</div>
+        </DropzoneComponent>
 
-        <button type="submit">Save</button>
+        <button className="save" type="submit">
+          Save
+        </button>
       </form>
     );
   }

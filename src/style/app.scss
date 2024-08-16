@@ -1,20 +1,34 @@
-
-
 .app {
+  display: grid;
   justify-content: center;
   text-align: center;
-  width: 100vw;
+  width: 90vw;
   .title {
     font-size: 5em;
     justify-content: center;
     text-align: center;
     width: 100%;
+    background-image: image("../../static/assets/images/SECURE BACKSPLASH.png");
   }
 
   .nav {
-    .nav-wrapper {
-      .nav-link-wrapper {
-        // Add styles for nav-link-wrapper if needed
+    display: grid;
+    justify-content: center;
+    .manager-container {
+      display: grid;
+      grid-template-rows: 2fr 2fr;
+      height: 80px;
+      width: 1500px;
+      justify-content: center;
+      .button-manager {
+        height: 100px;
+        width: 1000px;
+        button {
+          width: 250px;
+          height: 100%;
+          font-size: 2em;
+          font-weight: bold;
+        }
       }
     }
     .wrapper {
@@ -160,15 +174,4 @@
     }
   }
 }
-@media ( max-width:900px ) {
-  .nav{
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    justify-content: center;
-    justify-self: center;
-    .manager-container {
-      display: grid;
-      align-items: start;
-    }
-  }
-}
+
