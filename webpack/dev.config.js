@@ -10,7 +10,7 @@ module.exports = merge(webpackCommon, {
   mode: "development",
   devtool: "inline-source-map", // Useful for debugging, generates source maps inline
   output: {
-    path: path.resolve(__dirname, "../static/dist"),
+    path: path.resolve(__dirname, "../dist"),
     filename: "[name].js",
     sourceMapFilename: "[name].map",
     chunkFilename: "[id]-chunk.js",
@@ -52,7 +52,7 @@ module.exports = merge(webpackCommon, {
     host: "localhost",
     port: 3000,
     static: {
-      directory: path.resolve(__dirname, "../static"), // Serves static files from the specified directory
+      directory: path.resolve(__dirname, "/static/assets/images"), // Serves static files from the specified directory
     },
     compress: true, // Enables gzip compression for better performance
     hot: true, // Enables Hot Module Replacement for faster development
