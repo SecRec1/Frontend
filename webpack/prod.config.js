@@ -138,7 +138,7 @@ module.exports = merge(webpackCommon, {
   bail: true,
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, "../dist"),
+    path: path.resolve(__dirname, "dist"),
     filename: "[name]-[contenthash].min.js",
     sourceMapFilename: "[file].map",
     chunkFilename: "[id]-[chunkhash].js",
