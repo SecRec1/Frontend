@@ -52,7 +52,7 @@ module.exports = merge(webpackCommon, {
     host: "localhost",
     port: 3000,
     static: {
-      directory: path.resolve(__dirname, "/static/assets/images"), // Serves static files from the specified directory
+      directory: path.resolve(__dirname, "../static/assets/images"), // Serves static files from the specified directory
     },
     compress: true, // Enables gzip compression for better performance
     hot: true, // Enables Hot Module Replacement for faster development

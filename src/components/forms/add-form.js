@@ -85,18 +85,69 @@ export default class AddForm extends Component {
     };
   }
 
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   const qrCodeCanvas = document.querySelector("canvas");
+  //   const qrCodeDataURL = qrCodeCanvas.toDataURL();
+  //   const formData = new FormData(event.currentTarget);
+  //   formData.append("id", this.state.id);
+
+  //   formData.append("qrcode", qrCodeDataURL);
+
+  //   if (this.state.motor) {
+  //     formData.append("motor", this.state.motor.dataURL);
+  //   }
+  //   const data = Object.fromEntries(formData);
+
+  //   axios({
+  //     method: this.state.apiAction,
+  //     url: this.state.apiUrl,
+  //     data: data,
+  //   })
+  //     .then((response) => {
+  //       this.props.handleNewFormSubmission(response);
+  //       this.setState({
+  //         id: 1,
+  //         sn: "",
+  //         name: "",
+  //         qrcode: "",
+  //         designator: "",
+  //         subdesignator: "",
+  //         oil: "",
+  //         coolant: "",
+  //         department: "",
+  //         motor: "",
+  //         hours: "",
+  //       });
+  //       [this.motorRef, this.qrcodeRef].forEach((ref) => {
+  //         ref.current.dropzone.removeAllFiles();
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log("error", error);
+  //     });
+  //   window.location.reload();
+  // }
+
   handleSubmit(event) {
     event.preventDefault();
+
+    // Check if 'sn' is empty
+    if (this.state.sn === "") {
+        alert("Serial Number (SN) cannot be empty.");
+        return; // Stop the form submission if 'sn' is empty
+    }
+
     const qrCodeCanvas = document.querySelector("canvas");
     const qrCodeDataURL = qrCodeCanvas.toDataURL();
     const formData = new FormData(event.currentTarget);
     formData.append("id", this.state.id);
-
     formData.append("qrcode", qrCodeDataURL);
 
     if (this.state.motor) {
       formData.append("motor", this.state.motor.dataURL);
     }
+
     const data = Object.fromEntries(formData);
 
     axios({
@@ -127,7 +178,8 @@ export default class AddForm extends Component {
         console.log("error", error);
       });
     window.location.reload();
-  }
+}
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -229,7 +281,7 @@ export default class AddForm extends Component {
         <div className="file-holder" style={myStyle}>
           <QRCode
             className="qrcode"
-            value={`http://192.168.1.231:8000/Specs/${this.state.sn}`}
+            value={`http://192.168.1.231:8080/Specs/${this.state.sn}`}
           />
         </div>
         <DropzoneComponent

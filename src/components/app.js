@@ -18,6 +18,8 @@ import Manager from "./pages/manager";
 import TaskManager from "./task-manager";
 import TaskPage from "./pages/task-page";
 
+import Lockimg from "../../static/assets/images/lockimg.png";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +28,15 @@ export default class App extends Component {
   }
 
   render() {
+    const Emblem = {
+      backgroundImage: `url(${Lockimg})`,
+      backgroundSize: "350px 600px",
+      backgroundPosition: "bottom",
+      backgroundRepeat: "no-repeat",
+      
+    };
     return (
-      <div className="app">
+      <div className="app" style={Emblem}>
         <Header />
         <div className="nav">
           <NavigationComponent />
@@ -46,4 +55,3 @@ export default class App extends Component {
     );
   }
 }
-

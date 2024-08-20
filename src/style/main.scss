@@ -12,13 +12,11 @@ html {
 }
 
 body {
+  height: 1000px;
   overflow-x: hidden;
   font-weight: normal;
-  background-image: url('/static/assets/images/lockimg.png') !important;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: 800px;
-  background-attachment: fixed;
+  
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -27,11 +25,12 @@ body {
 }
 
 .app-wrapper {
-  background-image: url("/static/assets/images/SECUREBACKSPLASH.png");
+  
   margin-top: 2rem;
   display: grid;
   justify-content: center;
-  width: 90vw;
+  width: 100%;
+  height: 100%;
 
   .form-manager {
     display: grid;
