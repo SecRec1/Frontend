@@ -52,7 +52,7 @@ module.exports = merge(webpackCommon, {
         test: /\.(png|jpe?g|gif|svg)$/,
         type: "asset/resource",
         generator: {
-          filename: "../static/assets/images/[name][ext][query]",
+          filename: "static/assets/images/[name][ext][query]",
         },
       },
     ],

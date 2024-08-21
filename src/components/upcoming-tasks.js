@@ -281,7 +281,7 @@ export default class TaskCalculator extends Component {
 
   async getIBSTs() {
     try {
-      const response = await axios.get(`http://192.168.1.231:8000:/IBST`);
+      const response = await axios.get(`http://192.168.1.231:8000/IBST`);
       const taskrecords = response.data;
       const filteredrecords = taskrecords.filter(
         (record) => record.specs_sn === this.state.specssn
@@ -438,7 +438,7 @@ export default class TaskCalculator extends Component {
     Promise.all(
       odtaskid.map((id) =>
         axios
-          .get(`http://192.168.1.231:8000:/Task/${id}`)
+          .get(`http://192.168.1.231:8000/Task/${id}`)
           .then((response) => response.data)
       )
     )
