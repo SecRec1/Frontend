@@ -56,6 +56,7 @@
     "babel-preset-env": "^1.7.0",
     "braces": "^3.0.3",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
     "defaults-deep": "^0.2.4",
     "draft-js": "^0.11.7",
@@ -116,7 +117,7 @@
     "babel-register": "^6.26.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^12.0.2",
-    "cross-env": "^7.0.3",
+    
     "eslint": "^9.8.0",
     "file-loader": "^6.2.0",
     "gh-pages": "^6.1.1",
