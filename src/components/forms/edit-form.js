@@ -215,7 +215,7 @@ export default class EditForm extends Component {
           >
             <option value="none">None</option>
             <option value="Untha ZR2400">Untha ZR2400</option>
-            <option value="Untha XR">Untha XR</option>
+            <option value="Untha XRM3000C">Untha XRM3000C</option>
             <option value="Ring Mill">Ring Mill</option>
             <option value="Optical Sorter">Optical Sorter</option>
             <option value="Eddy Current">Eddy Current</option>
