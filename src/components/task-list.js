@@ -46,19 +46,24 @@ export default class TaskList extends Component {
     }
   }
   getTask(taskItem) {
+    
     const tasks = _.map(this.props.tasks, (task) => task);
     const { IBSTs } = this.state;
     const taskid = taskItem.task_id;
-    const IBSTtoupdate = IBSTs.find((record) => record.task_id === taskid);
+    const specs_sn = taskItem.specs_sn;
 
-    if (!IBSTtoupdate) {
-      console.error(`No IBST record found for task_id ${taskid}`);
-      return;
-    }
+  const IBSTtoupdate = IBSTs.find(
+    (record) => record.task_id === taskid && record.specs_sn === specs_sn
+  );
 
-    const recordToEdit = tasks.find(
-      (record) => record.task_id === IBSTtoupdate.task_id
-    );
+  if (!IBSTtoupdate) {
+    console.error(`No IBST record found for task_id ${taskid} and specs_sn ${specs_sn}`);
+    return;
+  }
+
+  const recordToEdit = tasks.find(
+    (record) => record.task_id === IBSTtoupdate.task_id && record.specs_sn === IBSTtoupdate.specs_sn
+  );
     if (recordToEdit) {
       this.setState(
         {
@@ -100,6 +105,7 @@ export default class TaskList extends Component {
     this.closeModal();
     this.completeTask();
   }
+
   async updateCompletionDates() {
     const { hdselector, input, duration, lastcompleted } = this.state;
     const parsedDuration = parseInt(duration, 10);
