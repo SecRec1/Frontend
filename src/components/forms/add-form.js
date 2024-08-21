@@ -242,7 +242,7 @@ export default class AddForm extends Component {
           >
             <option value="placeholder">Pick a Designator</option>
             <option value="Untha ZR2400">Untha ZR2400</option>
-            <option value="Untha XR">Untha XR</option>
+            <option value="Untha XRM300C">Untha XRM300C</option>
             <option value="Ring Mill">Ring Mill</option>
             <option value="Optical Sorter">Optical Sorter</option>
             <option value="Eddy Current">Eddy Current</option>
