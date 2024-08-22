@@ -174,7 +174,7 @@ export default class TaskList extends Component {
     };
     console.log("Sending data:", data);
     axios
-      .put(`http://192.168.1.231:8000/IBST/${this.state.id}`, data, {
+      .put(`https://backend-ci48.onrender.com/IBST/${this.state.id}`, data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -188,7 +188,7 @@ export default class TaskList extends Component {
   }
   componentDidMount() {
     axios
-      .get(`http://192.168.1.231:8000/IBST`)
+      .get(`https://backend-ci48.onrender.com/IBST`)
       .then((record) => this.setState({ IBSTs: record.data }));
   }
   render() {
