@@ -1,7 +1,18 @@
+const path = require('path');
+
 const { merge } = require("webpack-merge");
 const webpackCommon = require("./common.config");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { DefinePlugin } = require("webpack");
+
+const proxyRules = [
+  {
+    context: ['/api'],  // Use context to match specific routes
+    target: 'http://localhost:8000',
+    changeOrigin: true,
+  },
+  // Add more proxy rules as needed
+];
 
 module.exports = merge(webpackCommon, {
   mode: "development",
