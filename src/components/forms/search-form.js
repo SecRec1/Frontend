@@ -25,9 +25,15 @@ export default class SearchForm extends Component {
   handleFilter() {
     if (this.state.designator !== "none") {
       this.filterRecordsStageOne();
-    } else if(this.state.designator === "none" && this.state.subdesignator !== "none") {
+    } else if (
+      this.state.designator === "none" &&
+      this.state.subdesignator !== "none"
+    ) {
       this.filterRecordsStageTwo();
-    }else if(this.state.designator === "none" && this.state.subdesignator === "none"){
+    } else if (
+      this.state.designator === "none" &&
+      this.state.subdesignator === "none"
+    ) {
       this.setState({ finalfilteredrecords: [] });
     }
   }
@@ -64,11 +70,17 @@ export default class SearchForm extends Component {
     });
   }
   filterRecordsStageTwo() {
-    const filteredRecordsST = this.state.filteredrecords.filter(
+    const filteredRecordsSTO = this.state.filteredrecords.filter(
       (rec) => rec.subdesignator === this.state.subdesignator
     );
-
-    this.setState({ finalfilteredrecords: filteredRecordsST });
+    const filteredRecordsSTT = this.state.records.filter(
+      (rec) => rec.subdesignator === this.state.subdesignator
+    );
+    if (this.state.designator === "none") {
+      this.setState({ finalfilteredrecords: filteredRecordsSTT });
+    } else {
+      this.setState({ finalfilteredrecords: filteredRecordsSTO });
+    }
   }
 
   handleChange(event) {
