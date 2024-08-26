@@ -44,7 +44,9 @@ export default class AddForm extends Component {
 
   handleSpecsId = async () => {
     try {
-      const response = await axios.get("https://backend-ci48.onrender.com/Specs");
+      const response = await axios.get(
+        "https://backend-ci48.onrender.com/Specs"
+      );
       const existingIds = response.data.map((item) => item.id);
 
       let newId = this.state.id;
@@ -131,11 +133,11 @@ export default class AddForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    
     // Check if 'sn' is empty
     if (this.state.sn === "") {
-        alert("Serial Number (SN) cannot be empty.");
-        return; // Stop the form submission if 'sn' is empty
+      alert("Serial Number (SN) cannot be empty.");
+      return; // Stop the form submission if 'sn' is empty
     }
 
     const qrCodeCanvas = document.querySelector("canvas");
@@ -152,7 +154,7 @@ export default class AddForm extends Component {
 
     axios({
       method: this.state.apiAction,
-      url: this.state.apiUrl,
+      url: 'https://backend-ci48.onrender.com/Specs',
       data: data,
     })
       .then((response) => {
@@ -178,7 +180,7 @@ export default class AddForm extends Component {
         console.log("error", error);
       });
     window.location.reload();
-}
+  }
 
   handleChange(event) {
     this.setState({
@@ -281,7 +283,7 @@ export default class AddForm extends Component {
         <div className="file-holder" style={myStyle}>
           <QRCode
             className="qrcode"
-            value={`http://192.168.1.231:8080/Specs/${this.state.sn}`}
+            value={`https://secrec1.github.io/Frontend/#/Specs/${this.state.sn}`}
           />
         </div>
         <DropzoneComponent

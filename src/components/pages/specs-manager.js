@@ -48,6 +48,7 @@ export default class SpecsManager extends Component {
   }
 
   handleDeleteClick(specsItem) {
+    
     console.log("delete", specsItem);
     axios.delete(`https://backend-ci48.onrender.com/Specs/${specsItem.sn}`);
     window.location.reload();
