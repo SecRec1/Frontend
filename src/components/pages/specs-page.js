@@ -23,7 +23,7 @@
 //   getSpecs() {
 //     
 //     console.log("Fetching specs with sn:", sn);
-//     axios.get(`https://backend-ci48.onrender.com/Specs/${sn}`).then((response) => {
+//     axios.get(`https://backend-1-jevl.onrender.com/Specs/${sn}`).then((response) => {
 //       this.setState({
 //         specsItem: response.data,
 //       });
@@ -42,7 +42,7 @@
 
 //   async getAdmins() {
 //     try {
-//       const response = await axios.get(`https://backend-ci48.onrender.com/Admin`);
+//       const response = await axios.get(`https://backend-1-jevl.onrender.com/Admin`);
 //       this.setState({ admins: response.data }, this.getLoggedinStatus);
 //     } catch (error) {
 //       console.error(error);
@@ -88,14 +88,14 @@ const SpecsPage = () => {
   const [loggedin, setLoggedin] = useState(false);
 
   const getSpecs = () => {
-    axios.get(`https://backend-ci48.onrender.com/Specs/${sn}`).then((response) => {
+    axios.get(`https://backend-1-jevl.onrender.com/Specs/${sn}`).then((response) => {
       setSpecsItem(response.data);
     });
   };
 
   const getAdmins = async () => {
     try {
-      const response = await axios.get(`https://backend-ci48.onrender.com/Admin`);
+      const response = await axios.get(`https://backend-1-jevl.onrender.com/Admin`);
       setAdmins(response.data);
       getLoggedinStatus(response.data); // Pass the response data to check the logged in status
     } catch (error) {

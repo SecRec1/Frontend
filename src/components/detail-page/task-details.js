@@ -12,7 +12,7 @@ export default class TaskDetails extends Component {
   }
   getTaskItem() {
     axios
-      .get(`https://backend-ci48.onrender.com/Task/${this.props.taskid}`)
+      .get(`https://backend-1-jevl.onrender.com/Task/${this.props.taskid}`)
 
       .then((response) => {
         

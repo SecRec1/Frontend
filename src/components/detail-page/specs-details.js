@@ -60,7 +60,7 @@ export default class SpecsDetail extends Component {
 
   getSpecsItem() {
     axios
-      .get(`https://backend-ci48.onrender.com/Specs/${this.props.specsn}`)
+      .get(`https://backend-1-jevl.onrender.com/Specs/${this.props.specsn}`)
 
       .then((response) => {
         this.setState({ specsItem: response.data });
