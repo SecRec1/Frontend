@@ -26,7 +26,7 @@ export default class SpecsManager extends Component {
 
   getSpecsItems() {
     axios
-      .get(`https://backend-1-jevl.onrender.com/Specs`)
+      .get(`http://192.168.1.231:8000/Specs`)
       .then((response) => {
         this.setState({
           specsItems: [...response.data],
@@ -50,7 +50,7 @@ export default class SpecsManager extends Component {
   handleDeleteClick(specsItem) {
     
     console.log("delete", specsItem);
-    axios.delete(`https://backend-1-jevl.onrender.com/Specs/${specsItem.sn}`);
+    axios.delete(`http://192.168.1.231:8000/Specs/${specsItem.sn}`);
     window.location.reload();
   }
   componentDidMount() {

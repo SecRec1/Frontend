@@ -25,7 +25,7 @@ export default class AddForm extends Component {
       hours: "",
 
       specsid: "",
-      apiUrl: "https://backend-1-jevl.onrender.com/Specs",
+      apiUrl: "http://192.168.1.231:8000/Specs",
       apiAction: "post",
     };
 
@@ -45,7 +45,7 @@ export default class AddForm extends Component {
   handleSpecsId = async () => {
     try {
       const response = await axios.get(
-        "https://backend-1-jevl.onrender.com/Specs"
+        "http://192.168.1.231:8000/Specs"
       );
       const existingIds = response.data.map((item) => item.id);
 
@@ -154,7 +154,7 @@ export default class AddForm extends Component {
 
     axios({
       method: this.state.apiAction,
-      url: 'https://backend-1-jevl.onrender.com/Specs',
+      url: 'http://192.168.1.231:8000/Specs',
       data: data,
     })
       .then((response) => {

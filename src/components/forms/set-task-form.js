@@ -65,7 +65,7 @@ export default class SetTaskForm extends Component {
     time.classList.add("show");
   }
   getTasks() {
-    axios.get("https://backend-1-jevl.onrender.com/Task").then((response) => {
+    axios.get("http://192.168.1.231:8000/Task").then((response) => {
       this.setState({ tasks: response.data });
     });
   }
@@ -158,7 +158,7 @@ export default class SetTaskForm extends Component {
         alert("Please enter a valid Equipment SN");
       } else {
         axios
-          .post(`https://backend-1-jevl.onrender.com/IBST`, data)
+          .post(`http://192.168.1.231:8000/IBST`, data)
           .then(
             this.setState({
               newtaskid: "",
