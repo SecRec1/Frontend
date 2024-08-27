@@ -360,7 +360,7 @@ export default class TaskCalculator extends Component {
     const today = DateTime.now();
     const thirtyDaysFromNow = today.plus({ days: 30 });
     const sevenDaysFromNow = today.plus({ days: 7 });
-    const oneDayFromNow = today.plus({ days: 1 });
+    const oneDayFromNow = today.minus({ days: 1 });
     const { datetasks } = this.state;
   
     const upcoming = datetasks.filter(

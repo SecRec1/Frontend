@@ -244,7 +244,7 @@ export default class AddForm extends Component {
           >
             <option value="placeholder">Pick a Designator</option>
             <option value="Untha ZR2400">Untha ZR2400</option>
-            <option value="Untha XRM300C">Untha XRM300C</option>
+            <option value="Untha XRM3000C">Untha XRM3000C</option>
             <option value="Ring Mill">Ring Mill</option>
             <option value="Optical Sorter">Optical Sorter</option>
             <option value="Eddy Current">Eddy Current</option>
@@ -283,7 +283,7 @@ export default class AddForm extends Component {
         <div className="file-holder" style={myStyle}>
           <QRCode
             className="qrcode"
-            value={`https://secrec1.github.io/Frontend/#/Specs/${this.state.sn}`}
+            value={`http://192.168.1.231:8080/#/Specs/${this.state.sn}`}
           />
         </div>
         <DropzoneComponent
