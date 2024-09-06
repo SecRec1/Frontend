@@ -88,3 +88,98 @@
   }
 }
 
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait){
+  .app{
+    
+  .Specs-item-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; //text content and actions
+    padding: 30px;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+  
+    .text-content {
+      height: 100%;
+      width: 90%;
+      padding: 30px;
+      justify-items: left;
+  
+      .item-card {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr; //leftside and rightside
+        height: 5vh;
+  
+        .leftside {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+  
+          .top {
+            height: 325px;
+            justify-content: center;
+            align-items: center;
+            img {
+              width: auto;
+              height: 90%;
+            }
+          }
+  
+          .bottom {
+            height: 309px;
+            justify-self: center;
+            align-self: baseline;
+            img {
+              width: auto;
+              height: 100%;
+            }
+          }
+        }
+        .rightside {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          border-style: solid;
+          margin-left: 150px;
+          height: 427px;
+          width: 600px;
+          font-size: 300%;
+          .left {
+            .item {
+              justify-content: space-between;
+              text-decoration-line: underline;
+              margin: 0px 25px 25px 0px;
+            }
+          }
+          .right {
+            .item {
+              justify-content: space-between;
+              text-decoration-line: underline;
+              margin: 0px 25px 25px 0px;
+            }
+          }
+        }
+      }
+    }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      height: 620px;
+      justify-items: center;
+      justify-content: start;
+      align-items: baseline;
+      .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+    .action-icon {
+      font-size: 1000%;
+      padding: 50px;
+    }
+  
+    .record-link {
+      font-size: 700%;
+    }
+  }
+}}

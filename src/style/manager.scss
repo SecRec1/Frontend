@@ -4,7 +4,7 @@
   justify-items: center;
   align-items: center;
   height: auto;
-  width: 90vw;
+  width: 90%;
 }
 .form-manager {
   display: grid;
@@ -78,4 +78,90 @@
   width: 800px;
   display: grid;
   justify-content: center;
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  
+  
+  .manager-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    height: auto;
+    width: 80%;
+  }
+  .form-manager {
+    display: grid;
+    justify-content: center;
+    .add-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      width: 500px;
+      height: 300px;
+      .add-left {
+        width: 250px;
+        grid-column: span 1;
+        grid-row: 1;
+      }
+      .add-right {
+        width: 250px;
+        justify-items: start;
+        grid-column: 2;
+        grid-row: 1;
+      }
+      .file-holder {
+        .qrcode {
+          grid-column: 1;
+          grid-row: 2;
+        }
+      }
+      .filepicker {
+        grid-column: 2;
+        grid-row: 2;
+      }
+  
+      .save {
+        grid-column: span 1.5 / span 2.5;
+        grid-row: 3;
+      }
+    }
+  }
+  .specs-manager-wrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    width: 60vw;
+    height: 720px;
+  
+    .Specs-list-wrapper {
+      display: grid;
+      width: fit-content;
+      max-width: 90vw;
+      justify-items: end;
+      justify-content: center;
+    }
+  }
+  
+  .button {
+    position: static;
+  }
+  
+  .specs {
+    display: none;
+  }
+  
+  .tasks {
+    display: none;
+  }
+  
+  .show {
+    display: block;
+    height: 100px;
+    width: 800px;
+    display: grid;
+    justify-content: center;
+  }
 }

@@ -5,10 +5,9 @@
   width: 90vw;
   .title {
     font-size: 5em;
-    justify-content: center;
+    justify-self: center;
     text-align: center;
     width: 100%;
-    
   }
 
   .nav {
@@ -175,3 +174,207 @@
   }
 }
 
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  body {
+    width: 90%;
+    min-height: 1000px;
+    justify-self: center;
+    
+    font-weight: normal;
+  }
+  .app {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    height: auto;
+    
+    .title {
+      font-size: 5em;
+      justify-self: center;
+      text-align: center;
+      
+    }
+
+    .nav {
+      display: grid;
+      justify-content: center;
+      .manager-container {
+        display: grid;
+        grid-template-rows: 2fr 2fr;
+        height: 80px;
+        width: 1500px;
+        justify-content: center;
+        .button-manager {
+          height: 100px;
+          width: 1000px;
+          button {
+            width: 250px;
+            height: 100%;
+            font-size: 2em;
+            font-weight: bold;
+          }
+        }
+      }
+      .wrapper {
+        display: grid;
+        justify-content: center;
+        width: 96vw;
+        height: 100%;
+        .detail-wrapper {
+          display: grid;
+          justify-content: center;
+          width: 118%;
+          height: 60%;
+        }
+        .task-wrapper {
+          display: grid;
+          justify-self: center;
+          width: 100%;
+
+          .task-bar-container {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            justify-content: center;
+            padding: 0.5em 0.5em;
+            width: 100%;
+
+            .Overdue-container,
+            .Due-container,
+            .Upcoming-container {
+              .Overdue,
+              .Due,
+              .Upcoming {
+                background-color: #db162f; // Default color, overwrite as needed
+              }
+              .button {
+                font-size: 25px;
+                height: 4em;
+                width: 800px;
+              }
+              .Overdue-content,
+              .Due-content,
+              .Upcoming-content {
+                display: none;
+                background-color: #efefef;
+                position: absolute;
+                width: 1200px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                padding: 12px 0;
+                justify-content: center;
+                height: auto;
+              }
+              .show {
+                display: grid;
+                grid-template-rows: 1fr 5fr;
+                width: 800px;
+                justify-content: center;
+              }
+              .label-wrapper {
+                display: grid;
+                width: 800px;
+                grid-template-columns: 1fr 1fr 1fr;
+                border-bottom: black solid;
+                .task-label,
+                .lastdone-label,
+                .click-to-complete {
+                  font-weight: bold;
+                  font-size: 25px;
+                }
+                .task-label {
+                  padding-right: 10px;
+                }
+              }
+              .Task-list-wrapper {
+                width: 800px;
+                overflow-y: scroll;
+                .task-item-container {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  justify-content: center;
+                  width: 800px;
+                  .text-content {
+                    .task-card {
+                      display: grid;
+                      grid-template-columns: 1fr 1fr;
+                      justify-items: center;
+                      width: 525px;
+
+                      .task {
+                        width: 100px;
+                        align-content: center;
+                      }
+                      .date {
+                        justify-content: center;
+                        align-content: center;
+                      }
+                    }
+                  }
+                  .complete {
+                    display: grid;
+                    justify-content: center;
+                    align-content: center;
+
+                    .show {
+                      display: grid;
+                    }
+                    .modal {
+                      display: none; /* Hidden by default */
+                      justify-content: center;
+                      align-content: center;
+                      z-index: 2; /* Sit on top */
+                      left: 70%;
+                      top: 75%;
+                      width: 180px; /* Full width */
+                      height: 45px; /* Full height */
+
+                      background-color: rgba(
+                        0,
+                        0,
+                        0,
+                        0.4
+                      ); /* Black w/ opacity */
+
+                      .modal-content {
+                        display: grid;
+                        grid-template-rows: 1fr 1fr;
+                        justify-self: center;
+                        align-self: center;
+
+                        width: 100%;
+                        .buttons {
+                          display: grid;
+                          grid-template-columns: 1fr 1fr;
+                          justify-content: center;
+                        }
+                      }
+
+                      .close {
+                        &:hover,
+                        &:focus {
+                          color: black;
+                          text-decoration: none;
+                          cursor: pointer;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .Overdue-container .Overdue {
+              background-color: #db162f;
+            }
+            .Due-container .Due {
+              background-color: #faa613;
+            }
+            .Upcoming-container .Upcoming {
+              background-color: #eff1f3;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -101,13 +101,13 @@ export default class SpecsDetail extends Component {
                   {this.state.specsItem.sn}
                 </h6>
 
-                <h6 className="designator item">
-                  Make/Model<br></br>
-                  {this.state.specsItem.designator}
-                </h6>
                 <h6 className="name item">
-                  Machine Type<br></br>
+                  Make/Model<br></br>
                   {this.state.specsItem.name}
+                </h6>
+                <h6 className="designator item">
+                  Machine Type<br></br>
+                  {this.state.specsItem.designator}
                 </h6>
                 <h6 className="subdesignator item">
                   Machine Sub-Type<br></br>

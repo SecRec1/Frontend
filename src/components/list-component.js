@@ -28,13 +28,13 @@ const RecordList = (props) => {
                   {specsItem.sn}
                 </h6>
 
-                <h6 className="designator item">
-                  Make/Model<br></br>
-                  {specsItem.designator}
-                </h6>
                 <h6 className="name item">
-                  Machine Type<br></br>
+                  Make/Model<br></br>
                   {specsItem.name}
+                </h6>
+                <h6 className="designator item">
+                  Machine Type<br></br>
+                  {specsItem.designator}
                 </h6>
                 <h6 className="subdesignator item">
                   Machine Sub-Type<br></br>

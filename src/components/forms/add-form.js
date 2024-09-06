@@ -262,6 +262,7 @@ export default class AddForm extends Component {
             <option value="Discharge">Discharge</option>
             <option value="Crossbelt">Crossbelt</option>
             <option value="Vibratory Mover">Vibratory Mover</option>
+            <option value="Drum Magnet">Drum Magnet</option>
           </select>
 
           <input

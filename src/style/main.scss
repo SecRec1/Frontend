@@ -12,8 +12,10 @@ html {
 }
 
 body {
-  height: 1000px;
+  width: 100%;
+  height: auto;
   overflow-x: hidden;
+  overflow-y: scroll;
   font-weight: normal;
   
   
@@ -28,7 +30,7 @@ body {
   
   margin-top: 2rem;
   display: grid;
-  justify-content: center;
+  justify-items: center;
   width: 100%;
   height: 100%;
 
@@ -38,4 +40,20 @@ body {
     
   }
 
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    width: 100%;
+    height: 1000px;
+    overflow-x: hidden;
+    font-weight: normal;
+    
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    
+  }
 }
