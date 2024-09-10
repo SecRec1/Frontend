@@ -51,6 +51,7 @@
             }
             .button {
               font-size: 25px;
+              font-weight: bold;
               height: 4em;
               width: 60em;
             }
@@ -65,12 +66,14 @@
               padding: 12px 0;
               justify-content: center;
               height: auto;
+              
             }
             .show {
               display: grid;
               grid-template-rows: 1fr 5fr;
               width: 1500px;
               justify-content: center;
+              
             }
             .label-wrapper {
               display: grid;
@@ -179,7 +182,7 @@
     width: 90%;
     min-height: 1000px;
     justify-self: center;
-    
+
     font-weight: normal;
   }
   .app {
@@ -188,12 +191,11 @@
     text-align: center;
     width: 90%;
     height: auto;
-    
+
     .title {
       font-size: 5em;
       justify-self: center;
       text-align: center;
-      
     }
 
     .nav {

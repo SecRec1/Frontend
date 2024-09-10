@@ -185,6 +185,7 @@ export default class TaskList extends Component {
       .catch((error) => {
         console.error("There was an error updating the task!", error);
       });
+      window.location.reload();
   }
   componentDidMount() {
     axios

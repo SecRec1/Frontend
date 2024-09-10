@@ -1,0 +1,11 @@
+.jobs-container {
+    display: grid;
+    
+    gap: 3px;
+    width: 100%;
+    margin: 20px auto;
+    text-align: left;
+    max-height: 400px; 
+    overflow-y: auto; 
+  }
+ 

@@ -1,0 +1,132 @@
+.dash-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: solid 1px black;
+  .main-left {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    .main-left-top {
+      border: solid 1px black;
+    }
+    .main-left-bottom {
+      border: solid 1px black;
+    }
+  }
+
+  .main-center {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    .main-center-top {
+      border: solid 1px black;
+    }
+    .main-center-bottom {
+      border: solid 1px black;
+    }
+  }
+
+  .main-right {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    .main-right-top {
+      border: solid 1px black;
+    }
+    .main-right-bottom {
+      border: solid 1px black;
+    }
+  }
+}
+.contractor-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: lightgray;
+  text-align: center;
+}
+.jobs-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: lightgray;
+  text-align: center;
+}
+.machine-header{
+  background-color: lightgray;
+  text-align: center;
+}
+
+.notes-header{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: lightgray;
+  text-align: center;
+}
+.jobs-container {
+  display: grid;
+
+  gap: 3px;
+  width: 100%;
+  margin: 20px auto;
+  text-align: left;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.contractor-container {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  margin: 20px auto;
+  text-align: left;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.machine-container {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  margin: 20px auto;
+  text-align: left;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.modal-content button {
+  margin-right: 10px;
+  padding: 10px 20px;
+}
