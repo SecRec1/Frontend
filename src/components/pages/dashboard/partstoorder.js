@@ -22,6 +22,7 @@ export default class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOrdered = this.handleOrdered.bind(this);
     this.handleOrderSubmit = this.handleOrderSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this); // Bind handleDelete
   }
 
   toggleModal() {
@@ -88,6 +89,19 @@ export default class App extends Component {
       window.location.reload();
   }
 
+  handleDelete(partId) {
+    // Send DELETE request to the backend to delete the part
+    axios
+      .delete(`http://192.168.1.231:8000/Parts/${partId}`)
+      .then(() => {
+        // After successful deletion, refresh the page or update state
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error deleting part:", error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -112,9 +126,8 @@ export default class App extends Component {
                   <td>{part.part}</td>
                   <td>{part.quantity}</td>
                   <td>
-                    <button onClick={() => this.handleOrdered(part)}>
-                      Ordered
-                    </button>
+                    <button onClick={() => this.handleOrdered(part)}>Ordered</button>
+                    <button onClick={() => this.handleDelete(part.id)}>Cancel</button>
                   </td>
                 </tr>
               ))}
@@ -151,9 +164,7 @@ export default class App extends Component {
                 </label>
                 <br />
                 <button type="submit">Add Part</button>
-                <button type="button" onClick={this.toggleModal}>
-                  Close
-                </button>
+                <button type="button" onClick={this.toggleModal}>Close</button>
               </form>
             </div>
           </div>
@@ -179,9 +190,7 @@ export default class App extends Component {
                 </label>
                 <br />
                 <button type="submit">Update Part</button>
-                <button type="button" onClick={this.toggleOrderModal}>
-                  Close
-                </button>
+                <button type="button" onClick={this.toggleOrderModal}>Close</button>
               </form>
             </div>
           </div>
