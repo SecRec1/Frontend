@@ -19,6 +19,7 @@ export default class ToolNeeds extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this); // Bind handleDelete function
   }
 
   componentDidMount() {
@@ -63,6 +64,23 @@ export default class ToolNeeds extends Component {
       });
   }
 
+  handleDelete(toolneedId) {
+    // Send DELETE request to backend
+    axios
+      .delete(`http://192.168.1.231:8000/ToolNeeds/${toolneedId}`)
+      .then(() => {
+        // Remove the deleted toolneed from the state
+        this.setState((prevState) => ({
+          toolneeds: prevState.toolneeds.filter(
+            (toolneed) => toolneed.id !== toolneedId
+          ),
+        }));
+      })
+      .catch((error) => {
+        console.error("Error deleting tool need:", error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -88,7 +106,11 @@ export default class ToolNeeds extends Component {
                   <td>{toolneed.tool}</td>
                   <td>{toolneed.size}</td>
                   <td>{toolneed.count}</td>
-                  <td><button><FontAwesomeIcon icon="fa-solid fa-check" /></button></td>
+                  <td>
+                    <button onClick={() => this.handleDelete(toolneed.id)}>
+                      <FontAwesomeIcon icon="fa-solid fa-check" />
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
