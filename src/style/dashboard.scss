@@ -61,7 +61,7 @@
             display: grid;
             gap: 3px;
             width: 100%;
-            margin-top: 15%;
+            
             text-align: left;
             max-height: 100px;
             overflow-y: auto;
@@ -78,7 +78,7 @@
             background-color: lightgray;
           }
           .part-container-one {
-            max-height: 100px;
+            height: 185px;
             overflow-y: auto;
           }
           .part-container-two {
