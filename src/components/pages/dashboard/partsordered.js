@@ -9,6 +9,8 @@ export default class PartsOrdered extends Component {
     this.state = {
       partsOrdered: [],
     };
+
+    this.handleArrived = this.handleArrived.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +29,21 @@ export default class PartsOrdered extends Component {
       });
   }
 
+  handleArrived(partId) {
+    // Send DELETE request to the backend to delete the part by ID
+    axios
+      .delete(`http://192.168.1.231:8000/Parts/${partId}`)
+      .then((response) => {
+        // Update state to remove the part from the UI
+        this.setState((prevState) => ({
+          partsOrdered: prevState.partsOrdered.filter((part) => part.id !== partId),
+        }));
+      })
+      .catch((error) => {
+        console.error("Error deleting part:", error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -42,6 +59,7 @@ export default class PartsOrdered extends Component {
                 <th>Part</th>
                 <th>Count</th>
                 <th>ETA</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -50,6 +68,9 @@ export default class PartsOrdered extends Component {
                   <td>{part.part}</td>
                   <td>{part.quantity}</td>
                   <td>{part.eta}</td>
+                  <td>
+                    <button onClick={() => this.handleArrived(part.id)}>Arrived</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
