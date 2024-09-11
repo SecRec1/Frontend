@@ -12,7 +12,9 @@ import {
   faQrcode,
   faBinoculars,
   faListCheck,
-  faHouse
+  faHouse,
+  
+  faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -31,7 +33,8 @@ const Icons = () => {
     faQrcode,
     faBinoculars,
     faListCheck,
-    faHouse
+    faHouse,
+    faCheck
   );
 };
 

@@ -4,6 +4,8 @@ import axios from "axios";
 import PartsToOrder from "./partstoorder";
 import PartsOrdered from "./partsordered";
 
+import styles from "../../../style/dashboard.scss";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -50,10 +52,15 @@ export default class App extends Component {
   render() {
     return (
       <div className="parts-container">
-        
-        <PartsToOrder parts={this.state.partstoorder} />
-        <PartsOrdered parts={this.state.partsordered} />
-          
+        {/* Top half - PartsToOrder */}
+        <div className="parts-to-order">
+          <PartsToOrder parts={this.state.partstoorder} />
+        </div>
+  
+        {/* Bottom half - PartsOrdered */}
+        <div className="parts-ordered">
+          <PartsOrdered parts={this.state.partsordered} />
+        </div>
       </div>
     );
   }

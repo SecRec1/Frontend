@@ -23,6 +23,12 @@
     }
     .main-center-bottom {
       border: solid 1px black;
+      .tool-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background-color: lightgray;
+        text-align: center;
+      }
     }
   }
 
@@ -32,9 +38,55 @@
 
     .main-right-top {
       border: solid 1px black;
+      .jobs-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background-color: lightgray;
+        text-align: center;
+      }
     }
     .main-right-bottom {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 5px;
       border: solid 1px black;
+      .parts {
+        .parts-container {
+          display: grid;
+          grid-template-rows: 1fr 1fr;
+          height: 200px;
+          
+          text-align: center;
+          .parts-header-two {
+            display: grid;
+            gap: 3px;
+            width: 100%;
+            margin-top: 15%;
+            text-align: left;
+            max-height: 100px;
+            overflow-y: auto;
+            background-color: lightgray;
+          }
+          .parts-header-one {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            width: 100%;
+            text-align: left;
+            max-height: 100px;
+            overflow-y: auto;
+            background-color: lightgray;
+          }
+          .part-container-one {
+            max-height: 100px;
+            overflow-y: auto;
+          }
+          .part-container-two {
+            max-height: 100px;
+            overflow-y: auto;
+          }
+        }
+      }
     }
   }
 }
@@ -44,23 +96,21 @@
   background-color: lightgray;
   text-align: center;
 }
-.jobs-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: lightgray;
-  text-align: center;
-}
-.machine-header{
+
+.machine-header {
   background-color: lightgray;
   text-align: center;
 }
 
-.notes-header{
+.notes-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   background-color: lightgray;
   text-align: center;
 }
+
+
+
 .jobs-container {
   display: grid;
 
@@ -89,6 +139,7 @@
   max-height: 400px;
   overflow-y: auto;
 }
+
 .modal {
   position: fixed;
   top: 0;
@@ -129,4 +180,21 @@
 .modal-content button {
   margin-right: 10px;
   padding: 10px 20px;
+}
+
+.tool-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tool-container th,
+.tool-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.tool-container th {
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
