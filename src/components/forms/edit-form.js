@@ -29,7 +29,7 @@ export default class EditForm extends Component {
       subdeslistcomponent: [],
       editMode: false,
       specsid: "",
-      //apiUrl: `http://192.168.1.231:8000/Specs/${this.state.sn}`,
+      //apiUrl: `https://backend-1-jevl.onrender.com/Specs/${this.state.sn}`,
       apiAction: "patch",
     };
 
@@ -79,13 +79,13 @@ export default class EditForm extends Component {
         motor: motor.dataURL || "",
         hours: hours || "",
         editMode: true,
-        apiUrl: `http://192.168.1.231:8000/Specs/${sn}`,
+        apiUrl: `https://backend-1-jevl.onrender.com/Specs/${sn}`,
         apiAction: "PUT",
       });
     }
   }
   handleSpecsId() {
-    axios.get(`http://192.168.1.231:8000/Specs`).then((response) => {
+    axios.get(`https://backend-1-jevl.onrender.com/Specs`).then((response) => {
       this.setState({ specsid: response.data.length + 1 });
     });
   }
@@ -133,7 +133,7 @@ export default class EditForm extends Component {
 
     axios({
       method: "PUT",
-      url: `http://192.168.1.231:8000/Specs/${this.state.sn}`,
+      url: `https://backend-1-jevl.onrender.com/Specs/${this.state.sn}`,
       data: data,
       headers: {
         "Content-Type": "application/json",
@@ -237,7 +237,7 @@ export default class EditForm extends Component {
   }
   getDesListItems() {
     axios
-      .get("http://192.168.1.231:8000/Specs") // Fetch the Specs data
+      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const designators = response.data.map((item) => item.designator);
@@ -256,7 +256,7 @@ export default class EditForm extends Component {
   }
   getSubDesListItems() {
     axios
-      .get("http://192.168.1.231:8000/Specs") // Fetch the Specs data
+      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const Subdesignators = response.data.map((item) => item.subdesignator);

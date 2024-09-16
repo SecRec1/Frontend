@@ -18,7 +18,7 @@ export default class ItemCard extends Component {
 
   getSpecsItem() {
     axios
-      .get(`http://192.168.1.231:8000/Specs/${this.props.match.params.sn}`)
+      .get(`https://backend-1-jevl.onrender.com/Specs/${this.props.match.params.sn}`)
 
       .then((response) => {
         this.setState({ specsItem: response.data });
@@ -28,7 +28,7 @@ export default class ItemCard extends Component {
 
   getSpecsItems() {
     axios
-      .get(`http://192.168.1.231:8000/Specs`)
+      .get(`https://backend-1-jevl.onrender.com/Specs`)
       .then((response) => {
         this.setState({
           specsItems: [...response.data],

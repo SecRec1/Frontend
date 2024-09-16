@@ -16,7 +16,7 @@ export default class App extends Component {
 
   getSpecs() {
     axios
-      .get(`http://192.168.1.231:8000/Specs`)
+      .get(`https://backend-1-jevl.onrender.com/Specs`)
       .then((response) => this.setState({ specs: response.data }));
   }
 

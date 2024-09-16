@@ -27,7 +27,7 @@ export default class App extends Component {
 
   getJobs() {
     axios
-      .get("http://192.168.1.231:8000/Jobs")
+      .get("https://backend-1-jevl.onrender.com/Jobs")
       .then((response) => {
         this.setState({ jobs: response.data });
       })
@@ -53,7 +53,7 @@ export default class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://192.168.1.231:8000/Jobs", this.state.newJob)
+      .post("https://backend-1-jevl.onrender.com/Jobs", this.state.newJob)
       .then((response) => {
         this.setState({
           jobs: [...this.state.jobs, response.data],
@@ -68,7 +68,7 @@ export default class App extends Component {
 
   deleteJob(id) {
     axios
-      .delete(`http://192.168.1.231:8000/Jobs/${id}`)
+      .delete(`https://backend-1-jevl.onrender.com/Jobs/${id}`)
       .then(() => {
         this.setState({
           jobs: this.state.jobs.filter((job) => job.id !== id),

@@ -27,7 +27,7 @@ export default class ToolNeeds extends Component {
   }
 
   getToolNeeds() {
-    axios.get("http://192.168.1.231:8000/ToolNeeds").then((response) => {
+    axios.get("https://backend-1-jevl.onrender.com/ToolNeeds").then((response) => {
       this.setState({ toolneeds: response.data });
     });
   }
@@ -44,7 +44,7 @@ export default class ToolNeeds extends Component {
     event.preventDefault();
     // Post the new tool need to the backend
     axios
-      .post("http://192.168.1.231:8000/ToolNeeds", {
+      .post("https://backend-1-jevl.onrender.com/ToolNeeds", {
         tool: this.state.newTool,
         size: this.state.newSize,
         count: this.state.newCount,
@@ -67,7 +67,7 @@ export default class ToolNeeds extends Component {
   handleDelete(toolneedId) {
     // Send DELETE request to backend
     axios
-      .delete(`http://192.168.1.231:8000/ToolNeeds/${toolneedId}`)
+      .delete(`https://backend-1-jevl.onrender.com/ToolNeeds/${toolneedId}`)
       .then(() => {
         // Remove the deleted toolneed from the state
         this.setState((prevState) => ({

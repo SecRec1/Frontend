@@ -26,7 +26,7 @@ export default class App extends Component {
 
   getParts() {
     axios
-      .get("http://192.168.1.231:8000/Parts")
+      .get("https://backend-1-jevl.onrender.com/Parts")
       .then((res) => {
         this.setState({ parts: res.data }, () => {
           // Call the filter functions after the state has been updated

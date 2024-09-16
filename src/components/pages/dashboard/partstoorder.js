@@ -47,7 +47,7 @@ export default class App extends Component {
     };
 
     axios
-      .post("http://192.168.1.231:8000/Parts", newPartEntry)
+      .post("https://backend-1-jevl.onrender.com/Parts", newPartEntry)
       .then(() => {
         this.setState({
           showModal: false,
@@ -76,7 +76,7 @@ export default class App extends Component {
 
     // Perform PUT request to update the part
     axios
-      .put(`http://192.168.1.231:8000/Parts/${updatedPart.id}`, updatedPart)
+      .put(`https://backend-1-jevl.onrender.com/Parts/${updatedPart.id}`, updatedPart)
       .then(() => {
         this.setState({
           showOrderModal: false,
@@ -92,7 +92,7 @@ export default class App extends Component {
   handleDelete(partId) {
     // Send DELETE request to the backend to delete the part
     axios
-      .delete(`http://192.168.1.231:8000/Parts/${partId}`)
+      .delete(`https://backend-1-jevl.onrender.com/Parts/${partId}`)
       .then(() => {
         // After successful deletion, refresh the page or update state
         window.location.reload();

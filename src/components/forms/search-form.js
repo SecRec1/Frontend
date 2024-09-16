@@ -50,7 +50,7 @@ export default class SearchForm extends Component {
   }
   getRecords() {
     axios
-      .get("http://192.168.1.231:8000/Specs")
+      .get("https://backend-1-jevl.onrender.com/Specs")
       .then((response) => {
         this.setState({
           records: response.data,
@@ -93,7 +93,7 @@ export default class SearchForm extends Component {
   }
   getDesListItems() {
     axios
-      .get("http://192.168.1.231:8000/Specs") // Fetch the Specs data
+      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const designators = response.data.map((item) => item.designator);
@@ -113,7 +113,7 @@ export default class SearchForm extends Component {
 
   getSubDesListItems() {
     axios
-      .get("http://192.168.1.231:8000/Specs") // Fetch the Specs data
+      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const Subdesignators = response.data.map((item) => item.subdesignator);

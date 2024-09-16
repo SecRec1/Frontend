@@ -16,7 +16,7 @@ export default class PartsOrdered extends Component {
   componentDidMount() {
     // Fetch the parts data from the backend
     axios
-      .get("http://192.168.1.231:8000/Parts")
+      .get("https://backend-1-jevl.onrender.com/Parts")
       .then((response) => {
         // Filter parts where ordered is "Yes"
         const orderedParts = response.data.filter(
@@ -32,7 +32,7 @@ export default class PartsOrdered extends Component {
   handleArrived(partId) {
     // Send DELETE request to the backend to delete the part by ID
     axios
-      .delete(`http://192.168.1.231:8000/Parts/${partId}`)
+      .delete(`https://backend-1-jevl.onrender.com/Parts/${partId}`)
       .then((response) => {
         // Update state to remove the part from the UI
         this.setState((prevState) => ({
