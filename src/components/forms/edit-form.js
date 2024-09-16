@@ -3,7 +3,8 @@ import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
 import QRCode from "qrcode.react";
 import RichTextEditor from "../../rich/rich-text-editor";
-
+import DesignatorOptions from "../forms/option-lists/designator-options";
+import SubDesignatorOptions from "../forms/option-lists/subdes-options";
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 import styles from "../../style/edit-form";
@@ -24,6 +25,8 @@ export default class EditForm extends Component {
       department: "",
       motor: "",
       hours: "",
+      deslistcomponent: [],
+      subdeslistcomponent: [],
       editMode: false,
       specsid: "",
       //apiUrl: `http://192.168.1.231:8000/Specs/${this.state.sn}`,
@@ -35,10 +38,14 @@ export default class EditForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
-
+    this.getDesListItems = this.getDesListItems.bind(this);
+    this.getSubDesListItems = this.getSubDesListItems.bind(this);
     this.handleMotorDrop = this.handleMotorDrop.bind(this);
     this.handleQRCodeDrop = this.handleQRCodeDrop.bind(this);
-
+    this.handleDesignatorChange = this.handleDesignatorChange.bind(this);
+    this.handleSubDesignatorChange = this.handleSubDesignatorChange.bind(this);
+    this.handleSubmitDes = this.handleSubmitDes.bind(this);
+    this.handleSubmitSubDes = this.handleSubmitSubDes.bind(this);
     this.motorRef = React.createRef();
     this.qrcodeRef = React.createRef();
   }
@@ -164,8 +171,112 @@ export default class EditForm extends Component {
     });
   }
 
+  handleSubDesignatorChange(event) {
+    const selectedValue = event.target.value;
+
+    if (selectedValue === "new-entry") {
+      this.setState({ showNewSubDesignatorInput: true, subdesignator: "" });
+    } else {
+      this.setState({
+        subdesignator: selectedValue,
+        showNewSubDesignatorInput: false,
+      });
+    }
+  }
+
+  handleSubmitSubDes(event) {
+    event.preventDefault();
+
+    // Check if 'sn' is empty
+    if (this.state.sn === "") {
+      alert("Serial Number (SN) cannot be empty.");
+      return; // Stop the form submission if 'sn' is empty
+    }
+
+    // Add the new designator to the list if it was entered
+    let deslistcomponent = [...this.state.deslistcomponent];
+    if (this.state.showNewDesignatorInput && this.state.designator !== "") {
+      deslistcomponent.push(this.state.designator);
+      this.setState({ deslistcomponent }); // Update the state
+    }
+
+    // The rest of your form submission logic
+    //...
+  }
+  handleSubmitDes(event) {
+    event.preventDefault();
+
+    // Check if 'sn' is empty
+    if (this.state.sn === "") {
+      alert("Serial Number (SN) cannot be empty.");
+      return; // Stop the form submission if 'sn' is empty
+    }
+
+    // Add the new designator to the list if it was entered
+    let deslistcomponent = [...this.state.deslistcomponent];
+    if (this.state.showNewDesignatorInput && this.state.designator !== "") {
+      deslistcomponent.push(this.state.designator);
+      this.setState({ deslistcomponent }); // Update the state
+    }
+
+    // The rest of your form submission logic
+    //...
+  }
+
+  handleDesignatorChange(event) {
+    const selectedValue = event.target.value;
+
+    if (selectedValue === "new-entry") {
+      this.setState({ showNewDesignatorInput: true, designator: "" });
+    } else {
+      this.setState({
+        designator: selectedValue,
+        showNewDesignatorInput: false,
+      });
+    }
+  }
+  getDesListItems() {
+    axios
+      .get("http://192.168.1.231:8000/Specs") // Fetch the Specs data
+      .then((response) => {
+        // Extract the designators from the Specs objects
+        const designators = response.data.map((item) => item.designator);
+
+        // Get unique designators by using Set
+        const uniqueDesignators = [...new Set(designators)];
+
+        // Update the state with the unique designators
+        this.setState({
+          deslistcomponent: uniqueDesignators,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching Specs:", error);
+      });
+  }
+  getSubDesListItems() {
+    axios
+      .get("http://192.168.1.231:8000/Specs") // Fetch the Specs data
+      .then((response) => {
+        // Extract the designators from the Specs objects
+        const Subdesignators = response.data.map((item) => item.subdesignator);
+
+        // Get unique designators by using Set
+        const uniqueSubDesignators = [...new Set(Subdesignators)];
+
+        // Update the state with the unique designators
+        this.setState({
+          subdeslistcomponent: uniqueSubDesignators,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching Specs:", error);
+      });
+  }
   componentDidMount() {
     this.handleSpecsId();
+    this.getDesListItems();
+    this.getSubDesListItems();
   }
   render() {
     return (
@@ -210,30 +321,44 @@ export default class EditForm extends Component {
           <select
             name="designator"
             value={this.state.designator}
-            onChange={this.handleChange}
+            onChange={this.handleDesignatorChange}
             className="select-element"
           >
-            <option value="none">None</option>
-            <option value="Untha ZR2400">Untha ZR2400</option>
-            <option value="Untha XRM3000C">Untha XRM3000C</option>
-            <option value="Ring Mill">Ring Mill</option>
-            <option value="Optical Sorter">Optical Sorter</option>
-            <option value="Eddy Current">Eddy Current</option>
+            <option value="placeholder">Pick a Designator</option>
+            <option value="new-entry">Add New Designator...</option>
+            <DesignatorOptions desitems={this.state.deslistcomponent} />
           </select>
+          {this.state.showNewDesignatorInput && (
+            <input
+              type="text"
+              name="designator"
+              placeholder="Enter New Designator"
+              value={this.state.designator} // Bind the input value to the designator state
+              onChange={this.handleChange}
+            />
+          )}
           <h1>Sub-Designator</h1>
           <select
             name="subdesignator"
             value={this.state.subdesignator}
-            onChange={this.handleChange}
+            onChange={this.handleSubDesignatorChange}
             className="select-element"
           >
-            <option value="none">None</option>
-            <option value="Infeed">Infeed</option>
-            <option value="Discharge">Discharge</option>
-            <option value="Crossbelt">Crossbelt</option>
-            <option value="Vibratory Mover">Vibratory Mover</option>
-            <option value="Drum Magnet">Drum Magnet</option>
+            <option value="placeholder">Pick a Subdesignator</option>
+            <option value="new-entry">Add New Subdesignator...</option>
+            <SubDesignatorOptions
+              subdesitems={this.state.subdeslistcomponent}
+            />
           </select>
+          {this.state.showNewSubDesignatorInput && (
+            <input
+              type="text"
+              name="subdesignator"
+              placeholder="Enter New Subdesignator"
+              value={this.state.subdesignator} // Bind the input value to the designator state
+              onChange={this.handleChange}
+            />
+          )}
           <h1>Oil Type</h1>
           <input
             type="text"

@@ -36,6 +36,7 @@ export default class App extends Component {
             <thead>
               <tr>
                 <th>Machine Designator</th>
+                <th>Name</th>
                 <th>Sub Designator</th>
                 <th>Hours</th>
               </tr>
@@ -44,6 +45,7 @@ export default class App extends Component {
               {this.state.specs.map((item) => (
                 <tr key={item.id}>
                   <td>{item.designator}</td>
+                  <td>{item.name}</td>
                   <td>
                     <NavLink to={`/Specs/${item.sn}`}>
                       {item.subdesignator}
