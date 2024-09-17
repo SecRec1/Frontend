@@ -82,6 +82,7 @@
     "react-dom": "^18.3.1",
     "react-draft-wysiwyg": "^1.15.0",
     "react-dropzone-component": "^3.2.0",
+    "react-loading-indicators": "^1.0.0",
     "react-modal": "^3.16.1",
     "react-qr-code": "^2.0.15",
     "react-qrcode-scanner": "^1.2.4",

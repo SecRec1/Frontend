@@ -7,13 +7,14 @@ import RecordList from "../list-component";
 import SpecsDetail from "../detail-page/specs-details";
 
 import Styles from "../../style/manager.scss";
+import Loading from "../loading";
 
 export default class SpecsManager extends Component {
   constructor(props) {
     super(props);
     this.state = {
       specsItems: [],
-      
+      loading:true,
       SpecsPageToEdit: {},
     };
 
@@ -30,10 +31,12 @@ export default class SpecsManager extends Component {
       .then((response) => {
         this.setState({
           specsItems: [...response.data],
+          loading: false,
         });
       })
       .catch((error) => {
         console.log("Specs Manager get specs error", error);
+        this.setState({ loading: false }); // Stop loading even if there's an error
       });
   }
 
@@ -66,11 +69,16 @@ export default class SpecsManager extends Component {
           handleNewFormSubmission={this.handleNewFormSubmission}
         />
 
-        <RecordList
-          loggedin={this.props.loggedin}
-          data={this.state.specsItems}
-          handleDeleteClick={this.handleDeleteClick}
-        />
+        {/* Display loading animation while data is being fetched */}
+        {this.state.loading ? (
+          <Loading />
+        ) : (
+          <RecordList
+            loggedin={this.props.loggedin}
+            data={this.state.specsItems}
+            handleDeleteClick={this.handleDeleteClick}
+          />
+        )}
       </div>
     );
   }

@@ -7,56 +7,20 @@ import SpecsItem from "../specs-item";
 import Styles from "../../style/specs-page.scss";
 import SpecsEditor from "../spec-editor";
 
+import Loading from "../loading";
+
 export default class SpecsDetail extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
       specsItem: {},
+      loading:true,
     };
     this.getSpecsItem = this.getSpecsItem.bind(this);
     this.printCode = this.printCode.bind(this);
   }
-  // printCode() {
-  //   // Create a new window for printing
-  //   const printWindow = window.open("", "", "height=400,width=400"); // Adjust dimensions for label
   
-  //   // Add HTML content to the new window
-  //   printWindow.document.open();
-  //   printWindow.document.write(`
-  //     <html>
-  //       <head>
-  //         <style>
-  //           @page {
-  //             size: 2in 1in; /* Adjust the size to match your label printer (e.g., 2x1 inch) */
-  //             margin: 0; /* No margins for label printing */
-  //           }
-  //           body {
-  //             text-align: center;
-  //             margin: 0;
-  //             padding: 0;
-  //           }
-  //           img {
-  //             max-width: 100%;
-  //             height: auto;
-  //           }
-  //         </style>
-  //       </head>
-  //       <body>
-  //         <img src="${this.state.specsItem.qrcode}" alt="QR Code" />
-  //         <script>
-  //           window.onload = function() {
-  //             window.print();
-  //             window.onafterprint = function() {
-  //               window.close();
-  //             };
-  //           };
-  //         </script>
-  //       </body>
-  //     </html>
-  //   `);
-  //   printWindow.document.close();
-  // }
   printCode() {
     // Create a new window for printing
     const printWindow = window.open("", "", "height=800,width=800");
@@ -121,6 +85,7 @@ export default class SpecsDetail extends Component {
   
   componentDidMount() {
     this.getSpecsItem();
+    this.setState({ loading: false });
   }
 
   getSpecsItem() {
@@ -140,6 +105,10 @@ export default class SpecsDetail extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      // Display the loader if the app is still loading
+      return <Loading />;
+    }
     const isDisabled = !this.props.loggedin;
     return (
       <div key={this.state.specsItem.sn} className="Specs-item-container">

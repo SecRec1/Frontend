@@ -4,7 +4,7 @@ import axios from "axios";
 import SearchList from "../forms/search-list";
 import DesignatorOptions from "./option-lists/designator-options";
 import SubDesignatorOptions from "./option-lists/subdes-options";
-
+import Loading from "../loading";
 export default class SearchForm extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +17,7 @@ export default class SearchForm extends Component {
       deslistcomponent: [],
       subdeslistcomponent: [],
       showModal: false,
+      loading: true,
     };
     this.getRecords = this.getRecords.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -54,10 +55,12 @@ export default class SearchForm extends Component {
       .then((response) => {
         this.setState({
           records: response.data,
+          loading: false,
         });
       })
       .catch((error) => {
         console.log("error", error);
+        this.setState({ loading: false }); // Set loading to false in case of an error
       });
   }
 
@@ -156,39 +159,43 @@ export default class SearchForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="">
-            <select
-              name="designator"
-              value={this.state.designator}
-              onChange={this.handleChange}
-              className="select-element"
-            >
-              <option value="none">None</option>
-              <DesignatorOptions desitems={this.state.deslistcomponent} />
-            </select>
+        {/* Show loading animation while data is being fetched */}
+        {this.state.loading ? (
+          <Loading />
+        ) : (
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <div className="">
+                <select
+                  name="designator"
+                  value={this.state.designator}
+                  onChange={this.handleChange}
+                  className="select-element"
+                >
+                  <option value="none">None</option>
+                  <DesignatorOptions desitems={this.state.deslistcomponent} />
+                </select>
 
-            <select
-              name="subdesignator"
-              value={this.state.subdesignator}
-              onChange={this.handleChange}
-              className="select-element"
-            >
-              <option value="none">None</option>
-              <SubDesignatorOptions subdesitems={this.state.subdeslistcomponent}/>
-              {/* <option value="Main">Main</option>
-              <option value="Infeed">Infeed</option>
-              <option value="Discharge">Discharge</option>
-              <option value="Crossbelt">Crossbelt</option>
-              <option value="Vibratory Mover">Vibratory Mover</option> */}
-            </select>
+                <select
+                  name="subdesignator"
+                  value={this.state.subdesignator}
+                  onChange={this.handleChange}
+                  className="select-element"
+                >
+                  <option value="none">None</option>
+                  <SubDesignatorOptions
+                    subdesitems={this.state.subdeslistcomponent}
+                  />
+                </select>
+              </div>
+
+              <button type="submit">Search</button>
+            </form>
+            <div>
+              <SearchList records={this.state.finalfilteredrecords} />
+            </div>
           </div>
-
-          <button type="submit">Search</button>
-        </form>
-        <div>
-          <SearchList records={this.state.finalfilteredrecords} />
-        </div>
+        )}
       </div>
     );
   }

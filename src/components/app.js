@@ -19,12 +19,22 @@ import TaskManager from "./task-manager";
 import TaskPage from "./pages/task-page";
 
 import Lockimg from "../../static/assets/images/lockimg.png";
+import Loading from "./loading";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true, // Flag to indicate whether the app is still loading
+    };
 
     Icons();
+  }
+  componentDidMount() {
+    // Simulate loading time with setTimeout, for example purposes
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000); // Assume 2 seconds of loading time
   }
 
   render() {
@@ -35,6 +45,10 @@ export default class App extends Component {
       backgroundRepeat: "no-repeat",
       
     };
+    if (this.state.loading) {
+      // Display the loader if the app is still loading
+      return <Loading />;
+    }
     return (
       <div className="app" style={Emblem}>
         <Header />

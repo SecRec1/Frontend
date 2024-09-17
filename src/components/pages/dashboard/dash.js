@@ -12,8 +12,13 @@ import styles from "../../../style/dashboard.scss";
 export default class Dash extends Component {
   constructor(props) {
     super(props);
+
+    
   }
+
+  
   render() {
+    
     return (
       <div>
         <h1>Dashboard</h1>
