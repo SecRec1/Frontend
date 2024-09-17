@@ -17,30 +17,93 @@ export default class SpecsDetail extends Component {
     this.getSpecsItem = this.getSpecsItem.bind(this);
     this.printCode = this.printCode.bind(this);
   }
+  // printCode() {
+  //   // Create a new window for printing
+  //   const printWindow = window.open("", "", "height=400,width=400"); // Adjust dimensions for label
+  
+  //   // Add HTML content to the new window
+  //   printWindow.document.open();
+  //   printWindow.document.write(`
+  //     <html>
+  //       <head>
+  //         <style>
+  //           @page {
+  //             size: 2in 1in; /* Adjust the size to match your label printer (e.g., 2x1 inch) */
+  //             margin: 0; /* No margins for label printing */
+  //           }
+  //           body {
+  //             text-align: center;
+  //             margin: 0;
+  //             padding: 0;
+  //           }
+  //           img {
+  //             max-width: 100%;
+  //             height: auto;
+  //           }
+  //         </style>
+  //       </head>
+  //       <body>
+  //         <img src="${this.state.specsItem.qrcode}" alt="QR Code" />
+  //         <script>
+  //           window.onload = function() {
+  //             window.print();
+  //             window.onafterprint = function() {
+  //               window.close();
+  //             };
+  //           };
+  //         </script>
+  //       </body>
+  //     </html>
+  //   `);
+  //   printWindow.document.close();
+  // }
   printCode() {
     // Create a new window for printing
-    const printWindow = window.open("", "", "height=600,width=800");
-
+    const printWindow = window.open("", "", "height=800,width=800");
+  
     // Add HTML content to the new window
     printWindow.document.open();
     printWindow.document.write(`
       <html>
         <head>
-          
           <style>
             body {
-              text-align: center;
-              margin: 20px;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh; /* Full height of the page for vertical centering */
+            }
+            .label-container {
+              width: 2in;  /* Adjust based on the actual label size */
+              height: 1in; /* Adjust based on the actual label size */
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
             img {
-              max-width: 100%;
-              height: auto;
+              width: 175%; /* Scale slightly beyond 100% for a bigger image */
+              height: auto; /* Maintain aspect ratio */
+              max-width: none; /* Remove max limits to allow bigger size */
+              max-height: none;
+              object-fit: contain; /* Ensure image scales while keeping aspect ratio */
+            }
+            @media print {
+              @page {
+                size: auto;
+                margin: 0; /* No margins for the printed label */
+              }
+              body {
+                margin: 0;
+              }
             }
           </style>
         </head>
         <body>
-          
-          <img src="${this.state.specsItem.qrcode}" alt="QR Code" />
+          <div class="label-container">
+            <img src="${this.state.specsItem.qrcode}" alt="QR Code" />
+          </div>
           <script>
             window.onload = function() {
               window.print();
@@ -54,6 +117,8 @@ export default class SpecsDetail extends Component {
     `);
     printWindow.document.close();
   }
+  
+  
   componentDidMount() {
     this.getSpecsItem();
   }
