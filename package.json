@@ -13,7 +13,7 @@
     "precommit": "eslint src",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "production": "NODE_ENV=production node server.js"
+    "prod": "cross-env NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -119,6 +119,7 @@
     "babel-register": "^6.26.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^12.0.2",
+    "cross-env": "^7.0.3",
     "eslint": "^9.10.0",
     "file-loader": "^6.2.0",
     "gh-pages": "^6.1.1",
