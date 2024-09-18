@@ -72,7 +72,7 @@ export default class Manager extends Component {
           </div>
           
             <div id="tasks" className="tasks ">
-              <TaskManager loggedin={loggedin} />
+              <TaskManager loggedin={this.state.loggedin} />
             </div>
           
         </div>

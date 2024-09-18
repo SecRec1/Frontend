@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
-import QRCode from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 import RichTextEditor from "../../rich/rich-text-editor";
 import DesignatorOptions from "../forms/option-lists/designator-options";
 import SubDesignatorOptions from "../forms/option-lists/subdes-options";
@@ -367,7 +367,7 @@ export default class AddForm extends Component {
           />
         </div>
         <div className="file-holder" style={myStyle}>
-          <QRCode
+          <QRCodeCanvas
             className="qrcode"
             value={`http://192.168.1.231:8080/#/Specs/${this.state.sn}`}
           />

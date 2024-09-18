@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DropzoneComponent from "react-dropzone-component";
-import QRCode from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 import RichTextEditor from "../../rich/rich-text-editor";
 import DesignatorOptions from "../forms/option-lists/designator-options";
 import SubDesignatorOptions from "../forms/option-lists/subdes-options";
@@ -377,7 +377,7 @@ export default class EditForm extends Component {
           />
         </div>
         <div className="right">
-          <QRCode
+          <QRCodeCanvas
             ref={this.qrcodeRef}
             config={this.componentConfig()}
             djsConfig={this.djsConfig()}
