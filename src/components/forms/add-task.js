@@ -34,7 +34,7 @@ export default class AddTask extends Component {
     console.log("New task submission", this.state.taskItems);
   }
   handleTaskInfo() {
-    axios.get(`https://backend-1-jevl.onrender.com/Task`).then((response) => {
+    axios.get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Task`).then((response) => {
       this.setState({ taskid: response.data.length + 1 });
       this.setState({ taskItems: response.data });
     });
@@ -74,7 +74,7 @@ export default class AddTask extends Component {
     }
     const data = Object.fromEntries(formData);
 
-    axios.post("https://backend-1-jevl.onrender.com/Task", data).then((response) => {
+    axios.post("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Task", data).then((response) => {
       this.props.handleNewTaskSubmission(response.data);
       this.setState({
         job: "",

@@ -25,7 +25,7 @@ export default class App extends Component {
 
   getNotes() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Notes")
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Notes")
       .then((response) => {
         this.setState({ notes: response.data });
       })
@@ -38,7 +38,7 @@ export default class App extends Component {
     const currentDate = new Date().toISOString(); // Format the date in ISO format
   
     axios
-      .post("https://backend-1-jevl.onrender.com/Notes", {
+      .post("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Notes", {
         note: this.state.newNote,
         retired: "n",
         date: currentDate, // Add the date to the request body
@@ -58,7 +58,7 @@ export default class App extends Component {
 
   retireNote(noteId) {
     axios
-      .put(`https://backend-1-jevl.onrender.com/Notes/${noteId}`, { retired: "y" })
+      .put(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Notes/${noteId}`, { retired: "y" })
       .then(() => {
         this.setState((prevState) => ({
           notes: prevState.notes.map((note) =>

@@ -26,7 +26,7 @@ export default class App extends Component {
 
   getParts() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Parts")
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Parts")
       .then((res) => {
         this.setState({ parts: res.data }, () => {
           // Call the filter functions after the state has been updated

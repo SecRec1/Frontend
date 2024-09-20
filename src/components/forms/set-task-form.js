@@ -65,7 +65,7 @@ export default class SetTaskForm extends Component {
     time.classList.add("show");
   }
   getTasks() {
-    axios.get("https://backend-1-jevl.onrender.com/Task").then((response) => {
+    axios.get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Task").then((response) => {
       this.setState({ tasks: response.data });
     });
   }
@@ -158,7 +158,7 @@ export default class SetTaskForm extends Component {
         alert("Please enter a valid Equipment SN");
       } else {
         axios
-          .post(`https://backend-1-jevl.onrender.com/IBST`, data)
+          .post(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//IBST`, data)
           .then(
             this.setState({
               newtaskid: "",

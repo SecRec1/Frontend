@@ -47,7 +47,7 @@ export default class Manager extends Component {
 
   async getAdmins() {
     try {
-      const response = await axios.get(`https://backend-1-jevl.onrender.com/Admin`);
+      const response = await axios.get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Admin`);
       this.setState({ admins: response.data }, this.getLoggedinStatus);
     } catch (error) {
       console.error(error);

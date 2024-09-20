@@ -174,7 +174,7 @@ export default class TaskList extends Component {
     };
     console.log("Sending data:", data);
     axios
-      .put(`https://backend-1-jevl.onrender.com/IBST/${this.state.id}`, data, {
+      .put(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//IBST/${this.state.id}`, data, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -189,7 +189,7 @@ export default class TaskList extends Component {
   }
   componentDidMount() {
     axios
-      .get(`https://backend-1-jevl.onrender.com/IBST`)
+      .get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//IBST`)
       .then((record) => this.setState({ IBSTs: record.data }));
   }
   render() {

@@ -34,7 +34,7 @@ export default class Auth extends Component {
 
   getAdmins = () => {
     axios
-      .get("https://backend-1-jevl.onrender.com/Admin")
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Admin")
       .then((response) => this.setState({ admins: response.data }))
       .catch((error) => console.log(error));
   };
@@ -78,7 +78,7 @@ export default class Auth extends Component {
   };
 
   updateAdminStatus = async (id, status) => {
-    await axios.put(`https://backend-1-jevl.onrender.com/Admin/${id}/status`, {
+    await axios.put(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Admin/${id}/status`, {
       loggedin: status,
     });
   };

@@ -30,7 +30,7 @@ export default class AddForm extends Component {
       showNewSubDesignatorInput: false,
       
       specsid: "",
-      apiUrl: "https://backend-1-jevl.onrender.com/Specs",
+      apiUrl: "https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs",
       apiAction: "post",
     };
 
@@ -54,7 +54,7 @@ export default class AddForm extends Component {
 
   handleSpecsId = async () => {
     try {
-      const response = await axios.get("https://backend-1-jevl.onrender.com/Specs");
+      const response = await axios.get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs");
       const existingIds = response.data.map((item) => item.id);
 
       let newId = this.state.id;
@@ -123,7 +123,7 @@ export default class AddForm extends Component {
 
     axios({
       method: this.state.apiAction,
-      url: "https://backend-1-jevl.onrender.com/Specs",
+      url: "https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs",
       data: data,
     })
       .then((response) => {
@@ -223,7 +223,7 @@ export default class AddForm extends Component {
 
   getDesListItems() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const designators = response.data.map((item) => item.designator);
@@ -242,7 +242,7 @@ export default class AddForm extends Component {
   }
   getSubDesListItems() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const Subdesignators = response.data.map((item) => item.subdesignator);

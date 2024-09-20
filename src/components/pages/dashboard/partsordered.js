@@ -16,7 +16,7 @@ export default class PartsOrdered extends Component {
   componentDidMount() {
     // Fetch the parts data from the backend
     axios
-      .get("https://backend-1-jevl.onrender.com/Parts")
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Parts")
       .then((response) => {
         // Filter parts where ordered is "Yes"
         const orderedParts = response.data.filter(
@@ -32,7 +32,7 @@ export default class PartsOrdered extends Component {
   handleArrived(partId) {
     // Send DELETE request to the backend to delete the part by ID
     axios
-      .delete(`https://backend-1-jevl.onrender.com/Parts/${partId}`)
+      .delete(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Parts/${partId}`)
       .then((response) => {
         // Update state to remove the part from the UI
         this.setState((prevState) => ({

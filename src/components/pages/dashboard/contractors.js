@@ -30,7 +30,7 @@ export default class App extends Component {
 
   getContractors() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Contractors")
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Contractors")
       .then((response) => {
         this.setState({ contractors: response.data });
       })
@@ -56,7 +56,7 @@ export default class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("https://backend-1-jevl.onrender.com/Contractors", this.state.newContractor)
+      .post("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Contractors", this.state.newContractor)
       .then((response) => {
         this.setState({
           contractors: [...this.state.contractors, response.data],
@@ -71,7 +71,7 @@ export default class App extends Component {
   deleteContractor(id) {
     // Make a DELETE request to the server to delete the contractor
     axios
-      .delete(`https://backend-1-jevl.onrender.com/Contractors/${id}`)
+      .delete(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Contractors/${id}`)
       .then(() => {
         // Update the state to remove the contractor without reloading the page
         this.setState({

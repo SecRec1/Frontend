@@ -27,7 +27,7 @@ export default class SpecsManager extends Component {
 
   getSpecsItems() {
     axios
-      .get(`https://backend-1-jevl.onrender.com/Specs`)
+      .get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs`)
       .then((response) => {
         this.setState({
           specsItems: [...response.data],
@@ -53,7 +53,7 @@ export default class SpecsManager extends Component {
   handleDeleteClick(specsItem) {
     
     console.log("delete", specsItem);
-    axios.delete(`https://backend-1-jevl.onrender.com/Specs/${specsItem.sn}`);
+    axios.delete(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs/${specsItem.sn}`);
     window.location.reload();
   }
   componentDidMount() {

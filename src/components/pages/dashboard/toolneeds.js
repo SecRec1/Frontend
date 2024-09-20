@@ -27,7 +27,7 @@ export default class ToolNeeds extends Component {
   }
 
   getToolNeeds() {
-    axios.get("https://backend-1-jevl.onrender.com/ToolNeeds").then((response) => {
+    axios.get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//ToolNeeds").then((response) => {
       this.setState({ toolneeds: response.data });
     });
   }
@@ -44,7 +44,7 @@ export default class ToolNeeds extends Component {
     event.preventDefault();
     // Post the new tool need to the backend
     axios
-      .post("https://backend-1-jevl.onrender.com/ToolNeeds", {
+      .post("https://mainttracker-back-b77a8e4583e3.herokuapp.com//ToolNeeds", {
         tool: this.state.newTool,
         size: this.state.newSize,
         count: this.state.newCount,
@@ -67,7 +67,7 @@ export default class ToolNeeds extends Component {
   handleDelete(toolneedId) {
     // Send DELETE request to backend
     axios
-      .delete(`https://backend-1-jevl.onrender.com/ToolNeeds/${toolneedId}`)
+      .delete(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//ToolNeeds/${toolneedId}`)
       .then(() => {
         // Remove the deleted toolneed from the state
         this.setState((prevState) => ({

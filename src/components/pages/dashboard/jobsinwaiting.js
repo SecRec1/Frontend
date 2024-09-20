@@ -27,7 +27,7 @@ export default class App extends Component {
 
   getJobs() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Jobs")
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Jobs")
       .then((response) => {
         this.setState({ jobs: response.data });
       })
@@ -53,7 +53,7 @@ export default class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     axios
-      .post("https://backend-1-jevl.onrender.com/Jobs", this.state.newJob)
+      .post("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Jobs", this.state.newJob)
       .then((response) => {
         this.setState({
           jobs: [...this.state.jobs, response.data],
@@ -68,7 +68,7 @@ export default class App extends Component {
 
   deleteJob(id) {
     axios
-      .delete(`https://backend-1-jevl.onrender.com/Jobs/${id}`)
+      .delete(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Jobs/${id}`)
       .then(() => {
         this.setState({
           jobs: this.state.jobs.filter((job) => job.id !== id),

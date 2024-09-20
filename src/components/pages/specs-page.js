@@ -12,14 +12,14 @@ const SpecsPage = () => {
   const [loggedin, setLoggedin] = useState(false);
 
   const getSpecs = () => {
-    axios.get(`https://backend-1-jevl.onrender.com/Specs/${sn}`).then((response) => {
+    axios.get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs/${sn}`).then((response) => {
       setSpecsItem(response.data);
     });
   };
 
   const getAdmins = async () => {
     try {
-      const response = await axios.get(`https://backend-1-jevl.onrender.com/Admin`);
+      const response = await axios.get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Admin`);
       setAdmins(response.data);
       getLoggedinStatus(response.data); // Pass the response data to check the logged in status
     } catch (error) {

@@ -29,7 +29,7 @@ export default class TaskManager extends Component {
   };
   getTaskItems() {
     axios
-      .get(`https://backend-1-jevl.onrender.com/Task`)
+      .get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Task`)
       .then((response) => {
         this.setState({
           taskItems: [...response.data],
@@ -52,7 +52,7 @@ export default class TaskManager extends Component {
   }
 
   handleDeleteClick(taskItem) {
-    axios.delete(`https://backend-1-jevl.onrender.com/Task/${taskItem.id}`);
+    axios.delete(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Task/${taskItem.id}`);
     window.location.reload();
   }
   componentDidMount() {

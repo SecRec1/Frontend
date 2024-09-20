@@ -18,7 +18,7 @@ export default class ItemCard extends Component {
 
   getSpecsItem() {
     axios
-      .get(`https://backend-1-jevl.onrender.com/Specs/${this.props.match.params.sn}`)
+      .get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs/${this.props.match.params.sn}`)
 
       .then((response) => {
         this.setState({ specsItem: response.data });
@@ -28,7 +28,7 @@ export default class ItemCard extends Component {
 
   getSpecsItems() {
     axios
-      .get(`https://backend-1-jevl.onrender.com/Specs`)
+      .get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs`)
       .then((response) => {
         this.setState({
           specsItems: [...response.data],

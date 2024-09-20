@@ -29,7 +29,7 @@ export default class EditForm extends Component {
       subdeslistcomponent: [],
       editMode: false,
       specsid: "",
-      //apiUrl: `https://backend-1-jevl.onrender.com/Specs/${this.state.sn}`,
+      //apiUrl: `https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs/${this.state.sn}`,
       apiAction: "patch",
     };
 
@@ -79,13 +79,13 @@ export default class EditForm extends Component {
         motor: motor.dataURL || "",
         hours: hours || "",
         editMode: true,
-        apiUrl: `https://backend-1-jevl.onrender.com/Specs/${sn}`,
+        apiUrl: `https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs/${sn}`,
         apiAction: "PUT",
       });
     }
   }
   handleSpecsId() {
-    axios.get(`https://backend-1-jevl.onrender.com/Specs`).then((response) => {
+    axios.get(`https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs`).then((response) => {
       this.setState({ specsid: response.data.length + 1 });
     });
   }
@@ -133,7 +133,7 @@ export default class EditForm extends Component {
 
     axios({
       method: "PUT",
-      url: `https://backend-1-jevl.onrender.com/Specs/${this.state.sn}`,
+      url: `https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs/${this.state.sn}`,
       data: data,
       headers: {
         "Content-Type": "application/json",
@@ -237,7 +237,7 @@ export default class EditForm extends Component {
   }
   getDesListItems() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const designators = response.data.map((item) => item.designator);
@@ -256,7 +256,7 @@ export default class EditForm extends Component {
   }
   getSubDesListItems() {
     axios
-      .get("https://backend-1-jevl.onrender.com/Specs") // Fetch the Specs data
+      .get("https://mainttracker-back-b77a8e4583e3.herokuapp.com//Specs") // Fetch the Specs data
       .then((response) => {
         // Extract the designators from the Specs objects
         const Subdesignators = response.data.map((item) => item.subdesignator);
