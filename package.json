@@ -13,7 +13,7 @@
     "precommit": "eslint src",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "prod": "cross-env NODE_ENV=production node server.js"
+    "prod": " node server.js"
   },
   "repository": {
     "type": "git",
